@@ -1,8 +1,6 @@
 # hko_mcp
 
-This is a project about [MCP] and [Hong Kong Observatory]
-
-It served as a "hand warmer" / "pet project" for louis.
+hko_mcp is a personal ("pet") project developed by louis as a learning exercise and technical playground. It focuses on integrating with the Hong Kong Observatory (HKO) and potentially other MCP (possibly a custom or third-party service) APIs. The project serves as a hands-on exploration of modern TypeScript tooling and testing practices.
 
 ## Technical Stack
 
@@ -81,8 +79,6 @@ take `Cline` for example
 - `project`: place to store source code
 
 ---
-[Hong Kong Observatory]: https://www.hko.gov.hk
-[MCP]: https://github.com/modelcontextprotocol
 [typescript]: https://www.typescriptlang.org/
 [typescript-5-7]: https://devblogs.microsoft.com/typescript/announcing-typescript-5-7/
 [eslint]: https://github.com/eslint/eslint
