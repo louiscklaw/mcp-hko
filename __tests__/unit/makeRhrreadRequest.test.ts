@@ -1,0 +1,271 @@
+import { describe, it, afterEach, beforeEach, vi, expect } from 'vitest';
+import { makeRhrreadRequest } from '../../src/lib/makeRhrreadRequest.js';
+import { formaRhrreadtResponse } from '../../src/lib/formaRhrreadtResponse.js';
+import { rhrreadUrl } from '../../src/urls.js';
+import { ImakeRhrreadResponse } from '../../src/types/ImakeRhrreadResponse.js';
+
+describe('makeRhrreadRequest.test', () => {
+  beforeEach(() => {
+    global.fetch = vi.fn();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  // Assert if setTimeout was called properly
+  it('should handle successful API response with all required fields', async () => {
+    const mockResponse = {
+      icon: [50, 51],
+      iconUpdateTime: '2024-01-20T12:00:00+08:00',
+      updateTime: '2024-01-20T12:00:00+08:00',
+      warningMessage: 'No warning in force',
+      temperature: {
+        data: [{ place: 'Hong Kong Observatory', value: 25.6, unit: 'C' }],
+        recordTime: '2024-01-20T12:00:00+08:00',
+      },
+      humidity: {
+        data: [{ place: 'Hong Kong Observatory', value: 75, unit: '%' }],
+        recordTime: '2024-01-20T12:00:00+08:00',
+      },
+    };
+
+    vi.spyOn(global, 'fetch').mockReturnValue({
+      ok: true,
+      json: async () => mockResponse,
+    } as any);
+
+    const response = await makeRhrreadRequest<ImakeRhrreadResponse>(rhrreadUrl);
+
+    // Test required fields existence
+    expect(response).toBeDefined();
+    expect(response.icon).toBeDefined();
+    expect(Array.isArray(response.icon)).toBe(true);
+    expect(response.iconUpdateTime).toBeDefined();
+    expect(response.updateTime).toBeDefined();
+    expect(response.warningMessage).toBeDefined();
+    expect(response.temperature).toBeDefined();
+    expect(response.temperature.data).toBeDefined();
+    expect(response.humidity).toBeDefined();
+    expect(response.humidity.data).toBeDefined();
+
+    // expect(1).toBe(2);
+  });
+
+  it('should handle API response with optional fields', async () => {
+    // Mock API response with optional fields
+
+    const mockResponse = {
+      icon: [50],
+      iconUpdateTime: '2024-01-20T12:00:00+08:00',
+      updateTime: '2024-01-20T12:00:00+08:00',
+      warningMessage: 'No warning in force',
+      temperature: {
+        data: [{ place: 'Hong Kong Observatory', value: 25.6, unit: 'C' }],
+        recordTime: '2024-01-20T12:00:00+08:00',
+      },
+      humidity: {
+        data: [{ place: 'Hong Kong Observatory', value: 75, unit: '%' }],
+        recordTime: '2024-01-20T12:00:00+08:00',
+      },
+      rainfall: {
+        data: [
+          {
+            place: 'Hong Kong Observatory',
+            max: 0.5,
+            main: 'TRUE',
+            unit: 'mm',
+          },
+        ],
+        startTime: '2024-01-20T11:45:00+08:00',
+        endTime: '2024-01-20T12:00:00+08:00',
+      },
+      lightning: {
+        data: [{ place: 'Hong Kong', occur: false }],
+        startTime: '2024-01-20T11:45:00+08:00',
+        endTime: '2024-01-20T12:00:00+08:00',
+      },
+      uvindex: {
+        data: [
+          {
+            place: "King's Park",
+            value: 4,
+            desc: 'Moderate',
+            message: 'Sun protection required',
+          },
+        ],
+        recordDesc: 'During the past hour',
+      },
+      rainstormReminder: 'Rainstorm warning is not in force',
+      specialWxTips:
+        'The maximum temperature at the Observatory today was 28 degrees',
+      tcmessage: 'No Tropical Cyclone warning',
+      mintempFrom00To09: '22.5',
+      rainfallFrom00To12: '0.5',
+      rainfallLastMonth: '35.5',
+      rainfallJanuaryToLastMonth: '2350.5',
+    };
+
+    vi.spyOn(global, 'fetch').mockReturnValue({
+      ok: true,
+      json: async () => mockResponse,
+    } as any);
+
+    const response = await makeRhrreadRequest<ImakeRhrreadResponse>(rhrreadUrl);
+
+    // Test optional fields existence and structure
+    expect(response.rainfall).toBeDefined();
+    if (response.rainfall) {
+      expect(Array.isArray(response.rainfall.data)).toBe(true);
+      expect(response.rainfall.startTime).toBeDefined();
+      expect(response.rainfall.endTime).toBeDefined();
+    }
+
+    expect(response.lightning).toBeDefined();
+    if (response.lightning) {
+      expect(Array.isArray(response.lightning.data)).toBe(true);
+      expect(response.lightning.startTime).toBeDefined();
+      expect(response.lightning.endTime).toBeDefined();
+    }
+
+    expect(response.uvindex).toBeDefined();
+    if (response.uvindex) {
+      expect(Array.isArray(response.uvindex.data)).toBe(true);
+      expect(response.uvindex.recordDesc).toBeDefined();
+    }
+
+    // Test other optional fields
+    expect(response.rainstormReminder).toBeDefined();
+    expect(response.specialWxTips).toBeDefined();
+    expect(response.tcmessage).toBeDefined();
+    expect(response.mintempFrom00To09).toBeDefined();
+    expect(response.rainfallFrom00To12).toBeDefined();
+    expect(response.rainfallLastMonth).toBeDefined();
+    expect(response.rainfallJanuaryToLastMonth).toBeDefined();
+    // expect(1).toBe(2);
+  });
+
+  it('should handle API error response', async () => {
+    vi.spyOn(global, 'fetch').mockReturnValue({
+      ok: false,
+      status: 500,
+      statusText: 'Internal Server Error',
+    } as any);
+
+    await expect(
+      makeRhrreadRequest<ImakeRhrreadResponse>(rhrreadUrl),
+    ).resolves.toBeNull();
+    // expect(1).toBe(2);
+  });
+
+  it('should validate data types and formats', async () => {
+    const mockResponse = {
+      icon: [50],
+      iconUpdateTime: '2024-01-20T12:00:00+08:00',
+      updateTime: '2024-01-20T12:00:00+08:00',
+      warningMessage: 'No warning in force',
+      temperature: {
+        data: [{ place: 'Hong Kong Observatory', value: 25.6, unit: 'C' }],
+        recordTime: '2024-01-20T12:00:00+08:00',
+      },
+      humidity: {
+        data: [{ place: 'Hong Kong Observatory', value: 75, unit: '%' }],
+        recordTime: '2024-01-20T12:00:00+08:00',
+      },
+    };
+
+    vi.spyOn(global, 'fetch').mockReturnValue({
+      ok: true,
+      json: async () => mockResponse,
+    } as any);
+
+    const response = await makeRhrreadRequest<ImakeRhrreadResponse>(rhrreadUrl);
+
+    // Validate data types
+    expect(Array.isArray(response.icon)).toBe(true);
+    expect(typeof response.iconUpdateTime).toBe('string');
+    expect(typeof response.updateTime).toBe('string');
+    expect(typeof response.warningMessage).toBe('string');
+
+    // Validate temperature data
+    expect(Array.isArray(response.temperature.data)).toBe(true);
+    expect(typeof response.temperature.data[0].place).toBe('string');
+    expect(typeof response.temperature.data[0].value).toBe('number');
+    expect(typeof response.temperature.data[0].unit).toBe('string');
+
+    // Validate humidity data
+    expect(Array.isArray(response.humidity.data)).toBe(true);
+    expect(typeof response.humidity.data[0].place).toBe('string');
+    expect(typeof response.humidity.data[0].value).toBe('number');
+    expect(typeof response.humidity.data[0].unit).toBe('string');
+
+    // Validate date format
+    const dateRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}$/;
+    expect(response.updateTime).toMatch(dateRegex);
+    expect(response.iconUpdateTime).toMatch(dateRegex);
+    expect(response.temperature.recordTime).toMatch(dateRegex);
+    expect(response.humidity.recordTime).toMatch(dateRegex);
+  });
+
+  it('should format response with multiple temperature data points', async () => {
+    const mockResponse = {
+      temperature: {
+        data: [
+          { place: 'Hong Kong Observatory', value: 5.6, unit: 'C' },
+          { place: 'Tai Po', value: 24.8, unit: 'C' },
+          { place: 'Sha Tin', value: 26.1, unit: 'C' },
+        ],
+      },
+      humidity: {
+        data: [{ place: 'Hong Kong Observatory', value: 5, unit: '%' }],
+      },
+    };
+
+    vi.spyOn(global, 'fetch').mockReturnValue({
+      ok: true,
+      json: async () => mockResponse,
+    } as any);
+
+    const response = await makeRhrreadRequest<ImakeRhrreadResponse>(rhrreadUrl);
+    console.debug(response);
+
+    // Verify each temperature data point is included
+    expect(response).keys(['temperature', 'humidity']);
+  });
+
+  it('should handle empty temperature data array', () => {
+    const mockResponse = {
+      temperature: {
+        data: [],
+      },
+      humidity: {
+        data: [{ place: 'Hong Kong Observatory', value: 75, unit: '%' }],
+      },
+    };
+
+    const result = formaRhrreadtResponse(mockResponse);
+    console.debug(result);
+
+    // Should only contain humidity data
+    expect(result).toBe(
+      '\n---\nplace:Hong Kong Observatory\nvalue:75\nunit:%\ndescription:overall humidity of hong kong',
+    );
+  });
+
+  it('should format response with single temperature and humidity data', () => {
+    const mockResponse = {
+      temperature: {
+        data: [{ place: 'Hong Kong Observatory', value: 25.6, unit: 'C' }],
+      },
+      humidity: {
+        data: [{ place: 'Hong Kong Observatory', value: 75, unit: '%' }],
+      },
+    };
+    const expected = [
+      'place:Hong Kong Observatory\nvalue:25.6\nunit:C\ndescription:district temperature',
+      'place:Hong Kong Observatory\nvalue:75\nunit:%\ndescription:overall humidity of hong kong',
+    ].join('\n---\n');
+    const result = formaRhrreadtResponse(mockResponse);
+    expect(result).toBe(expected);
+  });
+});
