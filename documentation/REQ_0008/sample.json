@@ -1,0 +1,123 @@
+{
+  "details": [
+    {
+      "contents": [
+        "Thunderstorm Warning issued at 11:40 a.m. on 24 Sep2020 has been extended until 7: 30 p.m. today. Thunderstorms are expected to occur over Hong Kong.",
+        "Members of the public are advised to take the following precautions when thunderstorms occur: ",
+        "1. Stay indoors. Seek shelter in buildings if you are engaging in outdoor activities.",
+        "2. Do not stand on high grounds. Keep away from highly conductive objects, trees or masts."
+      ],
+      "warningStatementCode": "WTS",
+      "updateTime": "2020-09-24T05: 00: 00+08: 00"
+    },
+    {
+      "contents": [
+        "The Strong Monsoon Signal was issued at 11:15 a.m."
+      ],
+      "warningStatementCode": "WMSGNL",
+      "updateTime": "2020-09-24T11:15:00+08:00"
+    },
+    {
+      "contents": [
+        "Landslip Warning\n\nLandslip Warning issued at 11:15 a.m."
+      ],
+      "warningStatementCode": "WL",
+      "updateTime": "2020-09-24T11:15:00+08:00"
+    },
+    {
+      "contents": [
+        "The Very Hot Weather Warning has been issued by the Hong Kong Observatory at 07: 00",
+        "The Hong Kong Observatory is forecasting very hot weather with light winds in Hong Kong today. The risk of heatstroke is high.",
+        "When engaged in outdoor work or activities, drink plenty of water and avoid over exertion. If not feeling well, take a rest in the shade or cooler place as soon as possible.",
+        "People staying indoors without air-conditioning should keep windows open as far as possible to ensure that there is adequate ventilation.",
+        "Avoid prolonged exposure under sunlight. Loose clothing, suitable hats and UV- blocking sunglasses can reduce the chance of sunburn by solar ultraviolet radiation.",
+        "Swimmers and those taking part in outdoor activities should use a sunscreen lotion of SPF 15 or above, and should re-apply it frequently.",
+        "Beware of health and wellbeing of elderly or persons with chronic medical conditions. If you know of them, call or visit them occasionally to check if they need any assistance."
+      ],
+      "warningStatementCode": "WHOT",
+      "updateTime": "2020-09-24T07: 00: 00+08: 00"
+    },
+    {
+      "contents": [
+        "The Cold Weather Warning has been issued by the Hong Kong Observatory at 11: 15 a.m.",
+        "Cold weather is expected in Hong Kong in the morning and at night today and tomorrow.",
+        "The minimum temperatures in the urban areas overnight will be around 11 degrees or below. It will be a couple of degrees lower in the northern part of the New Territories and on high ground.",
+        "People are advised to put on warm clothes and ensure adequate indoor ventilation.",
+        "As it is very windy in parts of the territory, wind chill effect will be significant. The temperature felt by body will be lower than the actual air temperature. Prolonged exposure to wintry winds may lead to hypothermia.",
+        "If you know of elderly persons or persons with chronic medical conditions staying alone, please call or visit them occasionally to check if they need any assistance.",
+        "Owing to icing conditions in Tai Mo Shan, members of the public, motorists and cyclists should be aware of the danger on slippery roads.",
+        "Make sure heaters are safe before use, and place them away from any combustibles. Do not light fires indoors as a means to keep warm.",
+        "Please ensure that there is plenty of fresh air in your room when you are using an old-type gas water heater."
+      ],
+      "warningStatementCode": "WCOLD",
+      "updateTime": "2020-09-24T11: 15: 00+08: 00"
+    },
+    {
+      "contents": [
+        "The Observatory warns farmers and others concerned that ground frost is likely to occur early tomorrow morning on high ground or in the northern part of the New Territories."
+      ],
+      "warningStatementCode": "WFROST",
+      "updateTime": "2020-09-24T11: 15: 00+08: 00"
+    },
+    {
+      "contents": [
+        "Red Rainstorm Warning Signal has been issued at11: 15 a.m."
+      ],
+      "subtype": "WRAINR",
+      "warningStatementCode": "WRAIN",
+      "updateTime": "2020-09-24T11:15:00+08:00"
+    },
+    {
+      "contents": [
+        "Special Announcement on Flooding in the northern New Territories issued by the Hong Kong Observatory at 11: 40 on 24 September.",
+        "Heavy rain is affecting the northern part of the New Territories, especially in Pat Heung and Kam Tin area(s). More than 70 millimetres of rainfall have been recorded in the past 1 hour.",
+        "Residents in the northern New Territories, who are likely to be affected, are advised to take necessary precautions to avoid possible flood damage. Heavy rain may bring about flash floods. People should stay away from watercourses. They should also pay attention to the flood sirens if they are nearby."
+      ],
+      "warningStatementCode": "WFNTSA",
+      "updateTime": "2020-09-24T11: 40: 00+08: 00"
+    },
+    {
+      "contents": [
+        "The Strong Wind Signal, No. 3, was issued at 11:15 a.m."
+      ],
+      "subtype": "TC3",
+      "warningStatementCode": "WTCSGNL",
+      "updateTime": "2020-09-24T11: 15: 00+08: 00"
+    },
+    {
+      "contents": [
+        "The Hong Kong Observatory announces that the Tropical Cyclone Warning Signal Number 8 is expected to be issued at or before 4: 07 p.m. today (24 Sep 2020). Winds locally will strengthen further.",
+        "The Government advises members of the public with long or difficult home journeys or having to return to outlying islands to begin their journeys now. The Government is now making arrangements to release its employees accordingly.",
+        "Announcement by the Education Bureau (EDB): ",
+        "The EDB announces that classes of all day schools are suspended today. If classes of evening schools are required to be suspended, the bureau will make the announcement in due course."
+      ],
+      "warningStatementCode": "WTCPRE8",
+      "updateTime": "2020-09-24T14: 10: 00+08: 00"
+    },
+    {
+      "contents": [
+        "Tsunami Warning issued by the Hong Kong Observatory at 11: 15 a.m. on 24 Sep 2020.",
+        "A severe earthquake of magnitude 6 occurred at Mindanao, Philippines at about 11: 10 a.m. on 24 Sep 2020.",
+        "It is not certain whether a tsunami has been generated but precautions should be taken for the sake of safety.",
+        "The predicted normal tides today are: ",
+        "High water 3.5 metres at 6: 00 p.m.",
+        "Low water 2.5 metres at 4: 00 p.m.",
+        "1. Stay away from shores, beaches and low-lying coastal areas. If you are there, move inland or to higher grounds. The upper floors of high, multi-storey, reinforced concrete building can provide safe refuge if there is no time to quickly move inland or to higher grounds.",
+        "2. Do not engage in water sports.",
+        "3. Vessels should stay away from the shore or shallow waters. If vessels remain moored in typhoon shelters, their moorings should be doubled and all personnel should leave the vessels and head for higher grounds.",
+        "4. Please observe these precautions until the Observatory cancels the tsunami warning.",
+        "5. Please stay tuned to the radio or television for further information."
+      ],
+      "warningStatementCode": "WTMW",
+      "updateTime": "2020-09-24T11: 15: 00+08: 00"
+    },
+    {
+      "contents": [
+        "The fire danger warning is Red and the fire risk is Extreme."
+      ],
+      "warningStatementCode": "WFIRE",
+      "subtype": "WFIRER",
+      "updateTime": "2020-09-24T11: 15: 00+08: 00"
+    }
+  ]
+}

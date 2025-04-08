@@ -78,7 +78,13 @@ take `Cline` for example
 - `documentation/REQ_xxx`: place to store requirements and specifications
 - `project`: place to store source code
 
+### PROGRESS/TODO
+
+[progress]
+
 ---
+
+[progress]: https://github.com/louiscklaw/mcp-hko/documentation/progress.md
 [typescript]: https://www.typescriptlang.org/
 [typescript-5-7]: https://devblogs.microsoft.com/typescript/announcing-typescript-5-7/
 [eslint]: https://github.com/eslint/eslint

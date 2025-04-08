@@ -17,3 +17,13 @@ please help to draft the missing test in `makeFlwRequest.test.ts`,
 do not modify existing test
 
 thanks
+
+---
+
+draft `run.js`, a nodejs script
+
+1. iterate the `md` files in `/home/logic/_wsl_workspace/001_github_ws/mcp-ws/hko-mcp/documentation` directory
+2. read the `done` flag in frontmatter, default to `false` if not found
+3. create a markdown file `progress.md` and list the results
+
+`- [ ] xxx.md <h1_here_please>`

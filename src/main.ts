@@ -1,70 +1,20 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
-import { makeNWSRequest } from './lib/makeNWSRequest.js';
 import { makeRhrreadRequest } from './lib/makeRhrreadRequest.js';
 import { formaRhrreadtResponse } from './lib/formaRhrreadtResponse.js';
 import { flwUrl, rhrreadUrl } from './urls.js';
 import { ImakeRhrreadResponse } from './types/ImakeRhrreadResponse.js';
 import { ImakeFlwResponse } from './types/ImakeFlwResponse.js';
-import { formatFlwtResponse, makeFlwRequest } from './lib/makeFlwRequest.js';
+import { makeFlwRequest } from './lib/makeFlwRequest.js';
 import { formatFlwResponse } from './lib/formatFlwResponse.js';
 // import { formatFlwResponse } from './formatFlwResponse.ts.del';
 
-const NWS_API_BASE = 'https://api.weather.gov';
 export const USER_AGENT = 'weather-app/1.0';
 
-interface AlertFeature {
-  properties: {
-    event?: string;
-    areaDesc?: string;
-    severity?: string;
-    status?: string;
-    headline?: string;
-  };
-}
-
-// Format alert data
-function formatAlert(feature: AlertFeature): string {
-  const props = feature.properties;
-  return [
-    `Event: ${props.event || 'Unknown'}`,
-    `Area: ${props.areaDesc || 'Unknown'}`,
-    `Severity: ${props.severity || 'Unknown'}`,
-    `Status: ${props.status || 'Unknown'}`,
-    `Headline: ${props.headline || 'No headline'}`,
-    '---',
-  ].join('\n');
-}
-
-interface ForecastPeriod {
-  name?: string;
-  temperature?: number;
-  temperatureUnit?: string;
-  windSpeed?: string;
-  windDirection?: string;
-  shortForecast?: string;
-}
-
-interface AlertsResponse {
-  features: AlertFeature[];
-}
-
-interface PointsResponse {
-  properties: {
-    forecast?: string;
-  };
-}
-
-interface ForecastResponse {
-  properties: {
-    periods: ForecastPeriod[];
-  };
-}
 
 // Create server instance
 const server = new McpServer({
-  name: 'weather',
+  name: 'hko-mcp',
   version: '1.0.0',
 });
 
@@ -105,7 +55,6 @@ main().catch((error) => {
   process.exit(1);
 });
 
-console.log('hello');
 
 // original
 
