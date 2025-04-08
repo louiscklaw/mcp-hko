@@ -88,7 +88,7 @@ take `Cline` for example
 
 ---
 
-[progress]: https://github.com/louiscklaw/mcp-hko/documentation/progress.md
+[progress]: https://github.com/louiscklaw/hko-mcp/blob/master/documentation/progress.md
 [typescript]: https://www.typescriptlang.org/
 [typescript-5-7]: https://devblogs.microsoft.com/typescript/announcing-typescript-5-7/
 [eslint]: https://github.com/eslint/eslint
