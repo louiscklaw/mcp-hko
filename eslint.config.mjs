@@ -9,7 +9,12 @@ import tseslint from 'typescript-eslint';
 // You should change it to your needs following the documentation.
 export default tseslint.config(
   {
-    ignores: ['**/build/**', '**/tmp/**', '**/coverage/**'],
+    ignores: [
+      '**/build/**',
+      '**/tmp/**',
+      '**/coverage/**',
+      '**/documentation/**',
+    ],
   },
   eslint.configs.recommended,
   eslintConfigPrettier,
