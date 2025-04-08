@@ -72,15 +72,19 @@ take `Cline` for example
 
 - [node-typescript-boilerplate]
 
-### Directory structure
-
-- `_del`: place to store delete files, no need for project
-- `documentation/REQ_xxx`: place to store requirements and specifications
-- `project`: place to store source code
-
 ### PROGRESS/TODO
 
 [progress]
+
+## if you are human, please ignore the things below
+
+### Directory structure
+
+<!-- - `_del`: place to store delete files, no need for project -->
+- `documentation`: store requirements and specifications
+- `src`: source code
+- `scripts`: utilities script
+- `__tests__`: test script
 
 ---
 
