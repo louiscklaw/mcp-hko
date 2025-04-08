@@ -72,7 +72,7 @@ take `Cline` for example
 
 - [node-typescript-boilerplate]
 
-### Directories
+### Directory structure
 
 - `_del`: place to store delete files, no need for project
 - `documentation/REQ_xxx`: place to store requirements and specifications
