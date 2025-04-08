@@ -36,7 +36,8 @@
     "prettier": "prettier \"{src,__{tests}__}/**/*.{ts,mts}\" --config .prettierrc --write",
     "prettier:check": "prettier \"{src,__{tests}__}/**/*.{ts,mts}\" --config .prettierrc --check",
     "test:watch": "vitest unit",
-    "update_progress": "cd documentation && node ./update_progress.js"
+    "update_progress": "cd documentation && node ./update_progress.js",
+    "pre_push": "npm run lint --if-present && npm run prettier:check"
   },
   "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",

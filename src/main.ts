@@ -11,7 +11,6 @@ import { formatFlwResponse } from './lib/formatFlwResponse.js';
 
 export const USER_AGENT = 'weather-app/1.0';
 
-
 // Create server instance
 const server = new McpServer({
   name: 'hko-mcp',
@@ -54,7 +53,6 @@ main().catch((error) => {
   console.error('Fatal error in main():', error);
   process.exit(1);
 });
-
 
 // original
 
