@@ -52,10 +52,15 @@ function main() {
       `**Progress:** ${completedTasks}/${totalTasks} (${progressPercentage}%)\n\n`,
       ...results.map(({ file, done, title }) =>
           {
-            console.log({done})
             return `- [${done ? 'x' : ' '}] ${file} ${title}`
           }
-      )
+      ),
+      '---',
+      ...results.map(({ file, done, title }) =>
+        {
+          return `[${file}]: ${title} https://github.com/louiscklaw/hko-mcp/blob/master/documentation/${file.replace('.md','')}/${file}`
+        }
+    ),
   ].join('\n');
 
     // Write to progress.md
@@ -63,3 +68,4 @@ function main() {
 }
 
 main();
+console.log('done')
