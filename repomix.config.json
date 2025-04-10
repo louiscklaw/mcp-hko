@@ -1,0 +1,26 @@
+{
+  "output": {
+    "filePath": "repomix-output.xml",
+    "style": "xml",
+    "removeComments": false,
+    "removeEmptyLines": false,
+    "topFilesLength": 5,
+    "showLineNumbers": false
+  },
+  "include": [],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": false,
+    "customPatterns": [
+      "repomix.config.json",
+      "**/*.svg",
+      ".git",
+      "**/~*",
+      "**/*.del",
+      "**/*.bak"
+    ]
+  },
+  "security": {
+    "enableSecurityCheck": true
+  }
+}
