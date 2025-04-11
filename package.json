@@ -37,7 +37,10 @@
     "prettier:check": "prettier \"{src,__{tests}__}/**/*.{ts,mts}\" --config .prettierrc --check",
     "test:watch": "vitest unit",
     "update_progress": "cd documentation && node ./update_progress.js",
-    "pre_push": "npm run lint --if-present && npm run prettier:check"
+    "update_progress:w": "npx nodemon --ext md --watch documentation --exec \"pnpm run update_progress\"",
+    "pre_push": "npm run lint --if-present && npm run prettier:check",
+    "update_repomix": "npx repomix",
+    "update_repomix:w": "npx nodemon --exec \"npm run update_repomix\""
   },
   "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",
@@ -47,5 +50,6 @@
   },
   "volta": {
     "node": "22.12.0"
-  }
+  },
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
 }

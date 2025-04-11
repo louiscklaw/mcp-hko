@@ -27061,7 +27061,8 @@ dist
     "update_progress": "cd documentation && node ./update_progress.js",
     "update_progress:w": "npx nodemon --ext md --watch documentation --exec \"pnpm run update_progress\"",
     "pre_push": "npm run lint --if-present && npm run prettier:check",
-    "update_repomix": "pnpx repomix"
+    "update_repomix": "npx repomix",
+    "update_repomix:w": "npx nodemon --exec \"npm run update_repomix\""
   },
   "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",
