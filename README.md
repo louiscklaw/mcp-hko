@@ -1,5 +1,7 @@
 # hko_mcp
 
+👋 This project is in active development, PRs are welcomed 🙏🙇‍♀️
+
 hko_mcp is a personal ("pet") project developed by louis as a learning exercise and technical playground. It focuses on integrating with the Hong Kong Observatory (HKO) and potentially other MCP (possibly a custom or third-party service) APIs. The project serves as a hands-on exploration of modern TypeScript tooling and testing practices.
 
 ## Technical Stack
