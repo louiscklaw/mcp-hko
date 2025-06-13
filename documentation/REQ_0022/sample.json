@@ -1,12 +1,221 @@
 {
-  "swt": [
+  "obsTime": "2025-04-09T01:15:00+08:00",
+  "hourlyRainfall": [
     {
-      "desc": "The Hong Kong Observatory announces that the Tropical Cyclone Warning Signal Number 8 is expected to be issued at or before 4: 07 p.m. today (24 Sep 2020). Winds locally will strengthen further.The Government advises members of the public with long or difficult home journeys or having to return to outlying islands to begin their journeys now. The Government is now making arrangements to release its employees accordingly.Announcement by the Education Bureau (EDB):The EDB announces that classes of all day schools are suspended today. If classes of evening schools are required to be suspended, the bureau will make the announcement in due course.",
-      "updateTime": "2020-09-24T14:10:00+08:00"
+      "automaticWeatherStation": "Lau Fau Shan",
+      "automaticWeatherStationID": "RF001",
+      "value": "0",
+      "unit": "mm"
     },
     {
-      "desc": "Announcement on Localised Heavy Rain: More than 70 millimetres of rainfall were recorded in Tuen Mun District in the past 1 hour ending at 5: 00 p.m. and may cause serious flooding.",
-      "updateTime": "2020-09-10T16: 40: 00+08: 00"
+      "automaticWeatherStation": "Wetland Park",
+      "automaticWeatherStationID": "RF002",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Shui Pin Wai",
+      "automaticWeatherStationID": "N12",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Shek Kong",
+      "automaticWeatherStationID": "RF003",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Tai Mei Tuk",
+      "automaticWeatherStationID": "RF004",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Tai Po Market",
+      "automaticWeatherStationID": "RF005",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Pak Tam Chung",
+      "automaticWeatherStationID": "RF006",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Kau Sai Chau",
+      "automaticWeatherStationID": "RF007",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Sai Kung",
+      "automaticWeatherStationID": "N15",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Tseung Kwan O",
+      "automaticWeatherStationID": "RF008",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Clear Water Bay",
+      "automaticWeatherStationID": "RF009",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Waglan Island",
+      "automaticWeatherStationID": "RF010",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Cheung Chau",
+      "automaticWeatherStationID": "RF011",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Peng Chau",
+      "automaticWeatherStationID": "RF012",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Ngong Ping",
+      "automaticWeatherStationID": "RF013",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Hong Kong International Airport",
+      "automaticWeatherStationID": "RF014",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Ta Kwu Ling",
+      "automaticWeatherStationID": "RF015",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Sheung Shui",
+      "automaticWeatherStationID": "RF016",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Tai Lung",
+      "automaticWeatherStationID": "RF017",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Tsuen Wan Ho Koon",
+      "automaticWeatherStationID": "RF018",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Tuen Mun",
+      "automaticWeatherStationID": "RF019",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Sha Tin",
+      "automaticWeatherStationID": "RF020",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Cheung Ching",
+      "automaticWeatherStationID": "RF021",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Sham Shui Po",
+      "automaticWeatherStationID": "RF022",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Hong Kong Observatory",
+      "automaticWeatherStationID": "RF023",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "King’s Park",
+      "automaticWeatherStationID": "RF024",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Broadcast Drive",
+      "automaticWeatherStationID": "K02",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Kai Tak",
+      "automaticWeatherStationID": "RF025",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "San Po Kong",
+      "automaticWeatherStationID": "K09",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Kwun Tong",
+      "automaticWeatherStationID": "K03",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Shau Kei Wan",
+      "automaticWeatherStationID": "RF026",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Happy Valley",
+      "automaticWeatherStationID": "RF027",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "The Peak",
+      "automaticWeatherStationID": "RF028",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Magazine Gap",
+      "automaticWeatherStationID": "H17",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Stanley",
+      "automaticWeatherStationID": "H15",
+      "value": "0",
+      "unit": "mm"
+    },
+    {
+      "automaticWeatherStation": "Wong Chuk Hang",
+      "automaticWeatherStationID": "H24",
+      "value": "0",
+      "unit": "mm"
     }
   ]
 }

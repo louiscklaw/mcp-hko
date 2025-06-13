@@ -27,3 +27,12 @@ draft `run.js`, a nodejs script
 3. create a markdown file `progress.md` and list the results
 
 `- [ ] xxx.md <h1_here_please>`
+
+---
+
+please look into REQ_xxxx.md,
+
+1. list all `documentations/REQ_xxxx/REQ_xxxx.md`.
+2. look into every file, process it one by one,
+3. no need to process markdown file with number below `0010`
+4. draft and replace `makeFeltearthquakeRequest` with value from `h1` in frontmatter, for example `make<H1>Request`,
