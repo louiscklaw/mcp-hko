@@ -1,31 +1,35 @@
-import { flwUrl } from '../urls.js';
-import { USER_AGENT } from '../main.js';
-
 /**
- * Makes a request to the HKO API to get the local weather forecast
- * @returns Promise<ImakeFlwResponse> The local weather forecast data
+ * Local Weather Forecast (flw) API Request
+ *
+ * URL: https://data.weather.gov.hk/weatherAPI/opendata/weather.php
+ *
+ * Parameters:
+ * - dataType: 'flw' (for local weather forecast)
+ * - lang: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)
+ *
+ * Request Example:
+ * https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=en
+ *
+ * Documentation:
+ *
+ * REQ0103
  */
 
-export async function makeFlwRequest<T>(url: string): Promise<T | null> {
-  const headers = {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/geo+json',
-  };
-
+export async function makeFlwRequest(lang = "en") {
   try {
-    const response = await fetch(flwUrl, { headers });
+    const response = await fetch(
+      `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=${lang}`
+    );
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return (await response.json()) as T;
+
+    return JSON.stringify(await response.json());
   } catch (error) {
-    console.error('Error fetching local weather forecast:', error);
+    console.error("Error fetching local weather forecast:", error);
     return null;
   }
 }
 
-export function formatFlwtResponse(response) {
-  let district_temperatures = [];
-
-  return 'helloworld';
-}
+export default makeFlwRequest;
