@@ -25,10 +25,19 @@
  * REQ0202
  */
 
-export async function makeFeltEarthquakeRequest(lang = "en") {
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+import { LANG_EN } from "./CONSTANT.js";
+
+export const USER_AGENT = "weather-app/1.0";
+
+export async function makeFeltEarthquakeRequest(lang: string = LANG_EN) {
+  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+
   try {
     const response = await fetch(
-      `https://data.weather.gov.hk/weatherAPI/opendata/earthquake.php?dataType=feltearthquake&lang=${lang}`
+      `https://data.weather.gov.hk/weatherAPI/opendata/earthquake.php?dataType=feltearthquake&lang=${lang}`,
+      { headers }
     );
 
     if (!response.ok) {
@@ -37,9 +46,39 @@ export async function makeFeltEarthquakeRequest(lang = "en") {
 
     return JSON.stringify(await response.json());
   } catch (error) {
-    console.error("Error fetching locally felt earth tremor report:", error);
+    console.error("Error making NWS request:", error);
     return null;
   }
 }
 
-export default makeFeltEarthquakeRequest;
+export default (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "feltearthquake",
+    description: `
+Locally Felt Earth Tremor Report (feltearthquake) API Request
+
+ Parameters:
+ - lang: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/earthquake.php?dataType=feltearthquake&lang=en
+
+ Response Keys:
+ - updateTime: Last update time (YYYY-MM-DD'T'hh:mm:ssZ)
+ - mag: Richter magnitude scale (Numeric value)
+ - region: Region of the earthquake (Text)
+ - intensity: Intensity of the earthquake (Text)
+ - lat: Latitude (Numeric value)
+ - lon: Longitude (Numeric value)
+ - details: Earthquake details (Text)
+ - ptime: Date and time of the earthquake (YYYY-MM-DD'T'hh:mm:ssZ)
+    `,
+    parameters: z.object({
+      lang: z.string().default(LANG_EN),
+    }),
+    execute: async (args) => {
+      const result = await makeFeltEarthquakeRequest(args.lang);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};

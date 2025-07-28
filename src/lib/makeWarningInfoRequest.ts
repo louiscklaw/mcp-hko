@@ -10,26 +10,61 @@
  * Request Example:
  * https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warningInfo&lang=en
  *
+ * Response Keys:
+ * - Warning_Summary: Array of warning summary objects
+ * - Special_Warning: Array of special warning objects (if any)
+ * - Reminder_Warning: Array of reminder warning objects (if any)
+ *
  * Documentation:
  *
  * REQ0104
  */
 
-export async function makeWarningInfoRequest(lang = "en") {
-  try {
-    const response = await fetch(
-      `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warningInfo&lang=${lang}`
-    );
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+import { LANG_EN } from "./CONSTANT.js";
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+export const USER_AGENT = "weather-app/1.0";
+
+export async function makeWarningInfoRequest(lang: string) {
+  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+
+  const url = `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warningInfo&lang=${lang}`;
+
+  try {
+    const response = await fetch(url, { headers });
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
     return JSON.stringify(await response.json());
   } catch (error) {
-    console.error("Error fetching weather warning information:", error);
+    console.error("Error making NWS request:", error);
     return null;
   }
 }
 
-export default makeWarningInfoRequest;
+export default (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "warningInfo",
+    description: `
+Weather Warning Information (warningInfo) API Request
+
+ Parameters:
+ - lang: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warningInfo&lang=en
+
+ Response Keys:
+ - Warning_Summary: Array of warning summary objects
+ - Special_Warning: Array of special warning objects (if any)
+ - Reminder_Warning: Array of reminder warning objects (if any)
+    `,
+    parameters: z.object({
+      lang: z.string().default(LANG_EN),
+    }),
+    execute: async (args) => {
+      const result = await makeWarningInfoRequest(args.lang);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};

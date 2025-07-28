@@ -13,10 +13,26 @@
  * Request Example:
  * https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=CLMMAXT&station=HKO&year=2025&rformat=json
  *
+ * Response Keys (JSON format):
+ * - type: Array with data type ["Max Temperature"]
+ * - fields: Array with field names ["Year", "Month", "Day", "Temperature(C)"]
+ * - data: Array of arrays with temperature data
+ * - legend: Array with station information
+ *
+ * Response Keys (CSV format):
+ * - Type: Data type line
+ * - Header row: Year,Month,Day,Temperature(C)
+ * - Data rows: Actual temperature data
+ *
  * Documentation:
  *
  * REQ0309
  */
+
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+
+export const USER_AGENT = "weather-app/1.0";
 
 export async function makeClmMaxTempRequest({
   station,
@@ -64,16 +80,55 @@ export async function makeClmMaxTempRequest({
 
   const url = `${baseUrl}?${params.toString()}`;
 
+  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { headers });
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return rformat === "json"
       ? JSON.stringify(await response.json())
       : await response.text();
   } catch (error) {
-    console.error("Error fetching CLMMAXT data:", error);
+    console.error("Error making NWS request:", error);
     return null;
   }
 }
 
-export default makeClmMaxTempRequest;
+export default (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "clmmaxt",
+    description: `
+Daily Maximum Temperature (CLMMAXT) API Request
+
+ Parameters:
+ - station: Station code (refer to documentation for full list)
+ - year: Year (1884 - current year, station-specific range)
+ - month: Month (1-12, optional but requires year)
+ - rformat: 'json' or 'csv' (Response format, default: csv)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=CLMMAXT&station=HKO&year=2025&rformat=json
+
+ Response Keys (JSON format):
+ - type: Array with data type ["Max Temperature"]
+ - fields: Array with field names ["Year", "Month", "Day", "Temperature(C)"]
+ - data: Array of arrays with temperature data
+ - legend: Array with station information
+
+ Response Keys (CSV format):
+ - Type: Data type line
+ - Header row: Year,Month,Day,Temperature(C)
+ - Data rows: Actual temperature data
+    `,
+    parameters: z.object({
+      station: z.string(),
+      year: z.number(),
+      month: z.number().optional(),
+      rformat: z.string().default("csv"),
+    }),
+    execute: async (args) => {
+      const result = await makeClmMaxTempRequest(args);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};

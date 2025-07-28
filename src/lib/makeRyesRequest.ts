@@ -12,14 +12,26 @@
  * Request Example:
  * https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=RYES&date=20250101&lang=en&station=HKO
  *
+ * Response Keys:
+ * - type: Data type ("data")
+ * - SolarData: Solar radiation data with unit and period-value pairs
+ * - AmbientTemp: Ambient temperature data with unit and period-value pairs
+ * - Other parameters: Additional weather parameters
+ *
  * Documentation:
  *
  * REQ0311
  */
 
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+import { LANG_EN, LANG_TC, LANG_SC } from "./CONSTANT.js";
+
+export const USER_AGENT = "weather-app/1.0";
+
 export async function makeRyesRequest({
   date,
-  lang = "en",
+  lang = LANG_EN,
   station,
 }: {
   date: string;
@@ -76,14 +88,46 @@ export async function makeRyesRequest({
 
   const url = `${baseUrl}?${params.toString()}`;
 
+  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { headers });
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return JSON.stringify(await response.json());
   } catch (error) {
-    console.error("Error fetching RYES data:", error);
+    console.error("Error making NWS request:", error);
     return null;
   }
 }
 
-export default makeRyesRequest;
+export default (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "ryes",
+    description: `
+Weather and Radiation Level Report (RYES) API Request
+
+ Parameters:
+ - date: Date of report (YYYYMMDD format)
+ - lang: 'en', 'tc', or 'sc' (Language option, default: en)
+ - station: Station code (refer to documentation for full list)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=RYES&date=20250101&lang=en&station=HKO
+
+ Response Keys:
+ - type: Data type ("data")
+ - SolarData: Solar radiation data with unit and period-value pairs
+ - AmbientTemp: Ambient temperature data with unit and period-value pairs
+ - Other parameters: Additional weather parameters
+    `,
+    parameters: z.object({
+      date: z.string(),
+      lang: z.string().default(LANG_EN),
+      station: z.string(),
+    }),
+    execute: async (args) => {
+      const result = await makeRyesRequest(args);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};

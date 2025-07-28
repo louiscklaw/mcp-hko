@@ -5,9 +5,9 @@
  *
  * Parameters:
  * - dataType: 'HLT' (for Times and Heights of Astronomical High and Low Tides)
- * - rformat: 'json' (Response format)
+ * - rformat: 'json' or 'csv' (Response format, default: json)
  * - station: CCH/CLK/CMW/KCT/KLW/LOP/MWC/QUB/SPW/TAO/TBT/TMW/TPK/WAG
- * - year: 2022-2024
+ * - year: 2022-2034
  * - month: (Optional) 1-12
  * - day: (Optional) 1-31
  * - hour: (Optional) 1-24
@@ -15,10 +15,23 @@
  * Request Example:
  * https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=HLT&station=CLK&year=2025&rformat=json
  *
+ * Response Keys (JSON format):
+ * - fields: Array with field names ["Date", "Time", "Height(m)", "Type"]
+ * - data: Array of arrays with tide data
+ *
+ * Response Keys (CSV format):
+ * - Header row: Date,Time,Height(m),Type
+ * - Data rows: Actual tide data
+ *
  * Documentation:
  *
  * REQ0302
  */
+
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+
+export const USER_AGENT = "weather-app/1.0";
 
 export async function makeHltRequest({
   station,
@@ -59,8 +72,9 @@ export async function makeHltRequest({
   }
 
   // Validate year range
-  if (year < 2022 || year > 2034) {
-    throw new Error("Year must be between 2022 and 2024");
+  const currentYear = new Date().getFullYear();
+  if (year < 2022 || year > currentYear + 1) {
+    throw new Error(`Year must be between 2022 and ${currentYear + 1}`);
   }
 
   // Validate optional parameters
@@ -89,16 +103,56 @@ export async function makeHltRequest({
 
   const url = `${baseUrl}?${params.toString()}`;
 
+  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { headers });
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return rformat === "json"
       ? JSON.stringify(await response.json())
       : await response.text();
   } catch (error) {
-    console.error("Error fetching HLT data:", error);
+    console.error("Error making NWS request:", error);
     return null;
   }
 }
 
-export default makeHltRequest;
+export default (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "hlt",
+    description: `
+Times and Heights of Astronomical High and Low Tides (HLT) API Request
+
+ Parameters:
+ - station: CCH/CLK/CMW/KCT/KLW/LOP/MWC/QUB/SPW/TAO/TBT/TMW/TPK/WAG
+ - year: 2022-current year+1
+ - month: (Optional) 1-12
+ - day: (Optional) 1-31
+ - hour: (Optional) 1-24
+ - rformat: 'json' or 'csv' (Response format, default: json)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=HLT&station=CLK&year=2025&rformat=json
+
+ Response Keys (JSON format):
+ - fields: Array with field names ["Date", "Time", "Height(m)", "Type"]
+ - data: Array of arrays with tide data
+
+ Response Keys (CSV format):
+ - Header row: Date,Time,Height(m),Type
+ - Data rows: Actual tide data
+    `,
+    parameters: z.object({
+      station: z.string(),
+      year: z.number(),
+      month: z.number().optional(),
+      day: z.number().optional(),
+      hour: z.number().optional(),
+      rformat: z.string().default("json"),
+    }),
+    execute: async (args) => {
+      const result = await makeHltRequest(args);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};

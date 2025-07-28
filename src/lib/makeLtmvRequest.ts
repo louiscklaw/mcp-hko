@@ -11,13 +11,30 @@
  * Request Example:
  * https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=LTMV&lang=en&rformat=json
  *
+ * Response Keys (JSON format):
+ * - type: Array with data type ["10-minute Visibility"]
+ * - fields: Array with field names ["Automatic Weather Station", "Mean Visibility (km)"]
+ * - data: Array of arrays with visibility data
+ * - legend: Array with station information
+ *
+ * Response Keys (CSV format):
+ * - Type: Data type line
+ * - Header row: Automatic Weather Station,Mean Visibility (km)
+ * - Data rows: Actual visibility data
+ *
  * Documentation:
  *
  * REQ0307
  */
 
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+import { LANG_EN } from "./CONSTANT.js";
+
+export const USER_AGENT = "weather-app/1.0";
+
 export async function makeLtmvRequest({
-  lang = "en",
+  lang = LANG_EN,
   rformat = "csv",
 }: {
   lang?: string;
@@ -47,18 +64,55 @@ export async function makeLtmvRequest({
     rformat,
   });
 
+  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+
   const url = `${baseUrl}?${params.toString()}`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { headers });
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return rformat === "json"
       ? JSON.stringify(await response.json())
       : await response.text();
   } catch (error) {
-    console.error("Error fetching LTMV data:", error);
+    console.error("Error making NWS request:", error);
     return null;
   }
 }
 
-export default makeLtmvRequest;
+export const addLtmv = (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "ltmv",
+    description: `
+Latest 10-minute Mean Visibility (LTMV) API Request
+
+ Parameters:
+ - lang: 'en', 'tc', or 'sc' (Language option, default: en)
+ - rformat: 'json' or 'csv' (Response format, default: csv)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/opendata.php?dataType=LTMV&lang=en&rformat=json
+
+ Response Keys (JSON format):
+ - type: Array with data type ["10-minute Visibility"]
+ - fields: Array with field names ["Automatic Weather Station", "Mean Visibility (km)"]
+ - data: Array of arrays with visibility data
+ - legend: Array with station information
+
+ Response Keys (CSV format):
+ - Type: Data type line
+ - Header row: Automatic Weather Station,Mean Visibility (km)
+ - Data rows: Actual visibility data
+    `,
+    parameters: z.object({
+      lang: z.string().default(LANG_EN),
+      rformat: z.string().default("csv"),
+    }),
+    execute: async (args) => {
+      const result = await makeLtmvRequest(args);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};
+
+export default addLtmv;

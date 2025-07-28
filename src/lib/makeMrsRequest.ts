@@ -18,6 +18,9 @@
  * REQ0304
  */
 
+import { FastMCP } from "fastmcp";
+import { z } from "zod";
+
 export async function makeMrsRequest({
   year,
   month,
@@ -75,4 +78,31 @@ export async function makeMrsRequest({
   }
 }
 
-export default makeMrsRequest;
+export default (server: FastMCP<undefined>) => {
+  server.addTool({
+    name: "lunardate",
+    description: `
+Gregorian-Lunar Calendar Conversion API Request
+
+ Parameters:
+ - date: Gregorian date to convert (YYYY-MM-DD format)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/lunardate.php?date=2025-07-26
+
+ Response Keys:
+ - LunarYear: Lunar year in traditional Chinese with zodiac (e.g. "癸卯年，兔")
+ - LunarDate: Lunar date in traditional Chinese (e.g. "六月初二")
+    `,
+    parameters: z.object({
+      year: z.number().default(2025),
+      month: z.number().optional(),
+      day: z.number().optional(),
+      rformat: z.string().optional(),
+    }),
+    execute: async (args) => {
+      const result = await makeMrsRequest(args);
+      return result || "<error>nothing returned</error>";
+    },
+  });
+};
