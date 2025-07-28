@@ -1,0 +1,62 @@
+/**
+ * Special Weather Tips (swt) API Request
+ *
+ * URL: https://data.weather.gov.hk/weatherAPI/opendata/weather.php
+ *
+ * Parameters:
+ * - dataType: 'swt' (for special weather tips)
+ * - lang: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)
+ *
+ * Request Example:
+ * https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=swt&lang=en
+ *
+ * Response Keys:
+ * - desc: Tips Content
+ * - updateTime: Tips Update Time (YYYY-MM-DD'T'hh:mm:ssZ)
+ *
+ * Documentation:
+ *
+ * REQ0106
+ */
+import { z } from "zod";
+import { LANG_EN } from "./CONSTANT.js";
+export const USER_AGENT = "weather-app/1.0";
+export async function makeSwtRequest(lang) {
+    const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+    const url = `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=swt&lang=${lang}`;
+    try {
+        const response = await fetch(url, { headers });
+        if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
+        return JSON.stringify(await response.json());
+    }
+    catch (error) {
+        console.error("Error making NWS request:", error);
+        return null;
+    }
+}
+export default (server) => {
+    server.addTool({
+        name: "swt",
+        description: `
+Special Weather Tips (swt) API Request
+
+ Parameters:
+ - lang: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)
+
+ Request Example:
+ https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=swt&lang=en
+
+ Response Keys:
+ - desc: Tips Content
+ - updateTime: Tips Update Time (YYYY-MM-DD'T'hh:mm:ssZ)
+    `,
+        parameters: z.object({
+            lang: z.string().default(LANG_EN),
+        }),
+        execute: async (args) => {
+            const result = await makeSwtRequest(args.lang);
+            return result || "<error>nothing returned</error>";
+        },
+    });
+};
