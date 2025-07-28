@@ -1,6 +1,6 @@
 {
   "name": "mcp-hko",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Model Context Protocol server to get ETA (Estimated Time of Arrival) for public transport in Hong Kong",
   "type": "module",
   "main": "dist/index.js",
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
+    "clean": "rm -rf ./dist",
     "inspect": "export DANGEROUSLY_OMIT_AUTH=true && npx fastmcp inspect src/index.ts",
     "start": "npm run build && node dist/index.js"
   },
@@ -20,10 +21,9 @@
     "mcp",
     "model-context-protocol",
     "hk",
-    "bus",
-    "eta"
+    "hko",
+    "observatory"
   ],
-  "author": "kennyfong19931",
   "license": "MIT",
   "dependencies": {
     "fastmcp": "^1.21.0",
