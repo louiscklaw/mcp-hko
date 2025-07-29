@@ -23,31 +23,31 @@
  * REQ0105
  */
 
-import { FastMCP } from "fastmcp";
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
+import { FastMCP } from 'fastmcp'
+import { z } from 'zod'
+import { LANG_EN } from './CONSTANT.js'
 
-export const USER_AGENT = "weather-app/1.0";
+export const USER_AGENT = 'weather-app/1.0'
 
 export async function makeWarnsumRequest(lang: string) {
-  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+  const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' }
 
-  const url = `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warnsum&lang=${lang}`;
+  const url = `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warnsum&lang=${lang}`
 
   try {
-    const response = await fetch(url, { headers });
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const response = await fetch(url, { headers })
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
 
-    return JSON.stringify(await response.json());
+    return JSON.stringify(await response.json())
   } catch (error) {
-    console.error("Error making NWS request:", error);
-    return null;
+    console.error('Error making NWS request:', error)
+    return null
   }
 }
 
 export default (server: FastMCP<undefined>) => {
   server.addTool({
-    name: "warnsum",
+    name: 'warnsum',
     description: `
 Weather Warning Summary (warnsum) API Request
 
@@ -66,11 +66,14 @@ Weather Warning Summary (warnsum) API Request
  - updateTime: Update Time (YYYY-MM-DD'T'hh:mm:ssZ)
     `,
     parameters: z.object({
-      lang: z.string().default(LANG_EN),
+      lang: z
+        .string()
+        .describe('change the language of the result')
+        .default(LANG_EN)
     }),
     execute: async (args) => {
-      const result = await makeWarnsumRequest(args.lang);
-      return result || "<error>nothing returned</error>";
-    },
-  });
-};
+      const result = await makeWarnsumRequest(args.lang)
+      return result || '<error>nothing returned</error>'
+    }
+  })
+}

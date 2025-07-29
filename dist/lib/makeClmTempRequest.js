@@ -28,13 +28,13 @@
  *
  * REQ0308
  */
-import { z } from "zod";
-export const USER_AGENT = "weather-app/1.0";
-export async function makeClmTempRequest({ station, year, month, rformat = "csv", }) {
+import { z } from 'zod';
+export const USER_AGENT = 'weather-app/1.0';
+export async function makeClmTempRequest({ station, year, month, rformat = 'csv' }) {
     // Validate rformat parameter
-    const validFormats = ["json", "csv"];
+    const validFormats = ['json', 'csv'];
     if (!validFormats.includes(rformat)) {
-        throw new Error(`Invalid format. Must be one of: ${validFormats.join(", ")}`);
+        throw new Error(`Invalid format. Must be one of: ${validFormats.join(', ')}`);
     }
     // Validate year parameter (1884 to current year)
     const currentYear = new Date().getFullYear();
@@ -43,37 +43,37 @@ export async function makeClmTempRequest({ station, year, month, rformat = "csv"
     }
     // Validate month parameter (1-12)
     if (month !== undefined && (month < 1 || month > 12)) {
-        throw new Error("Invalid month. Must be between 1 and 12");
+        throw new Error('Invalid month. Must be between 1 and 12');
     }
     // Validate that if month is provided, year must also be provided (this is already ensured by the function signature)
     // But we should check that month requires year (which is always true in this function)
-    const baseUrl = "https://data.weather.gov.hk/weatherAPI/opendata/opendata.php";
+    const baseUrl = 'https://data.weather.gov.hk/weatherAPI/opendata/opendata.php';
     const params = new URLSearchParams({
-        dataType: "CLMTEMP",
+        dataType: 'CLMTEMP',
         station,
         year: year.toString(),
-        rformat,
+        rformat
     });
     if (month !== undefined)
-        params.append("month", month.toString());
+        params.append('month', month.toString());
     const url = `${baseUrl}?${params.toString()}`;
-    const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+    const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' };
     try {
         const response = await fetch(url, { headers });
         if (!response.ok)
             throw new Error(`HTTP error! status: ${response.status}`);
-        return rformat === "json"
+        return rformat === 'json'
             ? JSON.stringify(await response.json())
             : await response.text();
     }
     catch (error) {
-        console.error("Error making NWS request:", error);
+        console.error('Error making NWS request:', error);
         return null;
     }
 }
 export default (server) => {
     server.addTool({
-        name: "clmtemp",
+        name: 'clmtemp',
         description: `
 Daily Mean Temperature (CLMTEMP) API Request
 
@@ -98,14 +98,22 @@ Daily Mean Temperature (CLMTEMP) API Request
  - Data rows: Actual temperature data
     `,
         parameters: z.object({
-            station: z.string(),
-            year: z.number(),
-            month: z.number().optional(),
-            rformat: z.string().default("csv"),
+            station: z
+                .string()
+                .describe('Station code (e.g., HKO for Hong Kong Observatory)'),
+            year: z.number().describe('Year between 1884 and current year'),
+            month: z
+                .number()
+                .optional()
+                .describe('Optional month (1-12) when specific month data is needed'),
+            rformat: z
+                .string()
+                .default('json')
+                .describe("Output format: 'json' or 'csv' (default: 'json')")
         }),
         execute: async (args) => {
             const result = await makeClmTempRequest(args);
-            return result || "<error>nothing returned</error>";
-        },
+            return result || '<error>nothing returned</error>';
+        }
     });
 };

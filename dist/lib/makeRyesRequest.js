@@ -22,19 +22,19 @@
  *
  * REQ0311
  */
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
-export const USER_AGENT = "weather-app/1.0";
-export async function makeRyesRequest({ date, lang = LANG_EN, station, }) {
+import { z } from 'zod';
+import { LANG_EN } from './CONSTANT.js';
+export const USER_AGENT = 'weather-app/1.0';
+export async function makeRyesRequest({ date, lang = LANG_EN, station }) {
     // Validate lang parameter
-    const validLanguages = ["en", "tc", "sc"];
+    const validLanguages = ['en', 'tc', 'sc'];
     if (!validLanguages.includes(lang)) {
-        throw new Error(`Invalid language. Must be one of: ${validLanguages.join(", ")}`);
+        throw new Error(`Invalid language. Must be one of: ${validLanguages.join(', ')}`);
     }
     // Validate date format (YYYYMMDD)
     const dateRegex = /^\d{8}$/;
     if (!dateRegex.test(date)) {
-        throw new Error("Date must be in YYYYMMDD format");
+        throw new Error('Date must be in YYYYMMDD format');
     }
     // Parse the date to validate it
     const year = parseInt(date.substring(0, 4));
@@ -45,7 +45,7 @@ export async function makeRyesRequest({ date, lang = LANG_EN, station, }) {
         parsedDate.getFullYear() !== year ||
         parsedDate.getMonth() !== month - 1 ||
         parsedDate.getDate() !== day) {
-        throw new Error("Invalid date");
+        throw new Error('Invalid date');
     }
     // Validate date range (20190910 to yesterday)
     const startDate = new Date(2019, 8, 10); // 2019-09-10
@@ -53,17 +53,17 @@ export async function makeRyesRequest({ date, lang = LANG_EN, station, }) {
     yesterday.setDate(yesterday.getDate() - 1);
     yesterday.setHours(0, 0, 0, 0);
     if (parsedDate < startDate || parsedDate > yesterday) {
-        throw new Error("Date must be between 20190910 and yesterday");
+        throw new Error('Date must be between 20190910 and yesterday');
     }
-    const baseUrl = "https://data.weather.gov.hk/weatherAPI/opendata/opendata.php";
+    const baseUrl = 'https://data.weather.gov.hk/weatherAPI/opendata/opendata.php';
     const params = new URLSearchParams({
-        dataType: "RYES",
+        dataType: 'RYES',
         date,
         lang,
-        station,
+        station
     });
     const url = `${baseUrl}?${params.toString()}`;
-    const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+    const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' };
     try {
         const response = await fetch(url, { headers });
         if (!response.ok)
@@ -71,13 +71,13 @@ export async function makeRyesRequest({ date, lang = LANG_EN, station, }) {
         return JSON.stringify(await response.json());
     }
     catch (error) {
-        console.error("Error making NWS request:", error);
+        console.error('Error making NWS request:', error);
         return null;
     }
 }
 export default (server) => {
     server.addTool({
-        name: "ryes",
+        name: 'ryes',
         description: `
 Weather and Radiation Level Report (RYES) API Request
 
@@ -96,13 +96,18 @@ Weather and Radiation Level Report (RYES) API Request
  - Other parameters: Additional weather parameters
     `,
         parameters: z.object({
-            date: z.string(),
-            lang: z.string().default(LANG_EN),
-            station: z.string(),
+            date: z.string().describe('Date of report (YYYYMMDD format)'),
+            lang: z
+                .string()
+                .describe("Language for the response: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)")
+                .default(LANG_EN),
+            station: z
+                .string()
+                .describe('Station code (refer to documentation for full list)')
         }),
         execute: async (args) => {
             const result = await makeRyesRequest(args);
-            return result || "<error>nothing returned</error>";
-        },
+            return result || '<error>nothing returned</error>';
+        }
     });
 };

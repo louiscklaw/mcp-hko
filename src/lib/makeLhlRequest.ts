@@ -24,62 +24,61 @@
  * REQ0306
  */
 
-import { FastMCP } from "fastmcp";
-import { z } from "zod";
-import { LANG_EN, LANG_TC, LANG_SC } from "./CONSTANT.js";
+import { FastMCP } from 'fastmcp'
+import { z } from 'zod'
+import { LANG_EN, LANG_TC, LANG_SC } from './CONSTANT.js'
 
-export const USER_AGENT = "weather-app/1.0";
+export const USER_AGENT = 'weather-app/1.0'
 
 export async function makeLhlRequest({
   lang = LANG_EN,
-  rformat = "csv",
+  rformat = 'csv'
 }: {
-  lang?: string;
-  rformat?: string;
+  lang?: string
+  rformat?: string
 }) {
   // Validate lang parameter
-  const validLanguages = ["en", "tc", "sc"];
+  const validLanguages = ['en', 'tc', 'sc']
   if (!validLanguages.includes(lang)) {
     throw new Error(
-      `Invalid language. Must be one of: ${validLanguages.join(", ")}`
-    );
+      `Invalid language. Must be one of: ${validLanguages.join(', ')}`
+    )
   }
 
   // Validate rformat parameter
-  const validFormats = ["json", "csv"];
+  const validFormats = ['json', 'csv']
   if (!validFormats.includes(rformat)) {
     throw new Error(
-      `Invalid format. Must be one of: ${validFormats.join(", ")}`
-    );
+      `Invalid format. Must be one of: ${validFormats.join(', ')}`
+    )
   }
 
-  const baseUrl =
-    "https://data.weather.gov.hk/weatherAPI/opendata/opendata.php";
+  const baseUrl = 'https://data.weather.gov.hk/weatherAPI/opendata/opendata.php'
   const params = new URLSearchParams({
-    dataType: "LHL",
+    dataType: 'LHL',
     lang,
-    rformat,
-  });
+    rformat
+  })
 
-  const url = `${baseUrl}?${params.toString()}`;
+  const url = `${baseUrl}?${params.toString()}`
 
-  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+  const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' }
 
   try {
-    const response = await fetch(url, { headers });
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return rformat === "json"
+    const response = await fetch(url, { headers })
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+    return rformat === 'json'
       ? JSON.stringify(await response.json())
-      : await response.text();
+      : await response.text()
   } catch (error) {
-    console.error("Error making NWS request:", error);
-    return null;
+    console.error('Error making NWS request:', error)
+    return null
   }
 }
 
 export default (server: FastMCP<undefined>) => {
   server.addTool({
-    name: "lhl",
+    name: 'lhl',
     description: `
 Cloud-to-Ground and Cloud-to-Cloud Lightning Count (LHL) API Request
 
@@ -99,12 +98,20 @@ Cloud-to-Ground and Cloud-to-Cloud Lightning Count (LHL) API Request
  - Data rows: Actual lightning count data
     `,
     parameters: z.object({
-      lang: z.string().default(LANG_EN),
-      rformat: z.string().default("csv"),
+      lang: z
+        .string()
+        .describe(
+          "Language for the response: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)"
+        )
+        .default(LANG_EN),
+      rformat: z
+        .string()
+        .describe("Output format: 'json' or 'csv' (default: 'csv')")
+        .default('csv')
     }),
     execute: async (args) => {
-      const result = await makeLhlRequest(args);
-      return result || "<error>nothing returned</error>";
-    },
-  });
-};
+      const result = await makeLhlRequest(args)
+      return result || '<error>nothing returned</error>'
+    }
+  })
+}

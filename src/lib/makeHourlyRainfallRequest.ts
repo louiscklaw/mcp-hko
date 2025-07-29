@@ -43,48 +43,48 @@
  * REQ0501
  */
 
-import { FastMCP } from "fastmcp";
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
+import { FastMCP } from 'fastmcp'
+import { z } from 'zod'
+import { LANG_EN } from './CONSTANT.js'
 
-export const USER_AGENT = "weather-app/1.0";
+export const USER_AGENT = 'weather-app/1.0'
 
 export async function makeHourlyRainfallRequest({
-  lang = LANG_EN,
+  lang = LANG_EN
 }: {
-  lang?: string;
+  lang?: string
 }) {
   // Validate lang parameter
-  const validLanguages = ["en", "tc", "sc"];
+  const validLanguages = ['en', 'tc', 'sc']
   if (!validLanguages.includes(lang)) {
     throw new Error(
-      `Invalid language. Must be one of: ${validLanguages.join(", ")}`
-    );
+      `Invalid language. Must be one of: ${validLanguages.join(', ')}`
+    )
   }
 
   const baseUrl =
-    "https://data.weather.gov.hk/weatherAPI/opendata/hourlyRainfall.php";
+    'https://data.weather.gov.hk/weatherAPI/opendata/hourlyRainfall.php'
   const params = new URLSearchParams({
-    lang,
-  });
+    lang
+  })
 
-  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+  const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' }
 
-  const url = `${baseUrl}?${params.toString()}`;
+  const url = `${baseUrl}?${params.toString()}`
 
   try {
-    const response = await fetch(url, { headers });
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return JSON.stringify(await response.json());
+    const response = await fetch(url, { headers })
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+    return JSON.stringify(await response.json())
   } catch (error) {
-    console.error("Error making NWS request:", error);
-    return null;
+    console.error('Error making NWS request:', error)
+    return null
   }
 }
 
 export default (server: FastMCP<undefined>) => {
   server.addTool({
-    name: "hourlyrainfall",
+    name: 'hourlyrainfall',
     description: `
 Rainfall in the Past Hour from Automatic Weather Station API Request
 
@@ -122,11 +122,16 @@ Rainfall in the Past Hour from Automatic Weather Station API Request
  }
     `,
     parameters: z.object({
-      lang: z.string().default(LANG_EN),
+      lang: z
+        .string()
+        .describe(
+          "Language for the response: 'en' (English), 'tc' (Traditional Chinese), 'sc' (Simplified Chinese)"
+        )
+        .default(LANG_EN)
     }),
     execute: async (args) => {
-      const result = await makeHourlyRainfallRequest(args);
-      return result || "<error>nothing returned</error>";
-    },
-  });
-};
+      const result = await makeHourlyRainfallRequest(args)
+      return result || '<error>nothing returned</error>'
+    }
+  })
+}

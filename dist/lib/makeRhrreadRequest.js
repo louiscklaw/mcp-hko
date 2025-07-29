@@ -26,11 +26,11 @@
  *
  * REQ0102
  */
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
-export const USER_AGENT = "weather-app/1.0";
+import { z } from 'zod';
+import { LANG_EN } from './CONSTANT.js';
+export const USER_AGENT = 'weather-app/1.0';
 export async function makeRhrreadRequest(lang = LANG_EN) {
-    const headers = { "User-Agent": USER_AGENT, Accept: "application/geo+json" };
+    const headers = { 'User-Agent': USER_AGENT, Accept: 'application/geo+json' };
     const url = `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=${lang}`;
     try {
         const response = await fetch(url, { headers });
@@ -39,13 +39,13 @@ export async function makeRhrreadRequest(lang = LANG_EN) {
         return JSON.stringify(await response.json());
     }
     catch (error) {
-        console.error("Error making NWS request:", error);
+        console.error('Error making NWS request:', error);
         return null;
     }
 }
 export default (server) => {
     server.addTool({
-        name: "rhrread",
+        name: 'rhrread',
         description: `
 Current Weather Report (rhrread) API Request
 
@@ -68,11 +68,14 @@ Current Weather Report (rhrread) API Request
  - warningMessage: Weather warning messages
     `,
         parameters: z.object({
-            lang: z.string().default(LANG_EN),
+            lang: z
+                .string()
+                .describe('change the language of the result')
+                .default(LANG_EN)
         }),
         execute: async (args) => {
             const result = await makeRhrreadRequest(args.lang);
-            return result || "<error>nothing returned</error>";
-        },
+            return result || '<error>nothing returned</error>';
+        }
     });
 };

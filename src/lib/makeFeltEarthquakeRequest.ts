@@ -25,35 +25,35 @@
  * REQ0202
  */
 
-import { FastMCP } from "fastmcp";
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
+import { FastMCP } from 'fastmcp'
+import { z } from 'zod'
+import { LANG_EN } from './CONSTANT.js'
 
-export const USER_AGENT = "weather-app/1.0";
+export const USER_AGENT = 'weather-app/1.0'
 
 export async function makeFeltEarthquakeRequest(lang: string = LANG_EN) {
-  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+  const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' }
 
   try {
     const response = await fetch(
       `https://data.weather.gov.hk/weatherAPI/opendata/earthquake.php?dataType=feltearthquake&lang=${lang}`,
       { headers }
-    );
+    )
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    return JSON.stringify(await response.json());
+    return JSON.stringify(await response.json())
   } catch (error) {
-    console.error("Error making NWS request:", error);
-    return null;
+    console.error('Error making NWS request:', error)
+    return null
   }
 }
 
 export default (server: FastMCP<undefined>) => {
   server.addTool({
-    name: "feltearthquake",
+    name: 'feltearthquake',
     description: `
 Locally Felt Earth Tremor Report (feltearthquake) API Request
 
@@ -74,11 +74,14 @@ Locally Felt Earth Tremor Report (feltearthquake) API Request
  - ptime: Date and time of the earthquake (YYYY-MM-DD'T'hh:mm:ssZ)
     `,
     parameters: z.object({
-      lang: z.string().default(LANG_EN),
+      lang: z
+        .string()
+        .describe('change the language of the result')
+        .default(LANG_EN)
     }),
     execute: async (args) => {
-      const result = await makeFeltEarthquakeRequest(args.lang);
-      return result || "<error>nothing returned</error>";
-    },
-  });
-};
+      const result = await makeFeltEarthquakeRequest(args.lang)
+      return result || '<error>nothing returned</error>'
+    }
+  })
+}

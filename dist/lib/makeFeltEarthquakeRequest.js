@@ -24,11 +24,11 @@
  *
  * REQ0202
  */
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
-export const USER_AGENT = "weather-app/1.0";
+import { z } from 'zod';
+import { LANG_EN } from './CONSTANT.js';
+export const USER_AGENT = 'weather-app/1.0';
 export async function makeFeltEarthquakeRequest(lang = LANG_EN) {
-    const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+    const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' };
     try {
         const response = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/earthquake.php?dataType=feltearthquake&lang=${lang}`, { headers });
         if (!response.ok) {
@@ -37,13 +37,13 @@ export async function makeFeltEarthquakeRequest(lang = LANG_EN) {
         return JSON.stringify(await response.json());
     }
     catch (error) {
-        console.error("Error making NWS request:", error);
+        console.error('Error making NWS request:', error);
         return null;
     }
 }
 export default (server) => {
     server.addTool({
-        name: "feltearthquake",
+        name: 'feltearthquake',
         description: `
 Locally Felt Earth Tremor Report (feltearthquake) API Request
 
@@ -64,11 +64,14 @@ Locally Felt Earth Tremor Report (feltearthquake) API Request
  - ptime: Date and time of the earthquake (YYYY-MM-DD'T'hh:mm:ssZ)
     `,
         parameters: z.object({
-            lang: z.string().default(LANG_EN),
+            lang: z
+                .string()
+                .describe('change the language of the result')
+                .default(LANG_EN)
         }),
         execute: async (args) => {
             const result = await makeFeltEarthquakeRequest(args.lang);
-            return result || "<error>nothing returned</error>";
-        },
+            return result || '<error>nothing returned</error>';
+        }
     });
 };

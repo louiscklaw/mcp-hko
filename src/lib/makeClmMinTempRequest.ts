@@ -29,74 +29,73 @@
  * REQ0310
  */
 
-import { FastMCP } from "fastmcp";
-import { z } from "zod";
+import { FastMCP } from 'fastmcp'
+import { z } from 'zod'
 
-export const USER_AGENT = "weather-app/1.0";
+export const USER_AGENT = 'weather-app/1.0'
 
 export async function makeClmMinTempRequest({
   station,
   year,
   month,
-  rformat = "csv",
+  rformat = 'csv'
 }: {
-  station: string;
-  year: number;
-  month?: number;
-  rformat?: string;
+  station: string
+  year: number
+  month?: number
+  rformat?: string
 }) {
   // Validate rformat parameter
-  const validFormats = ["json", "csv"];
+  const validFormats = ['json', 'csv']
   if (!validFormats.includes(rformat)) {
     throw new Error(
-      `Invalid format. Must be one of: ${validFormats.join(", ")}`
-    );
+      `Invalid format. Must be one of: ${validFormats.join(', ')}`
+    )
   }
 
   // Validate year parameter (1884 to current year)
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
   if (year < 1884 || year > currentYear) {
-    throw new Error(`Invalid year. Must be between 1884 and ${currentYear}`);
+    throw new Error(`Invalid year. Must be between 1884 and ${currentYear}`)
   }
 
   // Validate month parameter (1-12)
   if (month !== undefined && (month < 1 || month > 12)) {
-    throw new Error("Invalid month. Must be between 1 and 12");
+    throw new Error('Invalid month. Must be between 1 and 12')
   }
 
   // Validate that if month is provided, year must also be provided (this is already ensured by the function signature)
   // But we should check that month requires year (which is always true in this function)
 
-  const baseUrl =
-    "https://data.weather.gov.hk/weatherAPI/opendata/opendata.php";
+  const baseUrl = 'https://data.weather.gov.hk/weatherAPI/opendata/opendata.php'
   const params = new URLSearchParams({
-    dataType: "CLMMINT",
+    dataType: 'CLMMINT',
     station,
     year: year.toString(),
-    rformat,
-  });
+    rformat
+  })
 
-  if (month !== undefined) params.append("month", month.toString());
+  if (month !== undefined) params.append('month', month.toString())
 
-  const url = `${baseUrl}?${params.toString()}`;
+  const url = `${baseUrl}?${params.toString()}`
 
-  const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+  const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' }
 
   try {
-    const response = await fetch(url, { headers });
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return rformat === "json"
+    const response = await fetch(url, { headers })
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+    return rformat === 'json'
       ? JSON.stringify(await response.json())
-      : await response.text();
+      : await response.text()
   } catch (error) {
-    console.error("Error making NWS request:", error);
-    return null;
+    console.error('Error making NWS request:', error)
+    return null
   }
 }
 
 export default (server: FastMCP<undefined>) => {
   server.addTool({
-    name: "clmmin",
+    name: 'clmmin',
     description: `
 Daily Minimum Temperature (CLMMINT) API Request
 
@@ -121,14 +120,22 @@ Daily Minimum Temperature (CLMMINT) API Request
  - Data rows: Actual temperature data
     `,
     parameters: z.object({
-      station: z.string(),
-      year: z.number(),
-      month: z.number().optional(),
-      rformat: z.string().default("csv"),
+      station: z
+        .string()
+        .describe('Station code (e.g., HKO for Hong Kong Observatory)'),
+      year: z.number().describe('Year between 1884 and current year'),
+      month: z
+        .number()
+        .optional()
+        .describe('Optional month (1-12) when specific month data is needed'),
+      rformat: z
+        .string()
+        .default('json')
+        .describe("Output format: 'json' or 'csv' (default: 'json')")
     }),
     execute: async (args) => {
-      const result = await makeClmMinTempRequest(args);
-      return result || "<error>nothing returned</error>";
-    },
-  });
-};
+      const result = await makeClmMinTempRequest(args)
+      return result || '<error>nothing returned</error>'
+    }
+  })
+}

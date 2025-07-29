@@ -22,11 +22,11 @@
  *
  * REQ0201
  */
-import { z } from "zod";
-import { LANG_EN } from "./CONSTANT.js";
-export const USER_AGENT = "weather-app/1.0";
+import { z } from 'zod';
+import { LANG_EN } from './CONSTANT.js';
+export const USER_AGENT = 'weather-app/1.0';
 export async function makeQemRequest(lang) {
-    const headers = { "User-Agent": USER_AGENT, Accept: "application/json" };
+    const headers = { 'User-Agent': USER_AGENT, Accept: 'application/json' };
     const url = `https://data.weather.gov.hk/weatherAPI/opendata/earthquake.php?dataType=qem&lang=${lang}`;
     try {
         const response = await fetch(url, { headers });
@@ -35,13 +35,13 @@ export async function makeQemRequest(lang) {
         return JSON.stringify(await response.json());
     }
     catch (error) {
-        console.error("Error making NWS request:", error);
+        console.error('Error making NWS request:', error);
         return null;
     }
 }
 export default (server) => {
     server.addTool({
-        name: "qem",
+        name: 'qem',
         description: `
 Quick Earthquake Messages (qem) API Request
 
@@ -60,11 +60,14 @@ Quick Earthquake Messages (qem) API Request
  - updateTime: Update time (YYYY-MM-DD'T'hh:mm:ssZ)
     `,
         parameters: z.object({
-            lang: z.string().default(LANG_EN),
+            lang: z
+                .string()
+                .describe('change the language of the result')
+                .default(LANG_EN)
         }),
         execute: async (args) => {
             const result = await makeQemRequest(args.lang);
-            return result || "<error>nothing returned</error>";
-        },
+            return result || '<error>nothing returned</error>';
+        }
     });
 };
