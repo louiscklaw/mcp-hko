@@ -49,6 +49,18 @@ npm run inspect
 npm run build
 ```
 
+4. Run tests:
+```bash
+npm test
+```
+
+5. Run tests in watch mode:
+```bash
+npm run test:watch
+```
+
+Comprehensive tests have been created for all API functions. See [docs/TESTING.md](docs/TESTING.md) for details.
+
 ## Configuration (Claude Desktop)
 ```json
 {
@@ -65,11 +77,27 @@ npm run build
 }
 ```
 
+## Configuration (docker)
+
+```json
+{
+  "mcpServers": {
+    "mcp-hko-docker": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "mcp-hko:latest"],
+      "name": "mcp-hko (Docker)",
+    }
+  }
+}
+```
+
+
 ## Project Structure
 - `src/` - Server source code
 - `src/lib/` - API implementation modules
 - `documentation/` - API documentation and test cases
 - `scripts/` - Development utilities
+- `src/tests/` - Test files
 
 ## Server Architecture
 The MCP server is built on the FastMCP framework and implements various tools that correspond to Hong Kong Observatory APIs.

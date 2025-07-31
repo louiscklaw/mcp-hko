@@ -1,8 +1,4 @@
 **/*.bak
-**/*.del
-**/*copy*
-**/*.log
-**/*.tmp
 
 # Logs
 logs
