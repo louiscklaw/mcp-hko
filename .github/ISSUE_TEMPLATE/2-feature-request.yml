@@ -1,0 +1,30 @@
+name: 🚀 Feature request
+description: Suggest an idea for this project
+labels: [feature request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an idea to make the HKO Weather Data MCP Server better.
+
+        Please fill in as much of the following form as you're able.
+
+        For more information on how we manage feature requests, see our documentation.
+  - type: textarea
+    attributes:
+      label: What is the problem this feature will solve?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What is the feature you are proposing to solve the problem?
+      description: >
+        Please describe the feature in detail, including any API changes, new tools, or modifications to existing functionality.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What alternatives have you considered?
+      description: >
+        Please describe any alternative solutions or features you've considered,
+        including using existing tools or workarounds.

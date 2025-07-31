@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ❓ Need general help with the HKO MCP Server?
+    url: https://github.com/louiscklaw/mcp-hko-ws/discussions
+    about: Please ask questions in our Discussions forum.
+  - name: 📚 Check the documentation
+    url: https://github.com/louiscklaw/mcp-hko-ws/tree/master/documentation
+    about: Read the documentation to learn how to use the HKO MCP Server.
+  - name: 🌐 Found a problem with the HKO API data?
+    url: https://www.hko.gov.hk/en/abouthko/press/index.html
+    about: Issues with the underlying HKO data should be reported to the Hong Kong Observatory.

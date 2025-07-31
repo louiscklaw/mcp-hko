@@ -1,0 +1,27 @@
+name: 📗 Open an issue regarding the HKO MCP API reference docs
+description: Let us know about any problematic API reference documents
+labels: [doc]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for wanting to make the HKO Weather Data MCP Server documentation better!
+
+        Please fill in as much of the following form as you're able.
+  - type: input
+    attributes:
+      label: Affected API endpoint(s)
+      description: Which HKO API endpoint(s) or tool(s) does this issue relate to?
+  - type: textarea
+    attributes:
+      label: Description of the problem
+      description: >
+        Please describe the documentation issue in detail.
+        Include any specific errors, missing information, or unclear explanations.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Suggested improvement
+      description: >
+        If you have a suggestion for how to improve the documentation, please describe it here.

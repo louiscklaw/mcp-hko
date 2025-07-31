@@ -1,0 +1,58 @@
+name: 🐛 Bug report
+description: Create a report to help us improve
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue.
+
+        This issue tracker is for bugs and issues found within the HKO Weather Data MCP Server.
+        If you require general support, please check our documentation or file an issue with appropriate template.
+
+        Please fill in as much of the following form as you're able.
+  - type: input
+    attributes:
+      label: Version
+      description: |
+        Output of `npm list mcp-hko`.
+        Please verify that you are reproducing the issue in the latest version of the HKO MCP server.
+  - type: textarea
+    attributes:
+      label: Platform
+      render: text
+      description: |
+        UNIX: output of `uname -a`
+        Windows: output of `"$([Environment]::OSVersion.VersionString) $(('x86', 'x64')[[Environment]::Is64BitOperatingSystem])"` in PowerShell console
+  - type: input
+    attributes:
+      label: Subsystem
+      description: If known, please specify affected API endpoint (e.g., fnd, rhrread, lhl)
+  - type: textarea
+    attributes:
+      label: What steps will reproduce the bug?
+      description: >
+        Enter details about your bug, preferably a simple code snippet that can
+        be run using the HKO MCP server directly without installing third-party dependencies.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: How often does it reproduce? Is there a required condition?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What is the expected behavior? Why is that the expected behavior?
+      description: If possible please provide textual output instead of screenshots.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What do you see instead?
+      description: If possible please provide textual output instead of screenshots.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Tell us anything else you think we should know.
