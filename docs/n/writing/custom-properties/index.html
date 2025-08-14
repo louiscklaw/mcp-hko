@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
-    <title>Eleventy Notes</title>
+    <title>Custom Properties</title>
     <meta name="generator" content="Eleventy v3.1.2">
     <link rel="stylesheet" href="/app.css">
   </head>
@@ -56,11 +56,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-eab1633b-popup"
-        aria-controls="id-eab1633b-popup"
+        aria-owns="id-bc0888f5-popup"
+        aria-controls="id-bc0888f5-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-eab1633b-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-bc0888f5-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -84,7 +84,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-eab1633b-popup">
+      <div class="search__popover" id="id-bc0888f5-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search by title, content and #tags
         </div>
@@ -98,7 +98,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-eab1633b-result-${result.id}`">
+              <li role="option" :id="`id-bc0888f5-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -134,38 +134,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-6b88f4da-light"
+    id="id-4c4ec325-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-4c4ec325-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-dark"
+    id="id-4c4ec325-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-4c4ec325-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-system"
+    id="id-4c4ec325-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-4c4ec325-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -191,7 +191,7 @@
       <li>
         <a
           href="/"
-          aria-current=page
+          
           class="nav-list__link"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
@@ -505,7 +505,7 @@
           <div class="nav-list__link-with-toggle">
             <a
               href="/n/writing/custom-properties/"
-              
+              aria-current=page
               class="nav-list__link"
             >
               <span>Custom Properties</span>
@@ -1367,22 +1367,320 @@
 <div class="page" data-pagefind-body>
   <main class="page__main" id="app-content" >
     <article>
-      <h1 class="page__title">Welcome to Eleventy Notes</h1>
+      <h1 class="page__title">Custom Properties</h1>
       <div class="article">
-        <p>Welcome to <strong>Eleventy Notes</strong>, an opinionated template for publishing your personal notes, documentation, or even your blog! Built with <a href="https://11ty.dev/">Eleventy</a>, the powerful static site generator, Eleventy Notes is packed with features you'll love.</p>
-<p>With Eleventy Notes, you can:</p>
-<ul>
-<li>✅ Create <a href="/n/writing/wikilinks/">Wikilinks</a> and backlinks to easily navigate your content</li>
-<li>✅ Organize your content with <a href="/n/organizing/tags/">Tags</a> for easy searching and filtering</li>
-<li>✅ Quickly find what you need with a <a href="/n/features/search/">client-side search</a></li>
-<li>✅ Choose from two <a href="/n/features/themes/">Themes</a> and multiple color schemes to match your style</li>
-<li>✅ Customize your <a href="/n/features/sidebar/">Sidebar</a> with support for folders and subfolders</li>
-<li>✅ Enjoy a lightweight and fast experience, with minimal JavaScript</li>
-<li>... and much more!</li>
-</ul>
-<p>Whether you're a blogger, developer, or just someone who loves to write, Eleventy Notes has everything you need to publish your content. So what are you waiting for? Get started today by reading our <a href="/n/getting-started/">Getting started</a> guide and start sharing your thoughts with the world!</p>
-<p>Built with ❤️ by <a href="https://sandroroth.com/">Sandro Roth</a> • <a href="./third-party-license.txt">Third-party license</a></p>
+        <p>Custom Properties are additional metadata for notes, such as the author or the date it was published.
+You can add custom properties to your notes using Front Matter and specify properties in the <a href="/n/features/configuration-file/">Configuration file</a> to show them in the <a href="/n/features/panel/">Panel</a>.</p>
+<h2 id="examples" tabindex="-1">Examples <a class="anchor-link" href="#examples" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<h3 id="author" tabindex="-1">Author <a class="anchor-link" href="#author" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>This example shows how to add an author to a note. First, define the author in your note using Front Matter:</p>
 
+        <div class="code-block">
+          <pre class="language-md"><code class="language-md"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">author</span><span class="token punctuation">:</span> John Doe</span>
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> My Note</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>Then add the property to the configuration file:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">customProperties</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">properties</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"author"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h3 id="published-date" tabindex="-1">Published Date <a class="anchor-link" href="#published-date" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>This example shows how to add a date to a note. First, define the date in your note using Front Matter:</p>
+
+        <div class="code-block">
+          <pre class="language-md"><code class="language-md"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">publishedOn</span><span class="token punctuation">:</span> <span class="token datetime number">2023-08-01</span></span>
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> My Note</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>Then add the property to the configuration file:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">customProperties</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">properties</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"publishedOn"</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// Optionally, format the date.</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">date</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">locale</span><span class="token operator">:</span> <span class="token string">"en-US"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">format</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">dateStyle</span><span class="token operator">:</span> <span class="token string">"full"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h3 id="related-notes" tabindex="-1">Related notes <a class="anchor-link" href="#related-notes" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>This example shows how to add a list of related notes to a note. First, define the related notes in your note using Front Matter.
+Related notes can be referenced using the same <a href="/n/writing/wikilinks/#syntax">wikilink syntax</a> as in your notes.</p>
+
+        <div class="code-block">
+          <pre class="language-md"><code class="language-md"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">related</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">"[[My other note]]"</span> <span class="token comment"># Must be wrapped in quotes!</span>
+  <span class="token punctuation">-</span> <span class="token string">"[[My third note]]"</span></span>
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> My Note</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>Then add the property to the configuration file:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">customProperties</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">properties</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"related"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>Wikilinks used in custom properties are not listed in the incoming / outgoing sections of the panel.</p>
+<h3 id="arbitrary-properties" tabindex="-1">Arbitrary Properties <a class="anchor-link" href="#arbitrary-properties" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>This example shows how to add arbitrary properties to a note. First, define the properties in your note using Front Matter.
+For arbitrary properties, it's recommended to use a nested object (<code>meta</code> in this example).</p>
+
+        <div class="code-block">
+          <pre class="language-md"><code class="language-md"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">meta</span><span class="token punctuation">:</span>
+  <span class="token key atrule">language</span><span class="token punctuation">:</span> German
+  <span class="token key atrule">license</span><span class="token punctuation">:</span> MIT</span>
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> My Note</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>Then add the property to the configuration file:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">customProperties</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">properties</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// Includes all props in the meta object</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"meta"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h2 id="configuration-api" tabindex="-1">Configuration API <a class="anchor-link" href="#configuration-api" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p>What properties are shown in the panel can be configured in the <a href="/n/features/configuration-file/">Configuration file</a>.</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">customProperties</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Define a list of properties to show in the panel.</span>
+    <span class="token literal-property property">properties</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// The path to the property, if your property is nested (optional).</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"meta"</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// The name of the property.</span>
+        <span class="token comment">// If omitted, all properties in the path are shown.</span>
+        <span class="token comment">// Define a regular expression to match multiple properties.</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"author"</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// The label to show in the panel.</span>
+        <span class="token comment">// If omitted, is inferred from the property name.</span>
+        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Lovely written by"</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// Options for the property value (optional).</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token comment">// Options for date values</span>
+          <span class="token literal-property property">date</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">locale</span><span class="token operator">:</span> <span class="token string">"en-US"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">format</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">dateStyle</span><span class="token operator">:</span> <span class="token string">"full"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token comment">// Options for numeric values</span>
+          <span class="token literal-property property">number</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">locale</span><span class="token operator">:</span> <span class="token string">"en-US"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">format</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token literal-property property">style</span><span class="token operator">:</span> <span class="token string">"currency"</span><span class="token punctuation">,</span>
+              <span class="token literal-property property">currency</span><span class="token operator">:</span> <span class="token string">"USD"</span><span class="token punctuation">,</span>
+              <span class="token literal-property property">currencyDisplay</span><span class="token operator">:</span> <span class="token string">"symbol"</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      
       </div>
     </article>
 
@@ -1391,12 +1689,16 @@
 
   <div class="page-nav">
     
-      <div></div>
+      <a href="/n/writing/callouts/" class="page-nav__link" data-type="prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        <span class="page-nav__type" en>Previous</span>
+        <span class="page-nav__label">Callouts</span>
+      </a>
     
     
-      <a href="/n/getting-started/" class="page-nav__link" data-type="next">
+      <a href="/n/writing/dynamic-content/" class="page-nav__link" data-type="next">
         <span class="page-nav__type" en>Next</span>
-        <span class="page-nav__label">Getting started</span>
+        <span class="page-nav__label">Dynamic Content</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
     
@@ -1406,6 +1708,239 @@
     </div>
   </main>
 
+  
+  <div class="page__panel">
+    
+
+
+<aside class="stack" data-stack="6">
+  
+  
+  <div
+    class="toc"
+    data-pagefind-ignore
+    x-data="toc"
+    x-on:scroll.window.throttle.30ms="onScroll()"
+    :style="indicatorStyles"
+  >
+    <h2 class="toc__label" id="app-panel-toc" lang="en">
+      On this page
+    </h2>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#examples" class="toc__link" :data-active="'examples' === activeId" @click="onNavigate('examples')">
+          Examples 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#author" class="toc__link" :data-active="'author' === activeId" @click="onNavigate('author')">
+          Author 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#published-date" class="toc__link" :data-active="'published-date' === activeId" @click="onNavigate('published-date')">
+          Published Date 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#related-notes" class="toc__link" :data-active="'related-notes' === activeId" @click="onNavigate('related-notes')">
+          Related notes 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#arbitrary-properties" class="toc__link" :data-active="'arbitrary-properties' === activeId" @click="onNavigate('arbitrary-properties')">
+          Arbitrary Properties 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#configuration-api" class="toc__link" :data-active="'configuration-api' === activeId" @click="onNavigate('configuration-api')">
+          Configuration API 
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  <div class="custom-props">
+    <h2 class="custom-props__label" id="app-panel-props" data-pagefind-ignore lang="en">
+      Properties
+    </h2>
+    <dl class="custom-props__list stack" data-stack="4" role="list" aria-labelledby="app-panel-props">
+      
+      <div>
+          <dt>Author</dt>
+          <dd class="stack">
+            
+                <div class="custom-props__value">
+                
+                  Sandro Roth
+                
+              </div>
+            
+          </dd>
+      </div>
+      
+      <div>
+          <dt>Published On</dt>
+          <dd class="stack">
+            
+                <div class="custom-props__value">
+                
+                  <time datetime="2023-07-31T00:00:00.000Z">7/31/2023</time>
+                
+              </div>
+            
+          </dd>
+      </div>
+      
+      <div>
+          <dt>Learn More</dt>
+          <dd class="stack">
+            
+                <div class="custom-props__value">
+                
+                  <a href="/n/features/configuration-file/" class="custom-props__links">Config file</a>
+                
+              </div>
+            
+                <div class="custom-props__value">
+                
+                  <a href="/n/writing/wikilinks/#syntax" class="custom-props__links">Wikilink syntax</a>
+                
+              </div>
+            
+          </dd>
+      </div>
+      
+    </dl>
+  </div>
+  
+
+  
+  <div class="grouped-links">
+    <h2 class="grouped-links__label" id="app-panel-tags" lang="en">
+      Tags
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-tags">
+      
+      
+      <li>
+        <a
+          href="/tags/writing/" class="grouped-links__link"
+          data-pagefind-filter="tags:writing">
+          
+      <svg >
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+          <span>writing</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-incoming" lang="en">
+      Incoming
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-incoming">
+      
+        <li>
+          <a href="/n/features/configuration-file/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            <span>Configuration file</span>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/n/features/panel/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            <span>Panel</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-outgoing" lang="en">
+      Outgoing
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-outgoing">
+      
+        <li>
+          <a href="/n/features/configuration-file/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <span>Configuration file</span>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/n/features/panel/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <span>Panel</span>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/n/writing/wikilinks/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <span>Wikilinks</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+  
+  
+
+  <div class="inline" data-pagefind-ignore>
+    
+  <button
+    x-data x-cloak
+    type="button"
+    class="toggle-btn"
+    :aria-pressed="$store.bookmarks.is('/n/writing/custom-properties/')"
+    @click="$store.bookmarks.toggle('/n/writing/custom-properties/')"
+    lang="en"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+    <span>Bookmark</span>
+  </button>
+
+    
+  
+    <a 
+      href="https://github.com/rothsandro/eleventy-notes/edit/main/Writing/Custom%20Properties.md"
+      
+      class="toggle-btn"
+      lang="en"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+      <span>Edit</span>
+    </a>
+  
+
+  </div>
+</aside>
+
+  </div>
   
 </div>
 

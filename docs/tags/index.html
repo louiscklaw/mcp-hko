@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
-    <title>Eleventy Notes</title>
+    <title>Tags</title>
     <meta name="generator" content="Eleventy v3.1.2">
     <link rel="stylesheet" href="/app.css">
   </head>
@@ -56,11 +56,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-eab1633b-popup"
-        aria-controls="id-eab1633b-popup"
+        aria-owns="id-5b518a1d-popup"
+        aria-controls="id-5b518a1d-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-eab1633b-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-5b518a1d-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -84,7 +84,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-eab1633b-popup">
+      <div class="search__popover" id="id-5b518a1d-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search by title, content and #tags
         </div>
@@ -98,7 +98,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-eab1633b-result-${result.id}`">
+              <li role="option" :id="`id-5b518a1d-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -134,38 +134,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-6b88f4da-light"
+    id="id-3076ad41-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-3076ad41-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-dark"
+    id="id-3076ad41-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-3076ad41-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-system"
+    id="id-3076ad41-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-3076ad41-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -191,7 +191,7 @@
       <li>
         <a
           href="/"
-          aria-current=page
+          
           class="nav-list__link"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
@@ -204,7 +204,7 @@
         <li>
           <a
             href="/tags/"
-            
+            aria-current=page
             class="nav-list__link"
             lang="en"
           >
@@ -1364,53 +1364,329 @@
           </div>
         </div>
         <div>
-<div class="page" data-pagefind-body>
-  <main class="page__main" id="app-content" >
-    <article>
-      <h1 class="page__title">Welcome to Eleventy Notes</h1>
-      <div class="article">
-        <p>Welcome to <strong>Eleventy Notes</strong>, an opinionated template for publishing your personal notes, documentation, or even your blog! Built with <a href="https://11ty.dev/">Eleventy</a>, the powerful static site generator, Eleventy Notes is packed with features you'll love.</p>
-<p>With Eleventy Notes, you can:</p>
-<ul>
-<li>✅ Create <a href="/n/writing/wikilinks/">Wikilinks</a> and backlinks to easily navigate your content</li>
-<li>✅ Organize your content with <a href="/n/organizing/tags/">Tags</a> for easy searching and filtering</li>
-<li>✅ Quickly find what you need with a <a href="/n/features/search/">client-side search</a></li>
-<li>✅ Choose from two <a href="/n/features/themes/">Themes</a> and multiple color schemes to match your style</li>
-<li>✅ Customize your <a href="/n/features/sidebar/">Sidebar</a> with support for folders and subfolders</li>
-<li>✅ Enjoy a lightweight and fast experience, with minimal JavaScript</li>
-<li>... and much more!</li>
-</ul>
-<p>Whether you're a blogger, developer, or just someone who loves to write, Eleventy Notes has everything you need to publish your content. So what are you waiting for? Get started today by reading our <a href="/n/getting-started/">Getting started</a> guide and start sharing your thoughts with the world!</p>
-<p>Built with ❤️ by <a href="https://sandroroth.com/">Sandro Roth</a> • <a href="./third-party-license.txt">Third-party license</a></p>
-
-      </div>
-    </article>
-
-    <div class="page__nav">
+<div class="page">
+  <main class="page__main" id="app-content">
+    <h1 class="page__title" lang="en">Tags <small>(7)</small></h1>
+    <div class="stack" data-stack="6">
+      <ul role="list" class="tags-list">
+        
+          <li>
+            <a href="#basics" class="note-link"># basics</a>
+          </li>
+        
+          <li>
+            <a href="#deployment" class="note-link"># deployment</a>
+          </li>
+        
+          <li>
+            <a href="#dynamic-content" class="note-link"># dynamic content</a>
+          </li>
+        
+          <li>
+            <a href="#feature" class="note-link"># feature</a>
+          </li>
+        
+          <li>
+            <a href="#organizing" class="note-link"># organizing</a>
+          </li>
+        
+          <li>
+            <a href="#release" class="note-link"># release</a>
+          </li>
+        
+          <li>
+            <a href="#writing" class="note-link"># writing</a>
+          </li>
+        
+      </ul>
+      <hr>
       
-
-  <div class="page-nav">
-    
-      <div></div>
-    
-    
-      <a href="/n/getting-started/" class="page-nav__link" data-type="next">
-        <span class="page-nav__type" en>Next</span>
-        <span class="page-nav__label">Getting started</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-      </a>
-    
-  </div>
-
-
+        <div class="stack">
+          <h2 id="basics">basics <small>(3)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/getting-started/" class="note-link">
+                  Getting started
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/next-steps/" class="note-link">
+                  Next Steps
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/your-first-note/" class="note-link">
+                  Your first note
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
+        <div class="stack">
+          <h2 id="deployment">deployment <small>(5)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/deployment/build/" class="note-link">
+                  Build
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/deployment/cloudflare-pages/" class="note-link">
+                  Cloudflare Pages
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/deployment/github-pages/" class="note-link">
+                  GitHub Pages
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/deployment/gitlab-pages/" class="note-link">
+                  GitLab Pages
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/deployment/netlify/" class="note-link">
+                  Netlify
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
+        <div class="stack">
+          <h2 id="dynamic-content">dynamic content <small>(4)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/writing/dynamic-content/" class="note-link">
+                  Dynamic Content
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/collections/" class="note-link">
+                  Collections
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/queries/" class="note-link">
+                  Queries
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/render-filters/" class="note-link">
+                  Render Filters
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
+        <div class="stack">
+          <h2 id="feature">feature <small>(13)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/features/bookmarks/" class="note-link">
+                  Bookmarks
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/configuration-file/" class="note-link">
+                  Configuration file
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/language/" class="note-link">
+                  Language
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/page-navigation/" class="note-link">
+                  Page Navigation
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/panel/" class="note-link">
+                  Panel
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/panel/edit-link/" class="note-link">
+                  Edit link
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/search/" class="note-link">
+                  Search
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/sidebar/" class="note-link">
+                  Sidebar
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/sidebar/additional-links/" class="note-link">
+                  Additional Links
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/sidebar/notes/" class="note-link">
+                  Notes
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/static-assets/" class="note-link">
+                  Static Assets
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/styling/" class="note-link">
+                  Styling
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/features/themes/" class="note-link">
+                  Themes
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
+        <div class="stack">
+          <h2 id="organizing">organizing <small>(2)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/organizing/files-and-folders/" class="note-link">
+                  Files and Folders
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/organizing/tags/" class="note-link">
+                  Tags
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
+        <div class="stack">
+          <h2 id="release">release <small>(2)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/releases/changelog/" class="note-link">
+                  Changelog
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/releases/updating/" class="note-link">
+                  Updating
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
+        <div class="stack">
+          <h2 id="writing">writing <small>(10)</small></h2>
+          <ul role="list" class="stack">
+            
+              <li>
+                <a href="/n/writing/callouts/" class="note-link">
+                  Callouts
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/custom-properties/" class="note-link">
+                  Custom Properties
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/" class="note-link">
+                  Dynamic Content
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/collections/" class="note-link">
+                  Collections
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/queries/" class="note-link">
+                  Queries
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/dynamic-content/render-filters/" class="note-link">
+                  Render Filters
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/markdown/" class="note-link">
+                  Markdown
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/start-page/" class="note-link">
+                  Start page
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/wikilinks/" class="note-link">
+                  Wikilinks
+                </a>
+              </li>
+            
+              <li>
+                <a href="/n/writing/writing-notes/" class="note-link">
+                  Writing Notes
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      
     </div>
   </main>
-
-  
-</div>
-
-
-</div>
+</div></div>
       </div>
     </div>
 

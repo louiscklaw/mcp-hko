@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
-    <title>Eleventy Notes</title>
+    <title>Language</title>
     <meta name="generator" content="Eleventy v3.1.2">
     <link rel="stylesheet" href="/app.css">
   </head>
@@ -56,11 +56,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-eab1633b-popup"
-        aria-controls="id-eab1633b-popup"
+        aria-owns="id-bfdae65d-popup"
+        aria-controls="id-bfdae65d-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-eab1633b-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-bfdae65d-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -84,7 +84,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-eab1633b-popup">
+      <div class="search__popover" id="id-bfdae65d-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search by title, content and #tags
         </div>
@@ -98,7 +98,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-eab1633b-result-${result.id}`">
+              <li role="option" :id="`id-bfdae65d-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -134,38 +134,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-6b88f4da-light"
+    id="id-7c992879-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-7c992879-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-dark"
+    id="id-7c992879-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-7c992879-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-system"
+    id="id-7c992879-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-7c992879-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -191,7 +191,7 @@
       <li>
         <a
           href="/"
-          aria-current=page
+          
           class="nav-list__link"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
@@ -837,7 +837,7 @@
           <div class="nav-list__link-with-toggle">
             <a
               href="/n/features/language/"
-              
+              aria-current=page
               class="nav-list__link"
             >
               <span>Language</span>
@@ -1367,22 +1367,109 @@
 <div class="page" data-pagefind-body>
   <main class="page__main" id="app-content" >
     <article>
-      <h1 class="page__title">Welcome to Eleventy Notes</h1>
+      <h1 class="page__title">Language</h1>
       <div class="article">
-        <p>Welcome to <strong>Eleventy Notes</strong>, an opinionated template for publishing your personal notes, documentation, or even your blog! Built with <a href="https://11ty.dev/">Eleventy</a>, the powerful static site generator, Eleventy Notes is packed with features you'll love.</p>
-<p>With Eleventy Notes, you can:</p>
+        <p>Eleventy Notes distinguishes between two types of languages: content language and UI language.</p>
 <ul>
-<li>✅ Create <a href="/n/writing/wikilinks/">Wikilinks</a> and backlinks to easily navigate your content</li>
-<li>✅ Organize your content with <a href="/n/organizing/tags/">Tags</a> for easy searching and filtering</li>
-<li>✅ Quickly find what you need with a <a href="/n/features/search/">client-side search</a></li>
-<li>✅ Choose from two <a href="/n/features/themes/">Themes</a> and multiple color schemes to match your style</li>
-<li>✅ Customize your <a href="/n/features/sidebar/">Sidebar</a> with support for folders and subfolders</li>
-<li>✅ Enjoy a lightweight and fast experience, with minimal JavaScript</li>
-<li>... and much more!</li>
+<li><strong>Content Language</strong>: This is the language used in your notes, tags, custom properties, etc.</li>
+<li><strong>UI Language</strong>: This is the language used in the user interface elements such as the search bar and theme switcher. This also includes invisible labels used for assistive technologies.</li>
 </ul>
-<p>Whether you're a blogger, developer, or just someone who loves to write, Eleventy Notes has everything you need to publish your content. So what are you waiting for? Get started today by reading our <a href="/n/getting-started/">Getting started</a> guide and start sharing your thoughts with the world!</p>
-<p>Built with ❤️ by <a href="https://sandroroth.com/">Sandro Roth</a> • <a href="./third-party-license.txt">Third-party license</a></p>
+<h2 id="content-language" tabindex="-1">Content Language <a class="anchor-link" href="#content-language" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p>The default content language is English. If you prefer to write your notes in another language, you can change the content language in the configuration file via the <code>lang</code> property. Refer to the <a href="/n/features/configuration-file/">Configuration file</a> for detailed instructions on how to set up the configuration file.</p>
 
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">lang</span><span class="token operator">:</span> <span class="token string">"de"</span><span class="token punctuation">,</span>
+  <span class="token comment">// ... (other configuration)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h2 id="ui-language" tabindex="-1">UI Language <a class="anchor-link" href="#ui-language" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p>By default, Eleventy Notes supports English as the UI language. However, you can customize the translations or add support for other languages by providing a <code>translations</code> object in your configuration file.</p>
+<h3 id="changing-language" tabindex="-1">Changing Language <a class="anchor-link" href="#changing-language" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>You can change the UI language of Eleventy Notes by providing your own translations. To do this, open your existing <code>app.mjs</code> configuration file, create a named export <code>translations</code>, and use the provided <code>defineTranslations()</code> function. You can find the default translations in <code>.app/i18n/en.js</code>.</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> defineTranslations <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./.app/app-translations.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> translations <span class="token operator">=</span> <span class="token function">defineTranslations</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">lang</span><span class="token operator">:</span> <span class="token string">"de"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">translations</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">"search.input.placeholder"</span><span class="token operator">:</span> <span class="token string">"Suchen..."</span><span class="token punctuation">,</span>
+    <span class="token comment">// ... (all other translations)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <div class="callout" data-color="mint" data-type="tip" ><div class="callout__title"><div class="callout__icon"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></div><div>Autocompletion</div></div><div class="callout__content article"><p>For an improved developer experience, consider using an editor like <a href="https://code.visualstudio.com/">VS Code</a>. Adding <code>// @ts-check</code> at the top of your configuration file will enable autocompletion for translation keys and values.</p>
+</div></div>
+<h3 id="customizing-texts" tabindex="-1">Customizing texts <a class="anchor-link" href="#customizing-texts" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>If you want to customize specific texts while keeping English as the UI language, you can do so by defining the translations as described above and adding a <code>partial</code> property.</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.mjs</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> defineTranslations <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./.app/app-translations.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> translations <span class="token operator">=</span> <span class="token function">defineTranslations</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">lang</span><span class="token operator">:</span> <span class="token string">"en"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">partial</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">translations</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">"search.popover.placeholder"</span><span class="token operator">:</span> <span class="token string">"Search for lessons by title and content"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      
       </div>
     </article>
 
@@ -1391,12 +1478,16 @@
 
   <div class="page-nav">
     
-      <div></div>
+      <a href="/n/features/static-assets/" class="page-nav__link" data-type="prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        <span class="page-nav__type" en>Previous</span>
+        <span class="page-nav__label">Static Assets</span>
+      </a>
     
     
-      <a href="/n/getting-started/" class="page-nav__link" data-type="next">
+      <a href="/n/features/bookmarks/" class="page-nav__link" data-type="next">
         <span class="page-nav__type" en>Next</span>
-        <span class="page-nav__label">Getting started</span>
+        <span class="page-nav__label">Bookmarks</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
     
@@ -1406,6 +1497,152 @@
     </div>
   </main>
 
+  
+  <div class="page__panel">
+    
+
+
+<aside class="stack" data-stack="6">
+  
+  
+  <div
+    class="toc"
+    data-pagefind-ignore
+    x-data="toc"
+    x-on:scroll.window.throttle.30ms="onScroll()"
+    :style="indicatorStyles"
+  >
+    <h2 class="toc__label" id="app-panel-toc" lang="en">
+      On this page
+    </h2>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#content-language" class="toc__link" :data-active="'content-language' === activeId" @click="onNavigate('content-language')">
+          Content Language 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#ui-language" class="toc__link" :data-active="'ui-language' === activeId" @click="onNavigate('ui-language')">
+          UI Language 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#changing-language" class="toc__link" :data-active="'changing-language' === activeId" @click="onNavigate('changing-language')">
+          Changing Language 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#customizing-texts" class="toc__link" :data-active="'customizing-texts' === activeId" @click="onNavigate('customizing-texts')">
+          Customizing texts 
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+
+  
+  <div class="grouped-links">
+    <h2 class="grouped-links__label" id="app-panel-tags" lang="en">
+      Tags
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-tags">
+      
+      
+      <li>
+        <a
+          href="/tags/feature/" class="grouped-links__link"
+          data-pagefind-filter="tags:feature">
+          
+      <svg >
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+          <span>feature</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-outgoing" lang="en">
+      Outgoing
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-outgoing">
+      
+        <li>
+          <a href="/n/features/configuration-file/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <span>Configuration file</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-external" lang="en">
+      External
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-external">
+      
+        <li>
+          <a href="https://code.visualstudio.com/" class="grouped-links__link" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line></svg>
+            <span>VS Code</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  <div class="inline" data-pagefind-ignore>
+    
+  <button
+    x-data x-cloak
+    type="button"
+    class="toggle-btn"
+    :aria-pressed="$store.bookmarks.is('/n/features/language/')"
+    @click="$store.bookmarks.toggle('/n/features/language/')"
+    lang="en"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+    <span>Bookmark</span>
+  </button>
+
+    
+  
+    <a 
+      href="https://github.com/rothsandro/eleventy-notes/edit/main/Features/Language.md"
+      
+      class="toggle-btn"
+      lang="en"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+      <span>Edit</span>
+    </a>
+  
+
+  </div>
+</aside>
+
+  </div>
   
 </div>
 

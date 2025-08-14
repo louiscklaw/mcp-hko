@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
-    <title>Eleventy Notes</title>
+    <title>Queries</title>
     <meta name="generator" content="Eleventy v3.1.2">
     <link rel="stylesheet" href="/app.css">
   </head>
@@ -56,11 +56,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-eab1633b-popup"
-        aria-controls="id-eab1633b-popup"
+        aria-owns="id-9e6a9cb5-popup"
+        aria-controls="id-9e6a9cb5-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-eab1633b-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-9e6a9cb5-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -84,7 +84,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-eab1633b-popup">
+      <div class="search__popover" id="id-9e6a9cb5-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search by title, content and #tags
         </div>
@@ -98,7 +98,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-eab1633b-result-${result.id}`">
+              <li role="option" :id="`id-9e6a9cb5-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -134,38 +134,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-6b88f4da-light"
+    id="id-4b6e5f95-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-4b6e5f95-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-dark"
+    id="id-4b6e5f95-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-4b6e5f95-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-system"
+    id="id-4b6e5f95-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-4b6e5f95-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -191,7 +191,7 @@
       <li>
         <a
           href="/"
-          aria-current=page
+          
           class="nav-list__link"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
@@ -584,7 +584,7 @@
           <div class="nav-list__link-with-toggle">
             <a
               href="/n/writing/dynamic-content/queries/"
-              
+              aria-current=page
               class="nav-list__link"
             >
               <span>Queries</span>
@@ -1367,22 +1367,305 @@
 <div class="page" data-pagefind-body>
   <main class="page__main" id="app-content" >
     <article>
-      <h1 class="page__title">Welcome to Eleventy Notes</h1>
+      <h1 class="page__title">Queries</h1>
       <div class="article">
-        <p>Welcome to <strong>Eleventy Notes</strong>, an opinionated template for publishing your personal notes, documentation, or even your blog! Built with <a href="https://11ty.dev/">Eleventy</a>, the powerful static site generator, Eleventy Notes is packed with features you'll love.</p>
-<p>With Eleventy Notes, you can:</p>
-<ul>
-<li>✅ Create <a href="/n/writing/wikilinks/">Wikilinks</a> and backlinks to easily navigate your content</li>
-<li>✅ Organize your content with <a href="/n/organizing/tags/">Tags</a> for easy searching and filtering</li>
-<li>✅ Quickly find what you need with a <a href="/n/features/search/">client-side search</a></li>
-<li>✅ Choose from two <a href="/n/features/themes/">Themes</a> and multiple color schemes to match your style</li>
-<li>✅ Customize your <a href="/n/features/sidebar/">Sidebar</a> with support for folders and subfolders</li>
-<li>✅ Enjoy a lightweight and fast experience, with minimal JavaScript</li>
-<li>... and much more!</li>
-</ul>
-<p>Whether you're a blogger, developer, or just someone who loves to write, Eleventy Notes has everything you need to publish your content. So what are you waiting for? Get started today by reading our <a href="/n/getting-started/">Getting started</a> guide and start sharing your thoughts with the world!</p>
-<p>Built with ❤️ by <a href="https://sandroroth.com/">Sandro Roth</a> • <a href="./third-party-license.txt">Third-party license</a></p>
+        <p>Queries allow you to filter, sort and manipulate data collections. Queries can be used on <a href="/n/writing/dynamic-content/collections/">Collections</a> provided by Eleventy Notes or any other list of objects you want to manipulate.</p>
+<h2 id="usage" tabindex="-1">Usage <a class="anchor-link" href="#usage" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p>Define a query in the front matter of a note and use the <code>query</code> filter to apply it to a list of objects.</p>
 
+        <div class="code-block">
+          <pre class="language-md"><code class="language-md"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">myQuery</span><span class="token punctuation">:</span>
+  <span class="token key atrule">filter</span><span class="token punctuation">:</span> <span class="token punctuation">...</span> <span class="token comment"># see below</span>
+  <span class="token key atrule">sort</span><span class="token punctuation">:</span> <span class="token punctuation">...</span> <span class="token comment"># see below</span></span>
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> My Notes</span>
+
+{{ collections.notes | query(myQuery) }}</code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h2 id="query-properties" tabindex="-1">Query Properties <a class="anchor-link" href="#query-properties" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<h3 id="filtering" tabindex="-1">Filtering <a class="anchor-link" href="#filtering" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>The <code>filter</code> property allows you to filter the data collection. The <code>filter</code> property is an array of filter rows. Each filter row is an array with three elements: the property to filter on, the operator and the value of the operator.</p>
+
+        <div class="code-block">
+          <pre class="language-yml"><code class="language-yml"><span class="token key atrule">myQuery</span><span class="token punctuation">:</span>
+  <span class="token key atrule">filter</span><span class="token punctuation">:</span>
+    <span class="token comment"># A list of filter rows that must all match</span>
+    <span class="token comment"># Format: ["&lt;property>", "&lt;operator>", &lt;value>]</span>
+
+    <span class="token comment"># Title must match the given RegEx pattern</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"title"</span><span class="token punctuation">,</span> <span class="token string">"matches"</span><span class="token punctuation">,</span> <span class="token string">"^Book:"</span><span class="token punctuation">]</span>
+
+      <span class="token comment"># Note must have the tag "book"</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"tags"</span><span class="token punctuation">,</span> <span class="token string">"includes"</span><span class="token punctuation">,</span> <span class="token string">"book"</span><span class="token punctuation">]</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h4 id="operators" tabindex="-1">Operators <a class="anchor-link" href="#operators" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h4>
+<p>The following operators are available:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operator</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>isEmpty</code></td>
+<td style="text-align:left">The property must be empty</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isNotEmpty</code></td>
+<td style="text-align:left">The property must not be empty</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isEqual</code></td>
+<td style="text-align:left">The property must be equal to the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isNotEqual</code></td>
+<td style="text-align:left">The property must not be equal to the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isLessThan</code></td>
+<td style="text-align:left">The property must be less than the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isLessThanOrEqual</code></td>
+<td style="text-align:left">The property must be less than or equal to the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isGreaterThan</code></td>
+<td style="text-align:left">The property must be greater than the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>isGreaterThanOrEqual</code></td>
+<td style="text-align:left">The property must be greater than or equal to the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>includes</code></td>
+<td style="text-align:left">The property must include the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>doesNotInclude</code></td>
+<td style="text-align:left">The property must not include the value</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>includesAnyOf</code></td>
+<td style="text-align:left">The property must include any of the values</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>includesAllOf</code></td>
+<td style="text-align:left">The property must include all the values</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>includesNoneOf</code></td>
+<td style="text-align:left">The property must include none of the values</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>matches</code></td>
+<td style="text-align:left">The property must match the given RegEx pattern</td>
+</tr>
+</tbody>
+</table>
+<h4 id="and-or" tabindex="-1">And / Or <a class="anchor-link" href="#and-or" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h4>
+<p>By default, all provided conditions must match. You can change this behavior by passing an object with either an <code>and</code> or <code>or</code> property. These objects can also be nested:</p>
+
+        <div class="code-block">
+          <pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">myQuery</span><span class="token punctuation">:</span>
+  <span class="token key atrule">filter</span><span class="token punctuation">:</span>
+    <span class="token key atrule">or</span><span class="token punctuation">:</span>
+      <span class="token comment"># either condition must match</span>
+      <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"tags"</span><span class="token punctuation">,</span> <span class="token string">"includes"</span><span class="token punctuation">,</span> <span class="token string">"book"</span><span class="token punctuation">]</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">and</span><span class="token punctuation">:</span>
+          <span class="token comment"># both conditions must match</span>
+          <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"title"</span><span class="token punctuation">,</span> <span class="token string">"matches"</span><span class="token punctuation">,</span> <span class="token string">"^Book:"</span><span class="token punctuation">]</span>
+          <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"tags"</span><span class="token punctuation">,</span> <span class="token string">"isEmpty"</span><span class="token punctuation">]</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>The example above filters all notes that have the tag <code>book</code> OR that have the title <code>Book:</code> AND no tags.</p>
+<h3 id="sorting" tabindex="-1">Sorting <a class="anchor-link" href="#sorting" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>The <code>sort</code> property allows you to sort the data collection. The <code>sort</code> property is an array of sort rows. Each sort row is an array with two elements: the property to sort on and the sort direction.</p>
+
+        <div class="code-block">
+          <pre class="language-yml"><code class="language-yml"><span class="token key atrule">myQuery</span><span class="token punctuation">:</span>
+  <span class="token key atrule">sort</span><span class="token punctuation">:</span>
+    <span class="token comment"># A list of sort rows</span>
+    <span class="token comment"># Format: ["&lt;property>", "&lt;direction>"]</span>
+
+    <span class="token comment"># Sort by the "sort" data property in ascending order</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"data.sort"</span><span class="token punctuation">,</span> <span class="token string">"asc"</span><span class="token punctuation">]</span>
+
+    <span class="token comment"># Sort by the "title" property in descending order</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">[</span><span class="token string">"title"</span><span class="token punctuation">,</span> <span class="token string">"desc"</span><span class="token punctuation">]</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h3 id="tree" tabindex="-1">Tree <a class="anchor-link" href="#tree" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>The <code>tree</code> property allows you to transform the data collection into a tree structure. The tree is created by a path property that is split on a separator.</p>
+
+        <div class="code-block">
+          <pre class="language-yml"><code class="language-yml"><span class="token key atrule">myQuery</span><span class="token punctuation">:</span>
+  <span class="token comment"># Convert the collection into a tree</span>
+  <span class="token key atrule">tree</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+
+<span class="token key atrule">anotherQuery</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tree</span><span class="token punctuation">:</span>
+    <span class="token comment"># The property that contains the path</span>
+    <span class="token comment"># default: filePathStem</span>
+    <span class="token key atrule">pathProp</span><span class="token punctuation">:</span> <span class="token string">"data.tree"</span>
+
+    <span class="token comment"># A list of path replacements (optional)</span>
+    <span class="token key atrule">replace</span><span class="token punctuation">:</span>
+      <span class="token comment"># Replace the "Demo/" prefix with an empty string</span>
+      <span class="token key atrule">"^/Demo/"</span><span class="token punctuation">:</span> <span class="token string">""</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>If <code>tree</code> is enabled, it will transform each item in the collection into a tree node. The tree node has the following properties:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// A unique key for the node</span>
+    <span class="token literal-property property">$treeKey</span><span class="token operator">:</span> <span class="token string">"my-folder--my-note"</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// The name of the current path segment</span>
+    <span class="token literal-property property">$treeName</span><span class="token operator">:</span> <span class="token string">"My Note"</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// The list of child nodes</span>
+    <span class="token literal-property property">children</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// ... any existing properties of the item</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h3 id="offset-and-limit" tabindex="-1">Offset and Limit <a class="anchor-link" href="#offset-and-limit" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h3>
+<p>The <code>offset</code> and <code>limit</code> properties allow you to limit the number of items returned by the query.</p>
+
+        <div class="code-block">
+          <pre class="language-yml"><code class="language-yml"><span class="token key atrule">myQuery</span><span class="token punctuation">:</span>
+  <span class="token comment"># The number of items to skip</span>
+  <span class="token key atrule">offset</span><span class="token punctuation">:</span> <span class="token number">10</span>
+
+  <span class="token comment"># The maximum number of items to return</span>
+  <span class="token key atrule">limit</span><span class="token punctuation">:</span> <span class="token number">5</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      
       </div>
     </article>
 
@@ -1391,12 +1674,16 @@
 
   <div class="page-nav">
     
-      <div></div>
+      <a href="/n/writing/dynamic-content/collections/" class="page-nav__link" data-type="prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        <span class="page-nav__type" en>Previous</span>
+        <span class="page-nav__label">Collections</span>
+      </a>
     
     
-      <a href="/n/getting-started/" class="page-nav__link" data-type="next">
+      <a href="/n/writing/dynamic-content/render-filters/" class="page-nav__link" data-type="next">
         <span class="page-nav__type" en>Next</span>
-        <span class="page-nav__label">Getting started</span>
+        <span class="page-nav__label">Render Filters</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
     
@@ -1406,6 +1693,197 @@
     </div>
   </main>
 
+  
+  <div class="page__panel">
+    
+
+
+<aside class="stack" data-stack="6">
+  
+  
+  <div
+    class="toc"
+    data-pagefind-ignore
+    x-data="toc"
+    x-on:scroll.window.throttle.30ms="onScroll()"
+    :style="indicatorStyles"
+  >
+    <h2 class="toc__label" id="app-panel-toc" lang="en">
+      On this page
+    </h2>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#usage" class="toc__link" :data-active="'usage' === activeId" @click="onNavigate('usage')">
+          Usage 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#query-properties" class="toc__link" :data-active="'query-properties' === activeId" @click="onNavigate('query-properties')">
+          Query Properties 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#filtering" class="toc__link" :data-active="'filtering' === activeId" @click="onNavigate('filtering')">
+          Filtering 
+        </a>
+      </li>
+      
+      <li style="--level: 3" class="toc__item">
+        <a href="#operators" class="toc__link" :data-active="'operators' === activeId" @click="onNavigate('operators')">
+          Operators 
+        </a>
+      </li>
+      
+      <li style="--level: 3" class="toc__item">
+        <a href="#and-or" class="toc__link" :data-active="'and-or' === activeId" @click="onNavigate('and-or')">
+          And / Or 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#sorting" class="toc__link" :data-active="'sorting' === activeId" @click="onNavigate('sorting')">
+          Sorting 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#tree" class="toc__link" :data-active="'tree' === activeId" @click="onNavigate('tree')">
+          Tree 
+        </a>
+      </li>
+      
+      <li style="--level: 2" class="toc__item">
+        <a href="#offset-and-limit" class="toc__link" :data-active="'offset-and-limit' === activeId" @click="onNavigate('offset-and-limit')">
+          Offset and Limit 
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+
+  
+  <div class="grouped-links">
+    <h2 class="grouped-links__label" id="app-panel-tags" lang="en">
+      Tags
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-tags">
+      
+      
+      <li>
+        <a
+          href="/tags/writing/" class="grouped-links__link"
+          data-pagefind-filter="tags:writing">
+          
+      <svg >
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+          <span>writing</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="/tags/dynamic-content/" class="grouped-links__link"
+          data-pagefind-filter="tags:dynamic-content">
+          
+      <svg >
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+          <span>dynamic content</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-incoming" lang="en">
+      Incoming
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-incoming">
+      
+        <li>
+          <a href="/n/writing/dynamic-content/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            <span>Dynamic Content</span>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/n/features/sidebar/notes/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            <span>Notes</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-outgoing" lang="en">
+      Outgoing
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-outgoing">
+      
+        <li>
+          <a href="/n/writing/dynamic-content/collections/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <span>Collections</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+  
+  
+
+  <div class="inline" data-pagefind-ignore>
+    
+  <button
+    x-data x-cloak
+    type="button"
+    class="toggle-btn"
+    :aria-pressed="$store.bookmarks.is('/n/writing/dynamic-content/queries/')"
+    @click="$store.bookmarks.toggle('/n/writing/dynamic-content/queries/')"
+    lang="en"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+    <span>Bookmark</span>
+  </button>
+
+    
+  
+    <a 
+      href="https://github.com/rothsandro/eleventy-notes/edit/main/Writing/Dynamic%20Content/Queries.md"
+      
+      class="toggle-btn"
+      lang="en"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+      <span>Edit</span>
+    </a>
+  
+
+  </div>
+</aside>
+
+  </div>
   
 </div>
 

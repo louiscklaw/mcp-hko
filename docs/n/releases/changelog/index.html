@@ -1,0 +1,2316 @@
+
+<!doctype html>
+<html lang="en" data-theme="system"> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
+    <title>Changelog</title>
+    <meta name="generator" content="Eleventy v3.1.2">
+    <link rel="stylesheet" href="/app.css">
+  </head>
+  <body>
+    <script>document.documentElement.setAttribute("data-theme", /"(\w+)"+/.exec(localStorage.getItem("theme"))?.[1] || "system")</script>
+    <script>document.documentElement.classList.add("supports-js")</script>
+    <a href="#app-content" class="skip-link" lang="en">
+  Skip to content
+</a>
+
+
+    <div class="app-layout">
+      
+
+<header class="app-header" x-data x-bind="WindowScroll">
+  <div class="hide-xl">
+  <button
+    class="icon-btn"
+    :aria-expanded="$store.nav.open"
+    @click="$store.nav.toggle()"
+    x-cloak
+    lang="en"
+  >
+    <span x-show="!$store.nav.open"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg></span>
+    <span x-show="$store.nav.open"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></span>
+    <span class="visually-hidden">Menu</span>
+  </button>
+</div>
+
+
+  <a href="/" class="app-header__title">
+    Eleventy Notes
+  </a>
+
+  <div class="app-header__search show-md">
+    
+  
+  
+
+  
+
+  <div x-cloak x-data="search" @click.away="open = false" class="search" data-mode="overlay">
+    <div class="search__bar">
+      <span class="search__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></span>
+      <input
+        data-kbd-trigger
+        type="search"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        aria-owns="id-ba5009e6-popup"
+        aria-controls="id-ba5009e6-popup"
+        aria-activedescendant
+        aria-expanded="false"
+        :aria-activedescendant="open && selectedId ? `id-ba5009e6-result-${selectedId}` : ''"
+        :aria-expanded="open"
+        placeholder="Search..."
+        class="search__input"
+        autocorrect="off"
+        autocapitalize="off"
+        enterkeyhint="search"
+        required
+        x-model="term"
+        x-init="$store.hotkeys.register(&#39;/&#39;, () =&gt; $el.focus())"
+        @focus="open = true"
+        @keydown="onKeyDown"
+        @pageshow.window="term = $el.value"
+        lang="en"
+        
+      >
+      
+        <kbd class="search__kbd" aria-hidden="true">/</kbd>
+        <span class="visually-hidden" lang="en">
+          Press &quot;/&quot; to activate search
+        </span>
+      
+    </div>
+    <template x-if="open">
+      <div class="search__popover" id="id-ba5009e6-popup">
+        <div x-show="!term" class="search__info" lang="en">
+          Search by title, content and #tags
+        </div>
+        <div x-show="!!term && results && !results.length" class="search__info" lang="en">
+          Nothing found, try a different search term.
+        </div>
+        <div x-show="!!term && !results" class="search__info" lang="en">
+          Searching...
+        </div>
+
+        <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
+          <template x-if="term && results && results.length">
+            <template x-for="(result, index) in results" :key="result.id">
+              <li role="option" :id="`id-ba5009e6-result-${result.id}`">
+                <a
+                  :href="result.url"
+                  class="search__result"
+                  :aria-selected="result.id === selectedId"
+                  x-effect="result.id === selectedId && $el.scrollIntoView({ block: 'nearest' })"
+                  :data-first="index == 0"
+                >
+                  <span class="search__note-title" x-text="result.title"></span>
+                  <span class="search__note-content" x-html="result.excerpt"></span>
+                  <span class="search__selected-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>
+                  </span>
+                </a>
+              </li>
+            </template>
+          </template>
+        </ul>
+      </div>
+    </template>
+  </div>
+
+
+  </div>
+
+  <div class="hide-md">
+    <a href="/search/" class="icon-btn" lang="en">
+  <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+  <span class="visually-hidden">Search</span>
+</a>
+
+  </div>
+  
+
+<div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
+  <input
+    id="id-a2d5b65e-light"
+    type="radio"
+    name="appearance"
+    x-model="$store.appearance.theme"
+    value="light"
+    class="visually-hidden"
+  >
+  <label for="id-a2d5b65e-light" class="theme-switcher__label" aria-label="Light">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+  </label>
+
+  <input
+    id="id-a2d5b65e-dark"
+    type="radio"
+    name="appearance"
+    x-model="$store.appearance.theme"
+    value="dark"
+    class="visually-hidden"
+  >
+  <label for="id-a2d5b65e-dark" class="theme-switcher__label" aria-label="Dark">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+  </label>
+
+  <input
+    id="id-a2d5b65e-system"
+    type="radio"
+    name="appearance"
+    x-model="$store.appearance.theme"
+    value="system"
+    class="visually-hidden"
+  >
+  <label for="id-a2d5b65e-system" class="theme-switcher__label" aria-label="System">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+  </label>
+</div>
+
+</header>
+
+      <div class="app-layout__wrapper">
+        <div
+          class="app-layout__sidebar"
+          x-data="scrollContainer('app:sidebar')"
+          x-bind="container"
+          :data-open="$store.nav.open.toString()"
+        >
+          <div class="app-layout__sidebar-inner">
+            
+
+<aside>
+  <h2 class="visually-hidden" lang="en">Navigation</h2>
+
+  <nav aria-labelledby="app:sidebar:nav" class="nav-section">
+    <h3 id="app:sidebar:nav" class="visually-hidden" lang="en">Main</h3>
+    <ul class="nav-list" role="list" aria-labelledby="app:sidebar:nav">
+      <li>
+        <a
+          href="/"
+          
+          class="nav-list__link"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+        <li>
+          <a
+            href="/tags/"
+            
+            class="nav-list__link"
+            lang="en"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>Tags</span>
+          </a>
+        </li>
+      
+      <li>
+        <a
+          href="/search/"
+          
+          class="nav-list__link"
+          lang="en"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+          <span>Search</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  
+    <nav aria-labelledby="app:sidebar:section:links" class="nav-section nav-section--continued">
+      <h3 id="app:sidebar:section:links" class="visually-hidden" lang="en">
+        Links
+      </h3>
+      <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:links">
+        
+          <li>
+            <a
+              href="https://github.com/rothsandro/eleventy-notes"
+              target=&quot;_blank&quot; rel=&quot;noopener&quot;
+              class="nav-list__link"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+              <span>GitHub / Support</span>
+            </a>
+          </li>
+        
+          <li>
+            <a
+              href="https://www.buymeacoffee.com/sandroroth"
+              target=&quot;_blank&quot; rel=&quot;noopener&quot;
+              class="nav-list__link"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg>
+              <span>Buy me a coffee</span>
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+  <template x-if="$store.bookmarks.items.length">
+    <nav aria-labelledby="app:sidebar:section:bookmarks" class="nav-section" x-cloak>
+      <h3 id="app:sidebar:section:bookmarks" class="nav-section__title" lang="en">
+        Bookmarks
+      </h3>
+      <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:bookmarks">
+        <template x-for="bkm in $store.bookmarks.items">
+          <li>
+            <a :href="bkm" class="nav-list__link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+              <span x-text="$store.bookmarks.index[bkm] || bkm"></span>
+            </a>
+          </li>
+        </template>
+      </ul>
+    </nav>
+  </template>
+
+  
+    
+      <nav aria-labelledby="app:sidebar:section:1" class="nav-section">
+        <h3 id="app:sidebar:section:1" class="nav-section__title">Introduction</h3>
+        
+          <div
+            class="nav-group"
+            
+            data-expanded="true"
+          >
+            
+            <div 
+              
+              id="app:sidebar:section:1:group:0:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:1:group:0:title"
+    style="--nav-list-level:0">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/getting-started/"
+              
+              class="nav-list__link"
+            >
+              <span>Getting started</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/your-first-note/"
+              
+              class="nav-list__link"
+            >
+              <span>Your first note</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/next-steps/"
+              
+              class="nav-list__link"
+            >
+              <span>Next Steps</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+            </div>
+          </div>
+        
+      </nav>
+    
+      <nav aria-labelledby="app:sidebar:section:6" class="nav-section">
+        <h3 id="app:sidebar:section:6" class="nav-section__title">Guides</h3>
+        
+          <div
+            class="nav-group"
+            
+            x-data="collapsible('app:sidebar:section:6:group:2:list', true)"
+            :data-expanded="expanded"
+            
+            data-expanded="true"
+          >
+            
+              <h4 class="nav-group__title" id="app:sidebar:section:6:group:2:title">
+                <button
+                  type="button"
+                  class="nav-group__toggle" 
+                  aria-controls="app:sidebar:section:6:group:2:list"
+                  aria-expanded="true"
+                  :aria-expanded="expanded"
+                  @click="toggle()"
+                >
+                  <span>Writing Notes</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </h4>
+            
+            <div 
+              x-show="expanded"
+              id="app:sidebar:section:6:group:2:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:2:title"
+    style="--nav-list-level:0">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/writing-notes/"
+              
+              class="nav-list__link"
+            >
+              <span>Writing Notes</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/start-page/"
+              
+              class="nav-list__link"
+            >
+              <span>Start page</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/wikilinks/"
+              
+              class="nav-list__link"
+            >
+              <span>Wikilinks</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/markdown/"
+              
+              class="nav-list__link"
+            >
+              <span>Markdown</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/callouts/"
+              
+              class="nav-list__link"
+            >
+              <span>Callouts</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/custom-properties/"
+              
+              class="nav-list__link"
+            >
+              <span>Custom Properties</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+          x-data="collapsible('app:sidebar:section:6:group:2:tree:dynamic-content', true)"
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/dynamic-content/"
+              
+              class="nav-list__link"
+            >
+              <span>Dynamic Content</span>
+            </a>
+            
+              <button
+                type="button"
+                class="nav-list__link nav-list__toggle"
+                aria-controls="app:sidebar:section:6:group:2:tree:dynamic-content:list"
+                aria-expanded="true"
+                :aria-expanded="expanded"
+                @click="toggle()"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                <span class="visually-hidden">
+                  Toggle Dynamic Content
+                </span>
+              </button>
+            
+          </div>
+        
+
+        
+          <div x-show="expanded" id="app:sidebar:section:6:group:2:tree:dynamic-content:list">
+            
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:2:title"
+    style="--nav-list-level:1">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/dynamic-content/collections/"
+              
+              class="nav-list__link"
+            >
+              <span>Collections</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/dynamic-content/queries/"
+              
+              class="nav-list__link"
+            >
+              <span>Queries</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/writing/dynamic-content/render-filters/"
+              
+              class="nav-list__link"
+            >
+              <span>Render Filters</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+          </div>
+        
+      </li>
+    
+  </ul>
+
+            </div>
+          </div>
+        
+          <div
+            class="nav-group"
+            
+            x-data="collapsible('app:sidebar:section:6:group:3:list', true)"
+            :data-expanded="expanded"
+            
+            data-expanded="true"
+          >
+            
+              <h4 class="nav-group__title" id="app:sidebar:section:6:group:3:title">
+                <button
+                  type="button"
+                  class="nav-group__toggle" 
+                  aria-controls="app:sidebar:section:6:group:3:list"
+                  aria-expanded="true"
+                  :aria-expanded="expanded"
+                  @click="toggle()"
+                >
+                  <span>Organizing Notes</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </h4>
+            
+            <div 
+              x-show="expanded"
+              id="app:sidebar:section:6:group:3:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:3:title"
+    style="--nav-list-level:0">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/organizing/files-and-folders/"
+              
+              class="nav-list__link"
+            >
+              <span>Files and Folders</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/organizing/tags/"
+              
+              class="nav-list__link"
+            >
+              <span>Tags</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+            </div>
+          </div>
+        
+          <div
+            class="nav-group"
+            
+            x-data="collapsible('app:sidebar:section:6:group:4:list', true)"
+            :data-expanded="expanded"
+            
+            data-expanded="true"
+          >
+            
+              <h4 class="nav-group__title" id="app:sidebar:section:6:group:4:title">
+                <button
+                  type="button"
+                  class="nav-group__toggle" 
+                  aria-controls="app:sidebar:section:6:group:4:list"
+                  aria-expanded="true"
+                  :aria-expanded="expanded"
+                  @click="toggle()"
+                >
+                  <span>Core Features</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </h4>
+            
+            <div 
+              x-show="expanded"
+              id="app:sidebar:section:6:group:4:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:4:title"
+    style="--nav-list-level:0">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/configuration-file/"
+              
+              class="nav-list__link"
+            >
+              <span>Configuration file</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/search/"
+              
+              class="nav-list__link"
+            >
+              <span>Search</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/themes/"
+              
+              class="nav-list__link"
+            >
+              <span>Themes</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/styling/"
+              
+              class="nav-list__link"
+            >
+              <span>Styling</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/static-assets/"
+              
+              class="nav-list__link"
+            >
+              <span>Static Assets</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/language/"
+              
+              class="nav-list__link"
+            >
+              <span>Language</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/bookmarks/"
+              
+              class="nav-list__link"
+            >
+              <span>Bookmarks</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/page-navigation/"
+              
+              class="nav-list__link"
+            >
+              <span>Page Navigation</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+          x-data="collapsible('app:sidebar:section:6:group:4:tree:panel', true)"
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/panel/"
+              
+              class="nav-list__link"
+            >
+              <span>Panel</span>
+            </a>
+            
+              <button
+                type="button"
+                class="nav-list__link nav-list__toggle"
+                aria-controls="app:sidebar:section:6:group:4:tree:panel:list"
+                aria-expanded="true"
+                :aria-expanded="expanded"
+                @click="toggle()"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                <span class="visually-hidden">
+                  Toggle Panel
+                </span>
+              </button>
+            
+          </div>
+        
+
+        
+          <div x-show="expanded" id="app:sidebar:section:6:group:4:tree:panel:list">
+            
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:4:title"
+    style="--nav-list-level:1">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/panel/edit-link/"
+              
+              class="nav-list__link"
+            >
+              <span>Edit link</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+          </div>
+        
+      </li>
+    
+      <li
+        
+          x-data="collapsible('app:sidebar:section:6:group:4:tree:sidebar', true)"
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/sidebar/"
+              
+              class="nav-list__link"
+            >
+              <span>Sidebar</span>
+            </a>
+            
+              <button
+                type="button"
+                class="nav-list__link nav-list__toggle"
+                aria-controls="app:sidebar:section:6:group:4:tree:sidebar:list"
+                aria-expanded="true"
+                :aria-expanded="expanded"
+                @click="toggle()"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                <span class="visually-hidden">
+                  Toggle Sidebar
+                </span>
+              </button>
+            
+          </div>
+        
+
+        
+          <div x-show="expanded" id="app:sidebar:section:6:group:4:tree:sidebar:list">
+            
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:4:title"
+    style="--nav-list-level:1">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/sidebar/additional-links/"
+              
+              class="nav-list__link"
+            >
+              <span>Additional Links</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/features/sidebar/notes/"
+              
+              class="nav-list__link"
+            >
+              <span>Notes</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+          </div>
+        
+      </li>
+    
+  </ul>
+
+            </div>
+          </div>
+        
+          <div
+            class="nav-group"
+            
+            x-data="collapsible('app:sidebar:section:6:group:5:list', true)"
+            :data-expanded="expanded"
+            
+            data-expanded="true"
+          >
+            
+              <h4 class="nav-group__title" id="app:sidebar:section:6:group:5:title">
+                <button
+                  type="button"
+                  class="nav-group__toggle" 
+                  aria-controls="app:sidebar:section:6:group:5:list"
+                  aria-expanded="true"
+                  :aria-expanded="expanded"
+                  @click="toggle()"
+                >
+                  <span>Deployment</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </h4>
+            
+            <div 
+              x-show="expanded"
+              id="app:sidebar:section:6:group:5:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:6:group:5:title"
+    style="--nav-list-level:0">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/deployment/build/"
+              
+              class="nav-list__link"
+            >
+              <span>Build</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/deployment/netlify/"
+              
+              class="nav-list__link"
+            >
+              <span>Netlify</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/deployment/cloudflare-pages/"
+              
+              class="nav-list__link"
+            >
+              <span>Cloudflare Pages</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/deployment/gitlab-pages/"
+              
+              class="nav-list__link"
+            >
+              <span>GitLab Pages</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/deployment/github-pages/"
+              
+              class="nav-list__link"
+            >
+              <span>GitHub Pages</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+            </div>
+          </div>
+        
+      </nav>
+    
+      <nav aria-labelledby="app:sidebar:section:8" class="nav-section">
+        <h3 id="app:sidebar:section:8" class="nav-section__title">Releases</h3>
+        
+          <div
+            class="nav-group"
+            
+            data-expanded="true"
+          >
+            
+            <div 
+              
+              id="app:sidebar:section:8:group:7:list">
+              
+  <ul 
+    class="nav-list"
+    role="list"
+    aria-labelledby="app:sidebar:section:8:group:7:title"
+    style="--nav-list-level:0">
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/releases/changelog/"
+              aria-current=page
+              class="nav-list__link"
+            >
+              <span>Changelog</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+      <li
+        
+      >
+        
+          <div class="nav-list__link-with-toggle">
+            <a
+              href="/n/releases/updating/"
+              
+              class="nav-list__link"
+            >
+              <span>Updating</span>
+            </a>
+            
+          </div>
+        
+
+        
+      </li>
+    
+  </ul>
+
+            </div>
+          </div>
+        
+      </nav>
+    
+  
+
+  
+    <nav aria-labelledby="app:sidebar:section:tags" class="nav-section">
+      <h3 id="app:sidebar:section:tags" class="nav-section__title" lang="en">
+        Tags
+      </h3>
+      <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:tags">
+        
+        <li>
+          <a
+            href="/tags/basics/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>basics</span>
+          </a>
+        </li>
+        
+        <li>
+          <a
+            href="/tags/deployment/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>deployment</span>
+          </a>
+        </li>
+        
+        <li>
+          <a
+            href="/tags/dynamic-content/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>dynamic content</span>
+          </a>
+        </li>
+        
+        <li>
+          <a
+            href="/tags/feature/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>feature</span>
+          </a>
+        </li>
+        
+        <li>
+          <a
+            href="/tags/organizing/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>organizing</span>
+          </a>
+        </li>
+        
+        <li>
+          <a
+            href="/tags/release/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>release</span>
+          </a>
+        </li>
+        
+        <li>
+          <a
+            href="/tags/writing/"
+            
+            class="nav-list__link"
+          >
+            
+      <svg width="1.125em" height="1.125em">
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+            <span>writing</span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+  
+</aside>
+
+          </div>
+        </div>
+        <div>
+<div class="page" data-pagefind-body>
+  <main class="page__main" id="app-content" >
+    <article>
+      <h1 class="page__title">Changelog</h1>
+      <div class="article">
+        <!-- Use emojis from https://gitmoji.dev/ -->
+<h2 id="version-0-32-0" tabindex="-1">Version 0.32.0 <a class="anchor-link" href="#version-0-32-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>July 26, 2025</strong></p>
+<ul>
+<li>✨ <strong>Nav Title</strong>: You can now set a custom title for a note in the sidepanel using the <code>navTitle</code> front matter property.</li>
+</ul>
+<h2 id="version-0-31-0" tabindex="-1">Version 0.31.0 <a class="anchor-link" href="#version-0-31-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>July 6, 2025</strong></p>
+<ul>
+<li>⚡️ <strong>CSS Bundling</strong>: CSS bundling is now faster, and errors are logged.</li>
+<li>💥 <strong>Themes/Styles</strong>: Theme settings have changed. See the steps below to update your setup.</li>
+</ul>
+<p>Rename <code>app.styles.scss</code> in your project root to <code>app.scss</code>. Add the config below at the top of the file. If you set a custom theme in <code>app.mjs</code> (<code>theme.color</code>), update the <code>theme</code> value here to match.</p>
+
+        <div class="code-block">
+          <pre class="language-scss"><code class="language-scss"><span class="token keyword">@use</span> <span class="token string">"./.app/app-config"</span><span class="token punctuation">;</span>
+
+<span class="token property"><span class="token variable">$config</span></span><span class="token punctuation">:</span> app-config.<span class="token function">define-config</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span>
+    <span class="token property">theme</span><span class="token punctuation">:</span> <span class="token string">"sky"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// ... (your custom styles, if any)</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>If you have a <code>theme</code> setting in <code>app.mjs</code>, you can delete it – theme config now belongs in <code>app.scss</code>.</p>
+
+        <div class="code-block">
+          <pre class="language-diff"><code class="language-diff">// /app.mjs
+export default defineConfig({
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">  theme: {
+</span><span class="token prefix deleted">-</span><span class="token line">    color: "red",
+</span><span class="token prefix deleted">-</span><span class="token line">  },
+</span></span><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">  // ... (other configuration)
+</span></span>});</code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h2 id="version-0-30-0" tabindex="-1">Version 0.30.0 <a class="anchor-link" href="#version-0-30-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>June 15, 2025</strong></p>
+<ul>
+<li>✨ <strong>Note Description</strong>: The meta description can now be customized per note using the <code>description</code> front matter property.</li>
+</ul>
+<h2 id="version-0-29-0" tabindex="-1">Version 0.29.0 <a class="anchor-link" href="#version-0-29-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>May 12, 2025</strong></p>
+<ul>
+<li>📄 <strong>License</strong>: Eleventy Notes is now licensed under the MIT License.</li>
+<li>✨ <strong>Start page</strong>: The start page now supports <code>.njk</code> and <code>.html</code> files for greater flexibility.</li>
+<li>✨ <strong>Static Assets</strong>: Added support for serving static assets.</li>
+<li>✨ <strong>Ignores</strong>: Added support for custom ignore patterns in the configuration file.</li>
+<li>💥 <strong>Readme</strong>: The <code>README.md</code> file in the project root, which was previously excluded by default,
+is now included in the build. To exclude it, add <code>ignores: [&quot;README.md&quot;]</code> to your configuration file.</li>
+</ul>
+<h2 id="version-0-28-2" tabindex="-1">Version 0.28.2 <a class="anchor-link" href="#version-0-28-2" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>May 03, 2025</strong></p>
+<ul>
+<li>📦️ <strong>Dependency</strong>: Dependencies have been updated to the latest version.</li>
+</ul>
+<h2 id="version-0-28-1" tabindex="-1">Version 0.28.1 <a class="anchor-link" href="#version-0-28-1" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 22, 2025</strong></p>
+<ul>
+<li>🐛 <strong>CSS Bundling</strong>: Fixed an issue with CSS bundling on Windows.</li>
+</ul>
+<h2 id="version-0-28-0" tabindex="-1">Version 0.28.0 <a class="anchor-link" href="#version-0-28-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>January 17, 2025</strong></p>
+<ul>
+<li>✨ <strong>Page Navigation</strong>: Added a new navigation bar at the bottom of notes to navigate to the previous and next note.</li>
+</ul>
+<h2 id="version-0-27-0" tabindex="-1">Version 0.27.0 <a class="anchor-link" href="#version-0-27-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>December 28, 2024</strong></p>
+<ul>
+<li>💄 <strong>Icons</strong>: Replaced Feather and Tabler icons with Lucide icons. You can now select any Lucide icon for additional links in the side panel.</li>
+</ul>
+<h2 id="version-0-26-0" tabindex="-1">Version 0.26.0 <a class="anchor-link" href="#version-0-26-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>December 01, 2024</strong></p>
+<ul>
+<li>✨ <strong>Translations</strong>: Added support for translations. You can now customize the text in the UI or provide translations for other languages.</li>
+<li>a <strong>SCSS Dependency</strong>: Updated SCSS to the latest version. Styles have been migrated to use the latest syntax. If you use deprecated syntax in your custom styles (<code>app.styles.scss</code>), you may see warnings in the console. Please update your styles accordingly.</li>
+</ul>
+<h2 id="version-0-25-0" tabindex="-1">Version 0.25.0 <a class="anchor-link" href="#version-0-25-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>November 03, 2024</strong></p>
+<ul>
+<li>✨ <strong>Eleventy 3</strong>: Updated the template to Eleventy 3.</li>
+<li>⚡️ <strong>Performance</strong>: Improved performance for files without assets.</li>
+<li>🐛 <strong>Config Schema</strong>: Fixed the config schema to mark <code>tags</code> as optional.</li>
+<li>💥 <strong>Node Version</strong>: Eleventy Notes now requires Node version 20 or 22 (or higher).
+Run <code>node --version</code> to see what version you have installed. If you need to update, you can download the latest version from the <a href="https://nodejs.org/en/">official website</a>. Also check the node version of your cloud service (like Netlify) if you deploy your site there.</li>
+<li>💥 <strong>Config (ESM)</strong>: The template has been migrated from CJS to ESM, which affects the configuration file <code>app.js</code> as well. Migrate to the new format by renaming the file to <code>app.mjs</code> and adjusting the export as shown below. If you don't have a config file, you'll need to create one as it's now required.</li>
+</ul>
+<p>The previous <code>app.js</code> used CJS syntax:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./.app/app-config"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// Your configuration</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>The new <code>app.mjs</code> uses ESM syntax. The import and export look like this:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./.app/app-config"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// Your configuration (unchanged)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h2 id="version-0-24-0" tabindex="-1">Version 0.24.0 <a class="anchor-link" href="#version-0-24-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>August 25, 2024</strong></p>
+<ul>
+<li>✨ <strong>Redesign</strong>: The design of the header, search, navigation and panel has been improved.</li>
+<li>📦️ <strong>Dependencies</strong>: Some dependencies have been updated.</li>
+</ul>
+<h2 id="version-0-23-2" tabindex="-1">Version 0.23.2 <a class="anchor-link" href="#version-0-23-2" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>April 14, 2024</strong></p>
+<ul>
+<li>🐛 <strong>Fixed renderAsList</strong>: The <code>renderAsList</code> filter now works with the tags collection by default. Previously, you had to configure the <code>titleProp</code>. This is no longer necessary.</li>
+</ul>
+<h2 id="version-0-23-1" tabindex="-1">Version 0.23.1 <a class="anchor-link" href="#version-0-23-1" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>March 25, 2024</strong></p>
+<ul>
+<li>🐛 <strong>Fixed asset handling</strong>: Images should now work again in production.</li>
+</ul>
+<h2 id="version-0-23-0" tabindex="-1">Version 0.23.0 <a class="anchor-link" href="#version-0-23-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>March 09, 2024</strong></p>
+<ul>
+<li>✨ <strong>Enhanced Sidebar Config</strong>: The sidebar configuration now boasts increased flexibility and power. It allows the definition of multiple sections and the use of queries to filter and sort your notes.</li>
+<li>💥 <strong>Updated Sidebar Config</strong>: The configuration for your notes' sidebar has been revamped and necessitates manual migration.
+<ul>
+<li>The <code>sidebar.notes</code> property has been superseded by the <code>sidebar.sections</code> property, enabling the configuration of one or more sections.</li>
+<li>Each group now accommodates a <code>query</code> property, which supersedes <code>pattern</code>, <code>tags</code>, and <code>tree</code>. A new <code>createNotesQuery()</code> function is available, generating a query based on these three properties.</li>
+</ul>
+</li>
+</ul>
+<p>If you've customized your sidebar configuration, please migrate it to the new format. Don't hesitate to reach out if you require assistance with the migration. Below is an example of the <strong>previous</strong> format, which defines two groups in the sidebar using a pattern and tags filter:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.js</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./.app/app-config"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">sidebar</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">notes</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"My Posts"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">pattern</span><span class="token operator">:</span> <span class="token string">"/posts/"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Drafts"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">expanded</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">tags</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"draft"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>Below is the equivalent configuration in the <strong>updated</strong> format. The two groups are now encapsulated within a new section titled <em>Notes</em>. The <code>createNotesQuery()</code> function, which needs to be imported at the beginning of the file, is now responsible for filtering.</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token comment">// /app.js</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> defineConfig<span class="token punctuation">,</span> createNotesQuery <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./.app/app-config"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">sidebar</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">sections</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Notes"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">groups</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"My Posts"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token function">createNotesQuery</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+              <span class="token literal-property property">pattern</span><span class="token operator">:</span> <span class="token string">"/posts/"</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Drafts"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">expanded</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token function">createNotesQuery</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+              <span class="token literal-property property">tags</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"draft"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <h2 id="version-0-22-0" tabindex="-1">Version 0.22.0 <a class="anchor-link" href="#version-0-22-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 03, 2024</strong></p>
+<ul>
+<li>✨ <strong>Callouts</strong>: You can now add callouts to your notes.</li>
+</ul>
+<h2 id="version-0-21-0" tabindex="-1">Version 0.21.0 <a class="anchor-link" href="#version-0-21-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>January 20, 2024</strong></p>
+<ul>
+<li>✨ <strong>Custom CSS</strong>: You can now add custom CSS to your site.</li>
+</ul>
+<h2 id="version-0-20-0" tabindex="-1">Version 0.20.0 <a class="anchor-link" href="#version-0-20-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>January 13, 2024</strong></p>
+<ul>
+<li>✨ <strong>Language</strong>: The content language can now be configured in the config file.</li>
+<li>⚡️ <strong>Performance</strong>: Building the site is now faster (dev mode and production build).</li>
+</ul>
+<h2 id="version-0-19-0" tabindex="-1">Version 0.19.0 <a class="anchor-link" href="#version-0-19-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>December 26, 2023</strong></p>
+<ul>
+<li>
+<p>✨ <strong>Anchor Wikilinks</strong>: Wikilinks can now link to a heading, e.g. <code>[[#My Heading]]</code>.</p>
+</li>
+<li>
+<p>✨ <strong>URL Prefix</strong>: The url prefix <code>/n</code> can now be configured via configuration file.</p>
+</li>
+<li>
+<p>✨ <strong>Improved search</strong>: It now includes an excerpt and highlights the search term.</p>
+</li>
+<li>
+<p>⚡️ <strong>Performance</strong>: Rebuilding the site after a change when running in development mode is now faster.</p>
+</li>
+<li>
+<p>💥 <strong>Removed notes page</strong>: The notes page <code>/n</code> has been removed. We think the flat list of all notes
+was not very useful for most users as it did not provide any context (e.g. in which folder the note is located).
+A properly configured sidebar, the tags pages and the search are much more useful for navigating your notes.
+You can create your own notes page if you still want to have one.</p>
+</li>
+<li>
+<p>💥 <strong>New configuration file</strong>: The previous JSON configuration <code>app.json</code> has been replaced with a JavaScript configuration <code>app.js</code>.
+If you have an existing configuration, you need to migrate it to the new format. Rename the file to <code>app.js</code> and replace the content with the following:</p>
+
+        <div class="code-block">
+          <pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">".app/app-config"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// Put your existing configuration here, e.g.</span>
+  <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"My Notes"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      <p>If you've used the <code>$schema</code> property, you can remove it and instead add a <code>// @ts-check</code> comment at the top of the file.</p>
+</li>
+</ul>
+<h2 id="version-0-18-0" tabindex="-1">Version 0.18.0 <a class="anchor-link" href="#version-0-18-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>November 04, 2023</strong></p>
+<ul>
+<li>✨ <strong>Tags mapping</strong>: Tags can now be mapped to a different label.</li>
+<li>✨ <strong>Images</strong>: Additional image formats are now supported in Markdown files.</li>
+<li>🐛 <strong>Sidebar Layout</strong>: The sidebar styling is not broken anymore with little content.</li>
+<li>📦️ <strong>Dependencies</strong>: Dependencies have been updated to the latest versions.</li>
+<li>💥 <strong>Tags collection</strong>: The <code>title</code> property has been renamed to <code>label</code>.</li>
+</ul>
+<h2 id="version-0-17-0" tabindex="-1">Version 0.17.0 <a class="anchor-link" href="#version-0-17-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>October 08, 2023</strong></p>
+<ul>
+<li>✨ <strong>Copy code</strong>: Code blocks now have a copy button.</li>
+<li>💄 <strong>Styling</strong>: Keyboard elements <code>&lt;kbd&gt;</code> are now styled.</li>
+</ul>
+<h2 id="version-0-16-0" tabindex="-1">Version 0.16.0 <a class="anchor-link" href="#version-0-16-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>August 31, 2023</strong></p>
+<ul>
+<li>💄 <strong>Color schemes</strong>: Three new color schemes are available: ruby, iris and jade.</li>
+<li>💄 <strong>Design</strong>: This version includes a few design improvements.</li>
+</ul>
+<h2 id="version-0-15-0" tabindex="-1">Version 0.15.0 <a class="anchor-link" href="#version-0-15-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>August 26, 2023</strong></p>
+<ul>
+<li>✨ <strong>Tags Overview</strong>: The tags page now shows an overview of all tags at the top.</li>
+<li>✨ <strong>Notes Count</strong>: The notes and tag pages now show the number of notes.</li>
+<li>✨ <strong>Panel Configuration</strong>: The panel can now be configured via <code>app.json</code>.</li>
+<li>💄 <strong>Search</strong>: The design of the search input and results have been improved.</li>
+<li>💄 <strong>Colors</strong>: The color palettes have been updated to improve contrast and accessibility.</li>
+<li>♻️ <strong>Refactoring</strong>: The template has been refactored to improve maintainability.</li>
+</ul>
+<h2 id="version-0-14-0" tabindex="-1">Version 0.14.0 <a class="anchor-link" href="#version-0-14-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>August 01, 2023</strong></p>
+<ul>
+<li>✨ Added support for wikilinks in custom props</li>
+<li>🐛 Wikilinks with anchor are now shown as incoming / outgoing</li>
+<li>💥 Changed configuration format for custom props</li>
+</ul>
+<h2 id="version-0-13-0" tabindex="-1">Version 0.13.0 <a class="anchor-link" href="#version-0-13-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>July 31, 2023</strong></p>
+<ul>
+<li>✨ Added custom properties</li>
+</ul>
+<h2 id="version-0-12-1" tabindex="-1">Version 0.12.1 <a class="anchor-link" href="#version-0-12-1" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>June 27, 2023</strong></p>
+<ul>
+<li>🐛 Added error handling for parsing the last used theme</li>
+</ul>
+<h2 id="version-0-12-0" tabindex="-1">Version 0.12.0 <a class="anchor-link" href="#version-0-12-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>June 08, 2023</strong></p>
+<ul>
+<li>✨ Improved UI</li>
+<li>✨ Renamed favorites to bookmarks</li>
+<li>🐛 Fixed handling of invalid wikilinks</li>
+</ul>
+<h2 id="version-0-11-0" tabindex="-1">Version 0.11.0 <a class="anchor-link" href="#version-0-11-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>June 03, 2023</strong></p>
+<ul>
+<li>💄 Improved styling compatibility with older browsers</li>
+<li>⚡️ Reduced CSS bundle size</li>
+<li>♻️ Refactored the styling</li>
+</ul>
+<h2 id="version-0-10-1" tabindex="-1">Version 0.10.1 <a class="anchor-link" href="#version-0-10-1" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>May 21, 2023</strong></p>
+<ul>
+<li>💄 Improved dark mode</li>
+</ul>
+<h2 id="version-0-10-0" tabindex="-1">Version 0.10.0 <a class="anchor-link" href="#version-0-10-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>April 27, 2023</strong></p>
+<ul>
+<li>✨ Wikilinks can now link to a specific heading, e.g. <code>[[My Note#My Heading]]</code></li>
+<li>✨ Auto-generated Wikilink labels are now customizable</li>
+<li>📝 Improved and restructured docs</li>
+<li>♿️ Improved accessibility of the search</li>
+<li>⚡️ Reduced bundle size</li>
+<li>♻️ Refactored a few things (Wikilinks, Sidebar, Bundling)</li>
+<li>💥 Line breaks in paragraphs are not rendered anymore. Use two spaces at the end of a line to force a line break.</li>
+</ul>
+<h2 id="version-0-9-0" tabindex="-1">Version 0.9.0 <a class="anchor-link" href="#version-0-9-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>April 10, 2023</strong></p>
+<ul>
+<li>✨ Added collections to give you access to your notes and tags</li>
+<li>✨ Added queries to let you filter and sort your notes / tags or other data collections</li>
+<li>✨ Added <code>renderAsList</code> filter to render collections as (nested) lists</li>
+<li>✨ Added support for deployments in subdirectories</li>
+<li>🐛 Fixed a bug that anchor scrolling on page load did not work in some cases</li>
+</ul>
+<h2 id="version-0-8-2" tabindex="-1">Version 0.8.2 <a class="anchor-link" href="#version-0-8-2" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>March 28, 2023</strong></p>
+<ul>
+<li>🐛 Fixed footnotes</li>
+<li>📝 Updated Netlify build settings to fix caching issues</li>
+</ul>
+<h2 id="version-0-8-1" tabindex="-1">Version 0.8.1 <a class="anchor-link" href="#version-0-8-1" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>March 25, 2023</strong></p>
+<ul>
+<li>🐛 Fixed scrolling to headings on page load</li>
+<li>🐛 Fixed tag pages and sorting of notes</li>
+<li>📝 Improved docs</li>
+</ul>
+<h2 id="version-0-8-0" tabindex="-1">Version 0.8.0 <a class="anchor-link" href="#version-0-8-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>March 14, 2023</strong></p>
+<ul>
+<li>💄 Improved typography and spacing</li>
+</ul>
+<h2 id="version-0-7-0" tabindex="-1">Version 0.7.0 <a class="anchor-link" href="#version-0-7-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>March 10, 2023</strong></p>
+<ul>
+<li>✨ Added support for folders in the sidebar</li>
+<li>✨ Groups in the sidebar can now be collapsed</li>
+</ul>
+<h2 id="version-0-6-0" tabindex="-1">Version 0.6.0 <a class="anchor-link" href="#version-0-6-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 25, 2023</strong></p>
+<ul>
+<li>✨ Added 404 page</li>
+<li>🚸 Navigating back to the search page now shows the last search results</li>
+<li>🐛 Search results are now sorted by relevance</li>
+<li>📝 Improved docs and added new update guide</li>
+</ul>
+<h2 id="version-0-5-0" tabindex="-1">Version 0.5.0 <a class="anchor-link" href="#version-0-5-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 19, 2023</strong></p>
+<ul>
+<li>✨ Added support and docs for Cloudflare Pages</li>
+<li>💥 Disabled Nunjucks processing of Markdown files to prevent unexpected output when using curly braces. This is a breaking change for anyone who relied on Nunjucks processing in their Markdown files. You can still enable Nunjucks processing by setting the <code>templateEngineOverride</code> front matter property.</li>
+</ul>
+<h2 id="version-0-4-0" tabindex="-1">Version 0.4.0 <a class="anchor-link" href="#version-0-4-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 16, 2023</strong></p>
+<ul>
+<li>✨ Added color schemes</li>
+<li>⬆️ Updated to Eleventy 2.0</li>
+</ul>
+<h2 id="version-0-3-0" tabindex="-1">Version 0.3.0 <a class="anchor-link" href="#version-0-3-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 11, 2023</strong></p>
+<ul>
+<li>✨ Added support for custom links in the sidebar</li>
+<li>✨ Added a configurable <em>Edit this note</em> link in the panel</li>
+<li>✨ Added schema validation for the configuration file</li>
+</ul>
+<h2 id="version-0-2-3" tabindex="-1">Version 0.2.3 <a class="anchor-link" href="#version-0-2-3" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 10, 2023</strong></p>
+<ul>
+<li>🐛 Table of Contents now displays headings with special chars like quotes properly</li>
+</ul>
+<h2 id="version-0-2-2" tabindex="-1">Version 0.2.2 <a class="anchor-link" href="#version-0-2-2" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 10, 2023</strong></p>
+<ul>
+<li>🧑‍💻 Replaced SVG files with icon filter</li>
+</ul>
+<h2 id="version-0-2-1" tabindex="-1">Version 0.2.1 <a class="anchor-link" href="#version-0-2-1" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 09, 2023</strong></p>
+<ul>
+<li>🐛 Fixed the light/dark theme flash on page load</li>
+</ul>
+<h2 id="version-0-2-0" tabindex="-1">Version 0.2.0 <a class="anchor-link" href="#version-0-2-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 08, 2023</strong></p>
+<ul>
+<li>✨ Wikilinks in folders are now resolved by name to be compatible with Obsidian</li>
+</ul>
+<h2 id="version-0-1-0" tabindex="-1">Version 0.1.0 <a class="anchor-link" href="#version-0-1-0" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p><strong>February 07, 2023</strong></p>
+<ul>
+<li>🎉 Initial release</li>
+</ul>
+
+      </div>
+    </article>
+
+    <div class="page__nav">
+      
+
+  <div class="page-nav">
+    
+      <a href="/n/deployment/github-pages/" class="page-nav__link" data-type="prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        <span class="page-nav__type" en>Previous</span>
+        <span class="page-nav__label">GitHub Pages</span>
+      </a>
+    
+    
+      <a href="/n/releases/updating/" class="page-nav__link" data-type="next">
+        <span class="page-nav__type" en>Next</span>
+        <span class="page-nav__label">Updating</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    
+  </div>
+
+
+    </div>
+  </main>
+
+  
+  <div class="page__panel">
+    
+
+
+<aside class="stack" data-stack="6">
+  
+  
+  <div
+    class="toc"
+    data-pagefind-ignore
+    x-data="toc"
+    x-on:scroll.window.throttle.30ms="onScroll()"
+    :style="indicatorStyles"
+  >
+    <h2 class="toc__label" id="app-panel-toc" lang="en">
+      On this page
+    </h2>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-32-0" class="toc__link" :data-active="'version-0-32-0' === activeId" @click="onNavigate('version-0-32-0')">
+          Version 0.32.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-31-0" class="toc__link" :data-active="'version-0-31-0' === activeId" @click="onNavigate('version-0-31-0')">
+          Version 0.31.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-30-0" class="toc__link" :data-active="'version-0-30-0' === activeId" @click="onNavigate('version-0-30-0')">
+          Version 0.30.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-29-0" class="toc__link" :data-active="'version-0-29-0' === activeId" @click="onNavigate('version-0-29-0')">
+          Version 0.29.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-28-2" class="toc__link" :data-active="'version-0-28-2' === activeId" @click="onNavigate('version-0-28-2')">
+          Version 0.28.2 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-28-1" class="toc__link" :data-active="'version-0-28-1' === activeId" @click="onNavigate('version-0-28-1')">
+          Version 0.28.1 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-28-0" class="toc__link" :data-active="'version-0-28-0' === activeId" @click="onNavigate('version-0-28-0')">
+          Version 0.28.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-27-0" class="toc__link" :data-active="'version-0-27-0' === activeId" @click="onNavigate('version-0-27-0')">
+          Version 0.27.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-26-0" class="toc__link" :data-active="'version-0-26-0' === activeId" @click="onNavigate('version-0-26-0')">
+          Version 0.26.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-25-0" class="toc__link" :data-active="'version-0-25-0' === activeId" @click="onNavigate('version-0-25-0')">
+          Version 0.25.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-24-0" class="toc__link" :data-active="'version-0-24-0' === activeId" @click="onNavigate('version-0-24-0')">
+          Version 0.24.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-23-2" class="toc__link" :data-active="'version-0-23-2' === activeId" @click="onNavigate('version-0-23-2')">
+          Version 0.23.2 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-23-1" class="toc__link" :data-active="'version-0-23-1' === activeId" @click="onNavigate('version-0-23-1')">
+          Version 0.23.1 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-23-0" class="toc__link" :data-active="'version-0-23-0' === activeId" @click="onNavigate('version-0-23-0')">
+          Version 0.23.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-22-0" class="toc__link" :data-active="'version-0-22-0' === activeId" @click="onNavigate('version-0-22-0')">
+          Version 0.22.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-21-0" class="toc__link" :data-active="'version-0-21-0' === activeId" @click="onNavigate('version-0-21-0')">
+          Version 0.21.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-20-0" class="toc__link" :data-active="'version-0-20-0' === activeId" @click="onNavigate('version-0-20-0')">
+          Version 0.20.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-19-0" class="toc__link" :data-active="'version-0-19-0' === activeId" @click="onNavigate('version-0-19-0')">
+          Version 0.19.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-18-0" class="toc__link" :data-active="'version-0-18-0' === activeId" @click="onNavigate('version-0-18-0')">
+          Version 0.18.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-17-0" class="toc__link" :data-active="'version-0-17-0' === activeId" @click="onNavigate('version-0-17-0')">
+          Version 0.17.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-16-0" class="toc__link" :data-active="'version-0-16-0' === activeId" @click="onNavigate('version-0-16-0')">
+          Version 0.16.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-15-0" class="toc__link" :data-active="'version-0-15-0' === activeId" @click="onNavigate('version-0-15-0')">
+          Version 0.15.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-14-0" class="toc__link" :data-active="'version-0-14-0' === activeId" @click="onNavigate('version-0-14-0')">
+          Version 0.14.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-13-0" class="toc__link" :data-active="'version-0-13-0' === activeId" @click="onNavigate('version-0-13-0')">
+          Version 0.13.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-12-1" class="toc__link" :data-active="'version-0-12-1' === activeId" @click="onNavigate('version-0-12-1')">
+          Version 0.12.1 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-12-0" class="toc__link" :data-active="'version-0-12-0' === activeId" @click="onNavigate('version-0-12-0')">
+          Version 0.12.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-11-0" class="toc__link" :data-active="'version-0-11-0' === activeId" @click="onNavigate('version-0-11-0')">
+          Version 0.11.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-10-1" class="toc__link" :data-active="'version-0-10-1' === activeId" @click="onNavigate('version-0-10-1')">
+          Version 0.10.1 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-10-0" class="toc__link" :data-active="'version-0-10-0' === activeId" @click="onNavigate('version-0-10-0')">
+          Version 0.10.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-9-0" class="toc__link" :data-active="'version-0-9-0' === activeId" @click="onNavigate('version-0-9-0')">
+          Version 0.9.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-8-2" class="toc__link" :data-active="'version-0-8-2' === activeId" @click="onNavigate('version-0-8-2')">
+          Version 0.8.2 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-8-1" class="toc__link" :data-active="'version-0-8-1' === activeId" @click="onNavigate('version-0-8-1')">
+          Version 0.8.1 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-8-0" class="toc__link" :data-active="'version-0-8-0' === activeId" @click="onNavigate('version-0-8-0')">
+          Version 0.8.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-7-0" class="toc__link" :data-active="'version-0-7-0' === activeId" @click="onNavigate('version-0-7-0')">
+          Version 0.7.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-6-0" class="toc__link" :data-active="'version-0-6-0' === activeId" @click="onNavigate('version-0-6-0')">
+          Version 0.6.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-5-0" class="toc__link" :data-active="'version-0-5-0' === activeId" @click="onNavigate('version-0-5-0')">
+          Version 0.5.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-4-0" class="toc__link" :data-active="'version-0-4-0' === activeId" @click="onNavigate('version-0-4-0')">
+          Version 0.4.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-3-0" class="toc__link" :data-active="'version-0-3-0' === activeId" @click="onNavigate('version-0-3-0')">
+          Version 0.3.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-2-3" class="toc__link" :data-active="'version-0-2-3' === activeId" @click="onNavigate('version-0-2-3')">
+          Version 0.2.3 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-2-2" class="toc__link" :data-active="'version-0-2-2' === activeId" @click="onNavigate('version-0-2-2')">
+          Version 0.2.2 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-2-1" class="toc__link" :data-active="'version-0-2-1' === activeId" @click="onNavigate('version-0-2-1')">
+          Version 0.2.1 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-2-0" class="toc__link" :data-active="'version-0-2-0' === activeId" @click="onNavigate('version-0-2-0')">
+          Version 0.2.0 
+        </a>
+      </li>
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#version-0-1-0" class="toc__link" :data-active="'version-0-1-0' === activeId" @click="onNavigate('version-0-1-0')">
+          Version 0.1.0 
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+
+  
+  <div class="grouped-links">
+    <h2 class="grouped-links__label" id="app-panel-tags" lang="en">
+      Tags
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-tags">
+      
+      
+      <li>
+        <a
+          href="/tags/release/" class="grouped-links__link"
+          data-pagefind-filter="tags:release">
+          
+      <svg >
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+          <span>release</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-incoming" lang="en">
+      Incoming
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-incoming">
+      
+        <li>
+          <a href="/n/releases/updating/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            <span>Updating</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-external" lang="en">
+      External
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-external">
+      
+        <li>
+          <a href="https://nodejs.org/en/" class="grouped-links__link" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line></svg>
+            <span>official website</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  <div class="inline" data-pagefind-ignore>
+    
+  <button
+    x-data x-cloak
+    type="button"
+    class="toggle-btn"
+    :aria-pressed="$store.bookmarks.is('/n/releases/changelog/')"
+    @click="$store.bookmarks.toggle('/n/releases/changelog/')"
+    lang="en"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+    <span>Bookmark</span>
+  </button>
+
+    
+  
+    <a 
+      href="https://github.com/rothsandro/eleventy-notes/edit/main/Releases/Changelog.md"
+      
+      class="toggle-btn"
+      lang="en"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+      <span>Edit</span>
+    </a>
+  
+
+  </div>
+</aside>
+
+  </div>
+  
+</div>
+
+
+</div>
+      </div>
+    </div>
+
+    <script src="/app.js" data-base="/"></script>
+
+    <div aria-hidden="true" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-hash"><line x1="4" x2="20" y1="9" y2="9"></line><line x1="4" x2="20" y1="15" y2="15"></line><line x1="10" x2="8" y1="3" y2="21"></line><line x1="16" x2="14" y1="3" y2="21"></line></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-anchor-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-check"><path d="M20 6 9 17l-5-5"></path></svg>
+    </div>
+  </body>
+</html>

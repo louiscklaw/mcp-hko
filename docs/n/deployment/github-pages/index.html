@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
-    <title>Eleventy Notes</title>
+    <title>GitHub Pages</title>
     <meta name="generator" content="Eleventy v3.1.2">
     <link rel="stylesheet" href="/app.css">
   </head>
@@ -56,11 +56,11 @@
         role="combobox"
         aria-autocomplete="list"
         aria-haspopup="listbox"
-        aria-owns="id-eab1633b-popup"
-        aria-controls="id-eab1633b-popup"
+        aria-owns="id-002abace-popup"
+        aria-controls="id-002abace-popup"
         aria-activedescendant
         aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-eab1633b-result-${selectedId}` : ''"
+        :aria-activedescendant="open && selectedId ? `id-002abace-result-${selectedId}` : ''"
         :aria-expanded="open"
         placeholder="Search..."
         class="search__input"
@@ -84,7 +84,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-eab1633b-popup">
+      <div class="search__popover" id="id-002abace-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search by title, content and #tags
         </div>
@@ -98,7 +98,7 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-eab1633b-result-${result.id}`">
+              <li role="option" :id="`id-002abace-result-${result.id}`">
                 <a
                   :href="result.url"
                   class="search__result"
@@ -134,38 +134,38 @@
 
 <div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
   <input
-    id="id-6b88f4da-light"
+    id="id-64245db1-light"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="light"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-light" class="theme-switcher__label" aria-label="Light">
+  <label for="id-64245db1-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-dark"
+    id="id-64245db1-dark"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="dark"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-dark" class="theme-switcher__label" aria-label="Dark">
+  <label for="id-64245db1-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
   <input
-    id="id-6b88f4da-system"
+    id="id-64245db1-system"
     type="radio"
     name="appearance"
     x-model="$store.appearance.theme"
     value="system"
     class="visually-hidden"
   >
-  <label for="id-6b88f4da-system" class="theme-switcher__label" aria-label="System">
+  <label for="id-64245db1-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -191,7 +191,7 @@
       <li>
         <a
           href="/"
-          aria-current=page
+          
           class="nav-list__link"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
@@ -1159,7 +1159,7 @@
           <div class="nav-list__link-with-toggle">
             <a
               href="/n/deployment/github-pages/"
-              
+              aria-current=page
               class="nav-list__link"
             >
               <span>GitHub Pages</span>
@@ -1367,22 +1367,84 @@
 <div class="page" data-pagefind-body>
   <main class="page__main" id="app-content" >
     <article>
-      <h1 class="page__title">Welcome to Eleventy Notes</h1>
+      <h1 class="page__title">GitHub Pages</h1>
       <div class="article">
-        <p>Welcome to <strong>Eleventy Notes</strong>, an opinionated template for publishing your personal notes, documentation, or even your blog! Built with <a href="https://11ty.dev/">Eleventy</a>, the powerful static site generator, Eleventy Notes is packed with features you'll love.</p>
-<p>With Eleventy Notes, you can:</p>
-<ul>
-<li>✅ Create <a href="/n/writing/wikilinks/">Wikilinks</a> and backlinks to easily navigate your content</li>
-<li>✅ Organize your content with <a href="/n/organizing/tags/">Tags</a> for easy searching and filtering</li>
-<li>✅ Quickly find what you need with a <a href="/n/features/search/">client-side search</a></li>
-<li>✅ Choose from two <a href="/n/features/themes/">Themes</a> and multiple color schemes to match your style</li>
-<li>✅ Customize your <a href="/n/features/sidebar/">Sidebar</a> with support for folders and subfolders</li>
-<li>✅ Enjoy a lightweight and fast experience, with minimal JavaScript</li>
-<li>... and much more!</li>
-</ul>
-<p>Whether you're a blogger, developer, or just someone who loves to write, Eleventy Notes has everything you need to publish your content. So what are you waiting for? Get started today by reading our <a href="/n/getting-started/">Getting started</a> guide and start sharing your thoughts with the world!</p>
-<p>Built with ❤️ by <a href="https://sandroroth.com/">Sandro Roth</a> • <a href="./third-party-license.txt">Third-party license</a></p>
+        <p>You can build and deploy your notes using <a href="https://pages.github.com/">GitHub Pages</a>. GitHub Pages is a static site hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub. Add your workflow file <code>.github/workflows/gh-pages.yml</code> and push it to your remote <code>main</code> branch.</p>
+<h2 id="gh-pages" tabindex="-1">gh-pages <a class="anchor-link" href="#gh-pages" aria-hidden="true"><svg><use xlink:href="#icon-anchor-link"></use></svg></a></h2>
+<p>Add the following to <code>.github/workflows/gh-pages.yml</code> to enable deployment to GitHub pages.</p>
 
+        <div class="code-block">
+          <pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy to GitHub Pages (npm)
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+
+<span class="token key atrule">permissions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">contents</span><span class="token punctuation">:</span> read
+  <span class="token key atrule">pages</span><span class="token punctuation">:</span> write
+  <span class="token key atrule">id-token</span><span class="token punctuation">:</span> write
+
+<span class="token key atrule">concurrency</span><span class="token punctuation">:</span>
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> <span class="token string">"pages"</span>
+  <span class="token key atrule">cancel-in-progress</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+
+<span class="token comment"># Needed to deploy to GitHub pages subdomain. (E.g. `your-username.github.io/eleventy-notes/`)</span>
+<span class="token key atrule">env</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ELEVENTY_NOTES_PATH_PREFIX</span><span class="token punctuation">:</span> <span class="token string">"eleventy-notes"</span>
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">setup</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup and Build
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v4
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v4
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup Node
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token number">20</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install <span class="token punctuation">-</span><span class="token punctuation">-</span>prefix .app
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build <span class="token punctuation">-</span><span class="token punctuation">-</span>prefix .app
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Upload artifact
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/upload<span class="token punctuation">-</span>pages<span class="token punctuation">-</span>artifact@v3
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">path</span><span class="token punctuation">:</span> .app/dist
+
+  <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy
+    <span class="token key atrule">needs</span><span class="token punctuation">:</span> setup
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> github<span class="token punctuation">-</span>pages
+      <span class="token key atrule">url</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> steps.deployment.outputs.page_url <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy to GitHub Pages
+        <span class="token key atrule">id</span><span class="token punctuation">:</span> deployment
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/deploy<span class="token punctuation">-</span>pages@v4</code></pre>
+
+          <button
+            title="Copy to clipboard"
+            aria-label="Copy to clipboard"
+            class="code-block__copy"
+            x-cloak
+            x-data="copyToClipboard()"
+            x-bind="copyBtn"
+            lang="en"
+          >
+            <svg x-show="!copied">
+              <use xlink:href="#icon-copy"></use>
+            </svg>
+            <svg x-show="copied">
+              <use xlink:href="#icon-check"></use>
+            </svg>
+          </button>
+        </div>
+      
       </div>
     </article>
 
@@ -1391,12 +1453,16 @@
 
   <div class="page-nav">
     
-      <div></div>
+      <a href="/n/deployment/gitlab-pages/" class="page-nav__link" data-type="prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        <span class="page-nav__type" en>Previous</span>
+        <span class="page-nav__label">GitLab Pages</span>
+      </a>
     
     
-      <a href="/n/getting-started/" class="page-nav__link" data-type="next">
+      <a href="/n/releases/changelog/" class="page-nav__link" data-type="next">
         <span class="page-nav__type" en>Next</span>
-        <span class="page-nav__label">Getting started</span>
+        <span class="page-nav__label">Changelog</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
     
@@ -1406,6 +1472,134 @@
     </div>
   </main>
 
+  
+  <div class="page__panel">
+    
+
+
+<aside class="stack" data-stack="6">
+  
+  
+  <div
+    class="toc"
+    data-pagefind-ignore
+    x-data="toc"
+    x-on:scroll.window.throttle.30ms="onScroll()"
+    :style="indicatorStyles"
+  >
+    <h2 class="toc__label" id="app-panel-toc" lang="en">
+      On this page
+    </h2>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+      
+      <li style="--level: 1" class="toc__item">
+        <a href="#gh-pages" class="toc__link" :data-active="'gh-pages' === activeId" @click="onNavigate('gh-pages')">
+          gh-pages 
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+
+  
+  <div class="grouped-links">
+    <h2 class="grouped-links__label" id="app-panel-tags" lang="en">
+      Tags
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-tags">
+      
+      
+      <li>
+        <a
+          href="/tags/deployment/" class="grouped-links__link"
+          data-pagefind-filter="tags:deployment">
+          
+      <svg >
+        <use xlink:href="#icon-hash"></use>
+      </svg>
+    
+          <span>deployment</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-incoming" lang="en">
+      Incoming
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-incoming">
+      
+        <li>
+          <a href="/n/deployment/build/" class="grouped-links__link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            <span>Build</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  
+  
+  
+  <div class="grouped-links" data-pagefind-ignore>
+    <h2 class="grouped-links__label" id="app-panel-external" lang="en">
+      External
+    </h2>
+    <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-external">
+      
+        <li>
+          <a href="https://pages.github.com/" class="grouped-links__link" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line></svg>
+            <span>GitHub Pages</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+
+  <div class="inline" data-pagefind-ignore>
+    
+  <button
+    x-data x-cloak
+    type="button"
+    class="toggle-btn"
+    :aria-pressed="$store.bookmarks.is('/n/deployment/github-pages/')"
+    @click="$store.bookmarks.toggle('/n/deployment/github-pages/')"
+    lang="en"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+    <span>Bookmark</span>
+  </button>
+
+    
+  
+    <a 
+      href="https://github.com/rothsandro/eleventy-notes/edit/main/Deployment/GitHub%20Pages.md"
+      
+      class="toggle-btn"
+      lang="en"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+      <span>Edit</span>
+    </a>
+  
+
+  </div>
+</aside>
+
+  </div>
   
 </div>
 
