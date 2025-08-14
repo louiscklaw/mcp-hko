@@ -7,7 +7,7 @@
     <meta name="description" content="A simple, lightweight, and flexible note-taking template for Eleventy.">
     <title>Writing Notes</title>
     <meta name="generator" content="Eleventy v3.1.2">
-    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/mcp-hko/app.css">
   </head>
   <body>
     <script>document.documentElement.setAttribute("data-theme", /"(\w+)"+/.exec(localStorage.getItem("theme"))?.[1] || "system")</script>
@@ -20,15 +20,9 @@
     <div class="app-layout">
       
 
-<header class="app-header" x-data x-bind="WindowScroll">
+<header class="app-header" x-data="" x-bind="WindowScroll">
   <div class="hide-xl">
-  <button
-    class="icon-btn"
-    :aria-expanded="$store.nav.open"
-    @click="$store.nav.toggle()"
-    x-cloak
-    lang="en"
-  >
+  <button class="icon-btn" :aria-expanded="$store.nav.open" @click="$store.nav.toggle()" x-cloak="" lang="en">
     <span x-show="!$store.nav.open"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg></span>
     <span x-show="$store.nav.open"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></span>
     <span class="visually-hidden">Menu</span>
@@ -36,7 +30,7 @@
 </div>
 
 
-  <a href="/" class="app-header__title">
+  <a href="/mcp-hko/" class="app-header__title">
     Eleventy Notes
   </a>
 
@@ -47,35 +41,10 @@
 
   
 
-  <div x-cloak x-data="search" @click.away="open = false" class="search" data-mode="overlay">
+  <div x-cloak="" x-data="search" @click.away="open = false" class="search" data-mode="overlay">
     <div class="search__bar">
       <span class="search__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></span>
-      <input
-        data-kbd-trigger
-        type="search"
-        role="combobox"
-        aria-autocomplete="list"
-        aria-haspopup="listbox"
-        aria-owns="id-03798b3a-popup"
-        aria-controls="id-03798b3a-popup"
-        aria-activedescendant
-        aria-expanded="false"
-        :aria-activedescendant="open && selectedId ? `id-03798b3a-result-${selectedId}` : ''"
-        :aria-expanded="open"
-        placeholder="Search..."
-        class="search__input"
-        autocorrect="off"
-        autocapitalize="off"
-        enterkeyhint="search"
-        required
-        x-model="term"
-        x-init="$store.hotkeys.register(&#39;/&#39;, () =&gt; $el.focus())"
-        @focus="open = true"
-        @keydown="onKeyDown"
-        @pageshow.window="term = $el.value"
-        lang="en"
-        
-      >
+      <input data-kbd-trigger="" type="search" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-owns="id-166ea00c-popup" aria-controls="id-166ea00c-popup" aria-activedescendant="" aria-expanded="false" :aria-activedescendant="open && selectedId ? `id-166ea00c-result-${selectedId}` : ''" :aria-expanded="open" placeholder="Search..." class="search__input" autocorrect="off" autocapitalize="off" enterkeyhint="search" required="" x-model="term" x-init="$store.hotkeys.register(&#39;/&#39;, () =&gt; $el.focus())" @focus="open = true" @keydown="onKeyDown" @pageshow.window="term = $el.value" lang="en">
       
         <kbd class="search__kbd" aria-hidden="true">/</kbd>
         <span class="visually-hidden" lang="en">
@@ -84,7 +53,7 @@
       
     </div>
     <template x-if="open">
-      <div class="search__popover" id="id-03798b3a-popup">
+      <div class="search__popover" id="id-166ea00c-popup">
         <div x-show="!term" class="search__info" lang="en">
           Search by title, content and #tags
         </div>
@@ -98,14 +67,8 @@
         <ul x-show="term && results && results.length" class="search__results" role="listbox" aria-label="Search Results">
           <template x-if="term && results && results.length">
             <template x-for="(result, index) in results" :key="result.id">
-              <li role="option" :id="`id-03798b3a-result-${result.id}`">
-                <a
-                  :href="result.url"
-                  class="search__result"
-                  :aria-selected="result.id === selectedId"
-                  x-effect="result.id === selectedId && $el.scrollIntoView({ block: 'nearest' })"
-                  :data-first="index == 0"
-                >
+              <li role="option" :id="`id-166ea00c-result-${result.id}`">
+                <a :href="result.url" class="search__result" :aria-selected="result.id === selectedId" x-effect="result.id === selectedId && $el.scrollIntoView({ block: 'nearest' })" :data-first="index == 0">
                   <span class="search__note-title" x-text="result.title"></span>
                   <span class="search__note-content" x-html="result.excerpt"></span>
                   <span class="search__selected-icon" aria-hidden="true">
@@ -124,7 +87,7 @@
   </div>
 
   <div class="hide-md">
-    <a href="/search/" class="icon-btn" lang="en">
+    <a href="/mcp-hko/search/" class="icon-btn" lang="en">
   <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
   <span class="visually-hidden">Search</span>
 </a>
@@ -132,40 +95,19 @@
   </div>
   
 
-<div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data x-cloak lang="en">
-  <input
-    id="id-f581d0b1-light"
-    type="radio"
-    name="appearance"
-    x-model="$store.appearance.theme"
-    value="light"
-    class="visually-hidden"
-  >
-  <label for="id-f581d0b1-light" class="theme-switcher__label" aria-label="Light">
+<div role="radiogroup" aria-label="Appearance" class="theme-switcher" x-data="" x-cloak="" lang="en">
+  <input id="id-8a07a750-light" type="radio" name="appearance" x-model="$store.appearance.theme" value="light" class="visually-hidden">
+  <label for="id-8a07a750-light" class="theme-switcher__label" aria-label="Light">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
   </label>
 
-  <input
-    id="id-f581d0b1-dark"
-    type="radio"
-    name="appearance"
-    x-model="$store.appearance.theme"
-    value="dark"
-    class="visually-hidden"
-  >
-  <label for="id-f581d0b1-dark" class="theme-switcher__label" aria-label="Dark">
+  <input id="id-8a07a750-dark" type="radio" name="appearance" x-model="$store.appearance.theme" value="dark" class="visually-hidden">
+  <label for="id-8a07a750-dark" class="theme-switcher__label" aria-label="Dark">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
   </label>
 
-  <input
-    id="id-f581d0b1-system"
-    type="radio"
-    name="appearance"
-    x-model="$store.appearance.theme"
-    value="system"
-    class="visually-hidden"
-  >
-  <label for="id-f581d0b1-system" class="theme-switcher__label" aria-label="System">
+  <input id="id-8a07a750-system" type="radio" name="appearance" x-model="$store.appearance.theme" value="system" class="visually-hidden">
+  <label for="id-8a07a750-system" class="theme-switcher__label" aria-label="System">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
   </label>
 </div>
@@ -173,12 +115,7 @@
 </header>
 
       <div class="app-layout__wrapper">
-        <div
-          class="app-layout__sidebar"
-          x-data="scrollContainer('app:sidebar')"
-          x-bind="container"
-          :data-open="$store.nav.open.toString()"
-        >
+        <div class="app-layout__sidebar" x-data="scrollContainer('app:sidebar')" x-bind="container" :data-open="$store.nav.open.toString()">
           <div class="app-layout__sidebar-inner">
             
 
@@ -189,11 +126,7 @@
     <h3 id="app:sidebar:nav" class="visually-hidden" lang="en">Main</h3>
     <ul class="nav-list" role="list" aria-labelledby="app:sidebar:nav">
       <li>
-        <a
-          href="/"
-          
-          class="nav-list__link"
-        >
+        <a href="/mcp-hko/" class="nav-list__link">
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
           
           
@@ -202,12 +135,7 @@
       </li>
       
         <li>
-          <a
-            href="/tags/"
-            
-            class="nav-list__link"
-            lang="en"
-          >
+          <a href="/mcp-hko/tags/" class="nav-list__link" lang="en">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -218,12 +146,7 @@
         </li>
       
       <li>
-        <a
-          href="/search/"
-          
-          class="nav-list__link"
-          lang="en"
-        >
+        <a href="/mcp-hko/search/" class="nav-list__link" lang="en">
           <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
           <span>Search</span>
         </a>
@@ -239,22 +162,14 @@
       <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:links">
         
           <li>
-            <a
-              href="https://github.com/rothsandro/eleventy-notes"
-              target=&quot;_blank&quot; rel=&quot;noopener&quot;
-              class="nav-list__link"
-            >
+            <a href="https://github.com/rothsandro/eleventy-notes" target="&quot;_blank&quot;" rel="&quot;noopener&quot;" class="nav-list__link">
               <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
               <span>GitHub / Support</span>
             </a>
           </li>
         
           <li>
-            <a
-              href="https://www.buymeacoffee.com/sandroroth"
-              target=&quot;_blank&quot; rel=&quot;noopener&quot;
-              class="nav-list__link"
-            >
+            <a href="https://www.buymeacoffee.com/sandroroth" target="&quot;_blank&quot;" rel="&quot;noopener&quot;" class="nav-list__link">
               <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg>
               <span>Buy me a coffee</span>
             </a>
@@ -265,7 +180,7 @@
   
 
   <template x-if="$store.bookmarks.items.length">
-    <nav aria-labelledby="app:sidebar:section:bookmarks" class="nav-section" x-cloak>
+    <nav aria-labelledby="app:sidebar:section:bookmarks" class="nav-section" x-cloak="">
       <h3 id="app:sidebar:section:bookmarks" class="nav-section__title" lang="en">
         Bookmarks
       </h3>
@@ -287,32 +202,16 @@
       <nav aria-labelledby="app:sidebar:section:1" class="nav-section">
         <h3 id="app:sidebar:section:1" class="nav-section__title">Introduction</h3>
         
-          <div
-            class="nav-group"
+          <div class="nav-group" data-expanded="true">
             
-            data-expanded="true"
-          >
-            
-            <div 
+            <div id="app:sidebar:section:1:group:0:list">
               
-              id="app:sidebar:section:1:group:0:list">
-              
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:1:group:0:title"
-    style="--nav-list-level:0">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:1:group:0:title" style="--nav-list-level:0">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/getting-started/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/getting-started/" class="nav-list__link">
               <span>Getting started</span>
             </a>
             
@@ -322,16 +221,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/your-first-note/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/your-first-note/" class="nav-list__link">
               <span>Your first note</span>
             </a>
             
@@ -341,16 +234,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/next-steps/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/next-steps/" class="nav-list__link">
               <span>Next Steps</span>
             </a>
             
@@ -370,49 +257,23 @@
       <nav aria-labelledby="app:sidebar:section:6" class="nav-section">
         <h3 id="app:sidebar:section:6" class="nav-section__title">Guides</h3>
         
-          <div
-            class="nav-group"
-            
-            x-data="collapsible('app:sidebar:section:6:group:2:list', true)"
-            :data-expanded="expanded"
-            
-            data-expanded="true"
-          >
+          <div class="nav-group" x-data="collapsible('app:sidebar:section:6:group:2:list', true)" :data-expanded="expanded" data-expanded="true">
             
               <h4 class="nav-group__title" id="app:sidebar:section:6:group:2:title">
-                <button
-                  type="button"
-                  class="nav-group__toggle" 
-                  aria-controls="app:sidebar:section:6:group:2:list"
-                  aria-expanded="true"
-                  :aria-expanded="expanded"
-                  @click="toggle()"
-                >
+                <button type="button" class="nav-group__toggle" aria-controls="app:sidebar:section:6:group:2:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                   <span>Writing Notes</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 </button>
               </h4>
             
-            <div 
-              x-show="expanded"
-              id="app:sidebar:section:6:group:2:list">
+            <div x-show="expanded" id="app:sidebar:section:6:group:2:list">
               
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:2:title"
-    style="--nav-list-level:0">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:2:title" style="--nav-list-level:0">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/writing-notes/"
-              aria-current=page
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/writing-notes/" aria-current="page" class="nav-list__link">
               <span>Writing Notes</span>
             </a>
             
@@ -422,16 +283,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/start-page/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/start-page/" class="nav-list__link">
               <span>Start page</span>
             </a>
             
@@ -441,16 +296,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/wikilinks/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/wikilinks/" class="nav-list__link">
               <span>Wikilinks</span>
             </a>
             
@@ -460,16 +309,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/markdown/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/markdown/" class="nav-list__link">
               <span>Markdown</span>
             </a>
             
@@ -479,16 +322,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/callouts/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/callouts/" class="nav-list__link">
               <span>Callouts</span>
             </a>
             
@@ -498,16 +335,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/custom-properties/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/custom-properties/" class="nav-list__link">
               <span>Custom Properties</span>
             </a>
             
@@ -517,29 +348,14 @@
         
       </li>
     
-      <li
-        
-          x-data="collapsible('app:sidebar:section:6:group:2:tree:dynamic-content', true)"
-        
-      >
+      <li x-data="collapsible('app:sidebar:section:6:group:2:tree:dynamic-content', true)">
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/dynamic-content/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/dynamic-content/" class="nav-list__link">
               <span>Dynamic Content</span>
             </a>
             
-              <button
-                type="button"
-                class="nav-list__link nav-list__toggle"
-                aria-controls="app:sidebar:section:6:group:2:tree:dynamic-content:list"
-                aria-expanded="true"
-                :aria-expanded="expanded"
-                @click="toggle()"
-              >
+              <button type="button" class="nav-list__link nav-list__toggle" aria-controls="app:sidebar:section:6:group:2:tree:dynamic-content:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 <span class="visually-hidden">
                   Toggle Dynamic Content
@@ -552,22 +368,12 @@
         
           <div x-show="expanded" id="app:sidebar:section:6:group:2:tree:dynamic-content:list">
             
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:2:title"
-    style="--nav-list-level:1">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:2:title" style="--nav-list-level:1">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/dynamic-content/collections/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/dynamic-content/collections/" class="nav-list__link">
               <span>Collections</span>
             </a>
             
@@ -577,16 +383,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/dynamic-content/queries/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/dynamic-content/queries/" class="nav-list__link">
               <span>Queries</span>
             </a>
             
@@ -596,16 +396,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/writing/dynamic-content/render-filters/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/writing/dynamic-content/render-filters/" class="nav-list__link">
               <span>Render Filters</span>
             </a>
             
@@ -626,49 +420,23 @@
             </div>
           </div>
         
-          <div
-            class="nav-group"
-            
-            x-data="collapsible('app:sidebar:section:6:group:3:list', true)"
-            :data-expanded="expanded"
-            
-            data-expanded="true"
-          >
+          <div class="nav-group" x-data="collapsible('app:sidebar:section:6:group:3:list', true)" :data-expanded="expanded" data-expanded="true">
             
               <h4 class="nav-group__title" id="app:sidebar:section:6:group:3:title">
-                <button
-                  type="button"
-                  class="nav-group__toggle" 
-                  aria-controls="app:sidebar:section:6:group:3:list"
-                  aria-expanded="true"
-                  :aria-expanded="expanded"
-                  @click="toggle()"
-                >
+                <button type="button" class="nav-group__toggle" aria-controls="app:sidebar:section:6:group:3:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                   <span>Organizing Notes</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 </button>
               </h4>
             
-            <div 
-              x-show="expanded"
-              id="app:sidebar:section:6:group:3:list">
+            <div x-show="expanded" id="app:sidebar:section:6:group:3:list">
               
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:3:title"
-    style="--nav-list-level:0">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:3:title" style="--nav-list-level:0">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/organizing/files-and-folders/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/organizing/files-and-folders/" class="nav-list__link">
               <span>Files and Folders</span>
             </a>
             
@@ -678,16 +446,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/organizing/tags/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/organizing/tags/" class="nav-list__link">
               <span>Tags</span>
             </a>
             
@@ -702,49 +464,23 @@
             </div>
           </div>
         
-          <div
-            class="nav-group"
-            
-            x-data="collapsible('app:sidebar:section:6:group:4:list', true)"
-            :data-expanded="expanded"
-            
-            data-expanded="true"
-          >
+          <div class="nav-group" x-data="collapsible('app:sidebar:section:6:group:4:list', true)" :data-expanded="expanded" data-expanded="true">
             
               <h4 class="nav-group__title" id="app:sidebar:section:6:group:4:title">
-                <button
-                  type="button"
-                  class="nav-group__toggle" 
-                  aria-controls="app:sidebar:section:6:group:4:list"
-                  aria-expanded="true"
-                  :aria-expanded="expanded"
-                  @click="toggle()"
-                >
+                <button type="button" class="nav-group__toggle" aria-controls="app:sidebar:section:6:group:4:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                   <span>Core Features</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 </button>
               </h4>
             
-            <div 
-              x-show="expanded"
-              id="app:sidebar:section:6:group:4:list">
+            <div x-show="expanded" id="app:sidebar:section:6:group:4:list">
               
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:4:title"
-    style="--nav-list-level:0">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:4:title" style="--nav-list-level:0">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/configuration-file/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/configuration-file/" class="nav-list__link">
               <span>Configuration file</span>
             </a>
             
@@ -754,16 +490,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/search/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/search/" class="nav-list__link">
               <span>Search</span>
             </a>
             
@@ -773,16 +503,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/themes/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/themes/" class="nav-list__link">
               <span>Themes</span>
             </a>
             
@@ -792,16 +516,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/styling/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/styling/" class="nav-list__link">
               <span>Styling</span>
             </a>
             
@@ -811,16 +529,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/static-assets/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/static-assets/" class="nav-list__link">
               <span>Static Assets</span>
             </a>
             
@@ -830,16 +542,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/language/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/language/" class="nav-list__link">
               <span>Language</span>
             </a>
             
@@ -849,16 +555,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/bookmarks/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/bookmarks/" class="nav-list__link">
               <span>Bookmarks</span>
             </a>
             
@@ -868,16 +568,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/page-navigation/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/page-navigation/" class="nav-list__link">
               <span>Page Navigation</span>
             </a>
             
@@ -887,29 +581,14 @@
         
       </li>
     
-      <li
-        
-          x-data="collapsible('app:sidebar:section:6:group:4:tree:panel', true)"
-        
-      >
+      <li x-data="collapsible('app:sidebar:section:6:group:4:tree:panel', true)">
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/panel/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/panel/" class="nav-list__link">
               <span>Panel</span>
             </a>
             
-              <button
-                type="button"
-                class="nav-list__link nav-list__toggle"
-                aria-controls="app:sidebar:section:6:group:4:tree:panel:list"
-                aria-expanded="true"
-                :aria-expanded="expanded"
-                @click="toggle()"
-              >
+              <button type="button" class="nav-list__link nav-list__toggle" aria-controls="app:sidebar:section:6:group:4:tree:panel:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 <span class="visually-hidden">
                   Toggle Panel
@@ -922,22 +601,12 @@
         
           <div x-show="expanded" id="app:sidebar:section:6:group:4:tree:panel:list">
             
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:4:title"
-    style="--nav-list-level:1">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:4:title" style="--nav-list-level:1">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/panel/edit-link/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/panel/edit-link/" class="nav-list__link">
               <span>Edit link</span>
             </a>
             
@@ -953,29 +622,14 @@
         
       </li>
     
-      <li
-        
-          x-data="collapsible('app:sidebar:section:6:group:4:tree:sidebar', true)"
-        
-      >
+      <li x-data="collapsible('app:sidebar:section:6:group:4:tree:sidebar', true)">
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/sidebar/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/sidebar/" class="nav-list__link">
               <span>Sidebar</span>
             </a>
             
-              <button
-                type="button"
-                class="nav-list__link nav-list__toggle"
-                aria-controls="app:sidebar:section:6:group:4:tree:sidebar:list"
-                aria-expanded="true"
-                :aria-expanded="expanded"
-                @click="toggle()"
-              >
+              <button type="button" class="nav-list__link nav-list__toggle" aria-controls="app:sidebar:section:6:group:4:tree:sidebar:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 <span class="visually-hidden">
                   Toggle Sidebar
@@ -988,22 +642,12 @@
         
           <div x-show="expanded" id="app:sidebar:section:6:group:4:tree:sidebar:list">
             
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:4:title"
-    style="--nav-list-level:1">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:4:title" style="--nav-list-level:1">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/sidebar/additional-links/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/sidebar/additional-links/" class="nav-list__link">
               <span>Additional Links</span>
             </a>
             
@@ -1013,16 +657,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/features/sidebar/notes/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/features/sidebar/notes/" class="nav-list__link">
               <span>Notes</span>
             </a>
             
@@ -1043,49 +681,23 @@
             </div>
           </div>
         
-          <div
-            class="nav-group"
-            
-            x-data="collapsible('app:sidebar:section:6:group:5:list', true)"
-            :data-expanded="expanded"
-            
-            data-expanded="true"
-          >
+          <div class="nav-group" x-data="collapsible('app:sidebar:section:6:group:5:list', true)" :data-expanded="expanded" data-expanded="true">
             
               <h4 class="nav-group__title" id="app:sidebar:section:6:group:5:title">
-                <button
-                  type="button"
-                  class="nav-group__toggle" 
-                  aria-controls="app:sidebar:section:6:group:5:list"
-                  aria-expanded="true"
-                  :aria-expanded="expanded"
-                  @click="toggle()"
-                >
+                <button type="button" class="nav-group__toggle" aria-controls="app:sidebar:section:6:group:5:list" aria-expanded="true" :aria-expanded="expanded" @click="toggle()">
                   <span>Deployment</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
                 </button>
               </h4>
             
-            <div 
-              x-show="expanded"
-              id="app:sidebar:section:6:group:5:list">
+            <div x-show="expanded" id="app:sidebar:section:6:group:5:list">
               
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:6:group:5:title"
-    style="--nav-list-level:0">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:6:group:5:title" style="--nav-list-level:0">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/deployment/build/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/deployment/build/" class="nav-list__link">
               <span>Build</span>
             </a>
             
@@ -1095,16 +707,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/deployment/netlify/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/deployment/netlify/" class="nav-list__link">
               <span>Netlify</span>
             </a>
             
@@ -1114,16 +720,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/deployment/cloudflare-pages/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/deployment/cloudflare-pages/" class="nav-list__link">
               <span>Cloudflare Pages</span>
             </a>
             
@@ -1133,16 +733,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/deployment/gitlab-pages/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/deployment/gitlab-pages/" class="nav-list__link">
               <span>GitLab Pages</span>
             </a>
             
@@ -1152,16 +746,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/deployment/github-pages/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/deployment/github-pages/" class="nav-list__link">
               <span>GitHub Pages</span>
             </a>
             
@@ -1181,32 +769,16 @@
       <nav aria-labelledby="app:sidebar:section:8" class="nav-section">
         <h3 id="app:sidebar:section:8" class="nav-section__title">Releases</h3>
         
-          <div
-            class="nav-group"
+          <div class="nav-group" data-expanded="true">
             
-            data-expanded="true"
-          >
-            
-            <div 
+            <div id="app:sidebar:section:8:group:7:list">
               
-              id="app:sidebar:section:8:group:7:list">
-              
-  <ul 
-    class="nav-list"
-    role="list"
-    aria-labelledby="app:sidebar:section:8:group:7:title"
-    style="--nav-list-level:0">
+  <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:8:group:7:title" style="--nav-list-level:0">
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/releases/changelog/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/releases/changelog/" class="nav-list__link">
               <span>Changelog</span>
             </a>
             
@@ -1216,16 +788,10 @@
         
       </li>
     
-      <li
-        
-      >
+      <li>
         
           <div class="nav-list__link-with-toggle">
-            <a
-              href="/n/releases/updating/"
-              
-              class="nav-list__link"
-            >
+            <a href="/mcp-hko/n/releases/updating/" class="nav-list__link">
               <span>Updating</span>
             </a>
             
@@ -1252,11 +818,7 @@
       <ul class="nav-list" role="list" aria-labelledby="app:sidebar:section:tags">
         
         <li>
-          <a
-            href="/tags/basics/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/basics/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1267,11 +829,7 @@
         </li>
         
         <li>
-          <a
-            href="/tags/deployment/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/deployment/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1282,11 +840,7 @@
         </li>
         
         <li>
-          <a
-            href="/tags/dynamic-content/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/dynamic-content/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1297,11 +851,7 @@
         </li>
         
         <li>
-          <a
-            href="/tags/feature/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/feature/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1312,11 +862,7 @@
         </li>
         
         <li>
-          <a
-            href="/tags/organizing/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/organizing/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1327,11 +873,7 @@
         </li>
         
         <li>
-          <a
-            href="/tags/release/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/release/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1342,11 +884,7 @@
         </li>
         
         <li>
-          <a
-            href="/tags/writing/"
-            
-            class="nav-list__link"
-          >
+          <a href="/mcp-hko/tags/writing/" class="nav-list__link">
             
       <svg width="1.125em" height="1.125em">
         <use xlink:href="#icon-hash"></use>
@@ -1364,8 +902,8 @@
           </div>
         </div>
         <div>
-<div class="page" data-pagefind-body>
-  <main class="page__main" id="app-content" >
+<div class="page" data-pagefind-body="">
+  <main class="page__main" id="app-content">
     <article>
       <h1 class="page__title">Writing Notes</h1>
       <div class="article">
@@ -1380,15 +918,7 @@
 
 This is my note.</code></pre>
 
-          <button
-            title="Copy to clipboard"
-            aria-label="Copy to clipboard"
-            class="code-block__copy"
-            x-cloak
-            x-data="copyToClipboard()"
-            x-bind="copyBtn"
-            lang="en"
-          >
+          <button title="Copy to clipboard" aria-label="Copy to clipboard" class="code-block__copy" x-cloak="" x-data="copyToClipboard()" x-bind="copyBtn" lang="en">
             <svg x-show="!copied">
               <use xlink:href="#icon-copy"></use>
             </svg>
@@ -1408,15 +938,7 @@ This is my note.</code></pre>
 
 This is my note.</code></pre>
 
-          <button
-            title="Copy to clipboard"
-            aria-label="Copy to clipboard"
-            class="code-block__copy"
-            x-cloak
-            x-data="copyToClipboard()"
-            x-bind="copyBtn"
-            lang="en"
-          >
+          <button title="Copy to clipboard" aria-label="Copy to clipboard" class="code-block__copy" x-cloak="" x-data="copyToClipboard()" x-bind="copyBtn" lang="en">
             <svg x-show="!copied">
               <use xlink:href="#icon-copy"></use>
             </svg>
@@ -1431,15 +953,7 @@ This is my note.</code></pre>
         <div class="code-block">
           <pre class="language-markdown"><code class="language-markdown"><span class="token url"><span class="token operator">!</span>[<span class="token content">My image</span>](<span class="token url">./my-image.jpg</span>)</span></code></pre>
 
-          <button
-            title="Copy to clipboard"
-            aria-label="Copy to clipboard"
-            class="code-block__copy"
-            x-cloak
-            x-data="copyToClipboard()"
-            x-bind="copyBtn"
-            lang="en"
-          >
+          <button title="Copy to clipboard" aria-label="Copy to clipboard" class="code-block__copy" x-cloak="" x-data="copyToClipboard()" x-bind="copyBtn" lang="en">
             <svg x-show="!copied">
               <use xlink:href="#icon-copy"></use>
             </svg>
@@ -1456,15 +970,7 @@ This is my note.</code></pre>
 <span class="token list punctuation">-</span> [ ] Task 2
 <span class="token list punctuation">-</span> [x] Completed task</code></pre>
 
-          <button
-            title="Copy to clipboard"
-            aria-label="Copy to clipboard"
-            class="code-block__copy"
-            x-cloak
-            x-data="copyToClipboard()"
-            x-bind="copyBtn"
-            lang="en"
-          >
+          <button title="Copy to clipboard" aria-label="Copy to clipboard" class="code-block__copy" x-cloak="" x-data="copyToClipboard()" x-bind="copyBtn" lang="en">
             <svg x-show="!copied">
               <use xlink:href="#icon-copy"></use>
             </svg>
@@ -1488,15 +994,15 @@ This is my note.</code></pre>
 
   <div class="page-nav">
     
-      <a href="/n/next-steps/" class="page-nav__link" data-type="prev">
+      <a href="/mcp-hko/n/next-steps/" class="page-nav__link" data-type="prev">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
-        <span class="page-nav__type" en>Previous</span>
+        <span class="page-nav__type" en="">Previous</span>
         <span class="page-nav__label">Next Steps</span>
       </a>
     
     
-      <a href="/n/writing/start-page/" class="page-nav__link" data-type="next">
-        <span class="page-nav__type" en>Next</span>
+      <a href="/mcp-hko/n/writing/start-page/" class="page-nav__link" data-type="next">
+        <span class="page-nav__type" en="">Next</span>
         <span class="page-nav__label">Start page</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="page-nav__icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
@@ -1515,13 +1021,7 @@ This is my note.</code></pre>
 <aside class="stack" data-stack="6">
   
   
-  <div
-    class="toc"
-    data-pagefind-ignore
-    x-data="toc"
-    x-on:scroll.window.throttle.30ms="onScroll()"
-    :style="indicatorStyles"
-  >
+  <div class="toc" data-pagefind-ignore="" x-data="toc" x-on:scroll.window.throttle.30ms="onScroll()" :style="indicatorStyles">
     <h2 class="toc__label" id="app-panel-toc" lang="en">
       On this page
     </h2>
@@ -1567,11 +1067,9 @@ This is my note.</code></pre>
       
       
       <li>
-        <a
-          href="/tags/writing/" class="grouped-links__link"
-          data-pagefind-filter="tags:writing">
+        <a href="/mcp-hko/tags/writing/" class="grouped-links__link" data-pagefind-filter="tags:writing">
           
-      <svg >
+      <svg>
         <use xlink:href="#icon-hash"></use>
       </svg>
     
@@ -1585,21 +1083,21 @@ This is my note.</code></pre>
 
   
   
-  <div class="grouped-links" data-pagefind-ignore>
+  <div class="grouped-links" data-pagefind-ignore="">
     <h2 class="grouped-links__label" id="app-panel-incoming" lang="en">
       Incoming
     </h2>
     <ul class="grouped-links__list" role="list" aria-labelledby="app-panel-incoming">
       
         <li>
-          <a href="/n/next-steps/" class="grouped-links__link">
+          <a href="/mcp-hko/n/next-steps/" class="grouped-links__link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
             <span>Next Steps</span>
           </a>
         </li>
       
         <li>
-          <a href="/n/features/static-assets/" class="grouped-links__link">
+          <a href="/mcp-hko/n/features/static-assets/" class="grouped-links__link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
             <span>Static Assets</span>
           </a>
@@ -1613,28 +1111,16 @@ This is my note.</code></pre>
   
   
 
-  <div class="inline" data-pagefind-ignore>
+  <div class="inline" data-pagefind-ignore="">
     
-  <button
-    x-data x-cloak
-    type="button"
-    class="toggle-btn"
-    :aria-pressed="$store.bookmarks.is('/n/writing/writing-notes/')"
-    @click="$store.bookmarks.toggle('/n/writing/writing-notes/')"
-    lang="en"
-  >
+  <button x-data="" x-cloak="" type="button" class="toggle-btn" :aria-pressed="$store.bookmarks.is('/mcp-hko/n/writing/writing-notes/')" @click="$store.bookmarks.toggle('/mcp-hko/n/writing/writing-notes/')" lang="en">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
     <span>Bookmark</span>
   </button>
 
     
   
-    <a 
-      href="https://github.com/rothsandro/eleventy-notes/edit/main/Writing/Writing%20Notes.md"
-      
-      class="toggle-btn"
-      lang="en"
-    >
+    <a href="https://github.com/rothsandro/eleventy-notes/edit/main/Writing/Writing%20Notes.md" class="toggle-btn" lang="en">
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
       <span>Edit</span>
     </a>
@@ -1652,9 +1138,9 @@ This is my note.</code></pre>
       </div>
     </div>
 
-    <script src="/app.js" data-base="/"></script>
+    <script src="/mcp-hko/app.js" data-base="/mcp-hko/"></script>
 
-    <div aria-hidden="true" hidden>
+    <div aria-hidden="true" hidden="">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-hash"><line x1="4" x2="20" y1="9" y2="9"></line><line x1="4" x2="20" y1="15" y2="15"></line><line x1="10" x2="8" y1="3" y2="21"></line><line x1="16" x2="14" y1="3" y2="21"></line></svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-anchor-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="icon-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
